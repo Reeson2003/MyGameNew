@@ -23,6 +23,8 @@ public class Experience {
             this.experience += experience;
         } else {
             experience -= (expToNextLevel - this.experience);
+            this.experience = 0;
+          //this.experience = expToNextLevel; //если необходимо будет всё-таки не обнулять текущую exp
             levelUp();
             skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
             if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
