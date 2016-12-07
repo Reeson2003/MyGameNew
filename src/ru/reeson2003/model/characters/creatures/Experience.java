@@ -18,36 +18,41 @@ public class Experience {
         skillPoints = 0;
         calcExpToLevel(level);
     }
+//    todo : methods subtractExperience(int experience);
+//    todo : calcExpToPreviousLevel(); - ?
     public void addExperience(int experience) {
         if (this.experience + experience < expToNextLevel) {
             this.experience += experience;
         } else {
             experience -= (expToNextLevel - this.experience);
-            this.experience = 0;
-          //this.experience = expToNextLevel; //если необходимо будет всё-таки не обнулять текущую exp
+//            this.experience = 0;
+            this.experience = expToNextLevel; //если необходимо будет всё-таки не обнулять текущую exp
             levelUp();
-            skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
-            if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
-                skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
             calcExpToNextLevel();
             addExperience(experience);
         }
     }
-
     private void calcExpToNextLevel() {
         expCoeff = expCoeff * ParametersConstants.EXP_COEFF_ADDICTION / 1000;
-        expToNextLevel = expCoeff;
+        expToNextLevel += expCoeff;
     }
     private void calcExpToLevel(int level) {
-        if (level >0)
-            calcExpToNextLevel();
         if (level-1 > 0)
             calcExpToLevel(level-1);
     }
 
     private void levelUp() {
         level++;
+        addSkillPoints();
     }
+    private void addSkillPoints() {
+        skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
+        if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
+            skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
+    }
+//    todo : сделать невозможным получение скилпоинтов при повторном сливе и поднятии лвла
+//    todo : например через флаг в методах addExperience(int) и subtractExperience(int)
+//    todo : продумать выдачу скилпоинтов - ?
 
     public int getLevel() {
         return level;
