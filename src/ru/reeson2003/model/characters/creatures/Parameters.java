@@ -4,6 +4,7 @@ package ru.reeson2003.model.characters.creatures;
  * Created by reeson on 05.12.16.
  */
 public class Parameters {
+//    todo : to add: movingSpeed, attackRange; (+methods and builderMethods)
     private int strength;
     private int constitution;
     private int agility;
@@ -18,7 +19,7 @@ public class Parameters {
     private int physicalAttack;
     private int physicalDefence;
     private int criticalChance;
-    private int atackSpeed;
+    private int attackSpeed;
     private int evasion;
     private int accuracy;
 
@@ -76,7 +77,7 @@ public class Parameters {
             return this;
         }
         public ParametersBuilder atackSpeed(int atackSpeed) {
-            parameters.atackSpeed = atackSpeed;
+            parameters.attackSpeed = atackSpeed;
             return this;
         }
         public ParametersBuilder evasion(int evasion) {
@@ -105,9 +106,44 @@ public class Parameters {
         physicalAttack = 0;
         physicalDefence = 0;
         criticalChance = 0;
-        atackSpeed = 0;
+        attackSpeed = 0;
         evasion = 0;
         accuracy = 0;
+    }
+
+    public void addParameters(Parameters parameters) {
+        this.strength += parameters.strength;
+        this.constitution += parameters.constitution;
+        this.agility += parameters.agility;
+        this.wisdom += parameters.wisdom;
+        this.intellect += parameters.intellect;
+        this.maximumHealth += parameters.maximumHealth;
+        this.maximumMana += parameters.maximumMana;
+        this.healthRegen += parameters.healthRegen;
+        this.manaRegen += parameters.manaRegen;
+        this.physicalAttack += parameters.physicalAttack;
+        this.physicalDefence += parameters.physicalDefence;
+        this.criticalChance += parameters.criticalChance;
+        this.attackSpeed += parameters.attackSpeed;
+        this.evasion += parameters.evasion;
+        this.accuracy += parameters.accuracy;
+    }
+    public void subtractParameters(Parameters parameters) {
+        this.strength -= parameters.strength;
+        this.constitution -= parameters.constitution;
+        this.agility -= parameters.agility;
+        this.wisdom -= parameters.wisdom;
+        this.intellect -= parameters.intellect;
+        this.maximumHealth -= parameters.maximumHealth;
+        this.maximumMana -= parameters.maximumMana;
+        this.healthRegen -= parameters.healthRegen;
+        this.manaRegen -= parameters.manaRegen;
+        this.physicalAttack -= parameters.physicalAttack;
+        this.physicalDefence -= parameters.physicalDefence;
+        this.criticalChance -= parameters.criticalChance;
+        this.attackSpeed -= parameters.attackSpeed;
+        this.evasion -= parameters.evasion;
+        this.accuracy -= parameters.accuracy;
     }
 
     public int getStrength() {
@@ -146,8 +182,8 @@ public class Parameters {
     public int getCriticalChance() {
         return criticalChance;
     }
-    public int getAtackSpeed() {
-        return atackSpeed;
+    public int getAttackSpeed() {
+        return attackSpeed;
     }
     public int getEvasion() {
         return evasion;
@@ -191,8 +227,8 @@ public class Parameters {
     public void setCriticalChance(int criticalChance) {
         this.criticalChance = criticalChance;
     }
-    public void setAtackSpeed(int atackSpeed) {
-        this.atackSpeed = atackSpeed;
+    public void setAttackSpeed(int attackSpeed) {
+        this.attackSpeed = attackSpeed;
     }
     public void setEvasion(int evasion) {
         this.evasion = evasion;
@@ -216,7 +252,7 @@ public class Parameters {
                 ",\n\t physicalAttack=" + physicalAttack +
                 ",\n\t physicalDefence=" + physicalDefence +
                 ",\n\t criticalChance=" + criticalChance +
-                ",\n\t atackSpeed=" + atackSpeed +
+                ",\n\t attackSpeed=" + attackSpeed +
                 ",\n\t evasion=" + evasion +
                 ",\n\t accuracy=" + accuracy +
                 '}';

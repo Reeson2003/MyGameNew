@@ -11,7 +11,8 @@ import java.io.Reader;
 public class Main1 {
     public static void main(String[] args) {
         Experience e = new Experience(0);
-        e.addExperience(1000+245-217);
+        e.addExperience(15+19+24);
+//        e.addExperience();
         System.out.println(e);
     }
     public static char getKey() {
