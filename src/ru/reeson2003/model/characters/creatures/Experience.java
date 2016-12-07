@@ -10,7 +10,7 @@ public class Experience {
     private int expCoeff;
     private int skillPoints;
 
-    public Experience(int level) {
+    public Experience(int level) { // test push
         this.level = level;
         experience = 0;
         expCoeff = ParametersConstants.EXP_COEFF;
