@@ -7,7 +7,9 @@ import ru.reeson2003.model.characters.items.Equipment;
  * Created by reeson on 04.12.16.
  */
 public abstract class Creature{
-    protected String name = "";
+//    todo : Enum CreatureType or int id or inheritance?
+//    todo : getLevel and other exp methods
+    protected String name;
     protected Parameters parameters;
     protected Experience experience;
     protected Equipment equipment;
@@ -53,8 +55,8 @@ public abstract class Creature{
     public int getCriticalChance() {
         return parameters.getCriticalChance() + equipment.getCriticalChance();
     }
-    public int getAtackSpeed() {
-        return parameters.getAtackSpeed() + equipment.getAtackSpeed();
+    public int getAttackSpeed() {
+        return parameters.getAttackSpeed() + equipment.getAttackSpeed();
     }
     public int getEvasion() {
         return parameters.getEvasion() + equipment.getEvasion();
@@ -62,6 +64,7 @@ public abstract class Creature{
     public int getAccuracy() {
         return parameters.getAccuracy() + equipment.getAccuracy();
     }
+//    todo : getMovingSpeed(), getAttackRange();
     public int getHealth() {
         return health;
     }
