@@ -97,4 +97,5 @@ class Experience {
                 ", skillPoints=" + skillPoints +
                 '}';
     }
+	
 }
