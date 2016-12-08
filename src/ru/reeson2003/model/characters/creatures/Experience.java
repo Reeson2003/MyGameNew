@@ -37,12 +37,12 @@ public class Experience {
     public void subtractExperience() {
         if (experience - expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF > 0) {
 	        experience -= expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF ; // EXP_SUBTRACTION_COEFF = 10 (%) например
-	    if (experience < expToNextLevel - expCoeff) {
-	        calcExpToPreviousLevel();
+	        if (experience < expToNextLevel - expCoeff) {
+	            calcExpToPreviousLevel();
+            }
 	    }
-	}
-	else
-	    experience = 0;
+	    else
+	        experience = 0;
     }
     private void calcExpToPreviousLevel() {
         level--;
@@ -51,7 +51,7 @@ public class Experience {
     }
     public void addExperience(int experience) {
         this.experience += experience;
-	levelUp();
+	    levelUp();
     }
     private void calcExpToNextLevel() {
         expCoeff = expCoeff * ParametersConstants.EXP_COEFF_ADDICTION / 1000;
@@ -60,12 +60,12 @@ public class Experience {
     private void calcExpToLevel(int level) {
         if (level > 0) {
             if (level - 1 >= 0) {
-        	experience = expToNextLevel;
+        	    experience = expToNextLevel;
             }
-	    addSkillPoints();
+	        addSkillPoints();
             calcExpToNextLevel();
             calcExpToLevel(level - 1);
-	}
+	    }
     }
 
     private void levelUp() {
@@ -80,9 +80,9 @@ public class Experience {
 	    }
     }
     private void addSkillPoints() {
-	skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
-	if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
-	    skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
+	    skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
+	    if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
+	        skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
     }
 //    todo : продумать выдачу скилпоинтов - ?
 
