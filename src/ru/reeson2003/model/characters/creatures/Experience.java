@@ -3,7 +3,7 @@ package ru.reeson2003.model.characters.creatures;
 /**
  * Created by reeson on 05.12.16.
  */
-class Experience {
+public class Experience {
     private int level;
     private int experience;
     private int expToNextLevel;
