@@ -9,69 +9,67 @@ class Experience {
     private int expToNextLevel;
     private int expCoeff;
     private int skillPoints;
-	private int levelMarkerForSkillPoints;
+    private int levelMarkerForSkillPoints;
 
     public Experience(int level) {
         this.level = level;
-		levelMarkerForSkillPoints = this.level;
+	levelMarkerForSkillPoints = this.level;
         experience = 0;
         expCoeff = ParametersConstants.EXP_COEFF;
         expToNextLevel = expCoeff;
         skillPoints = 0;
         calcExpToLevel(level);
     }
-	public void subtractExperience() {
-		if (experience - expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF > 0) {
-			experience -= expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF ; // EXP_SUBTRACTION_COEFF = 10 (%) например
-			if (experience < expToNextLevel - expCoeff) {
-				calcExpToPreviousLevel();
-			}
-		}
-		else
-			experience = 0;
+    public void subtractExperience() {
+        if (experience - expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF > 0) {
+	    experience -= expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF ; // EXP_SUBTRACTION_COEFF = 10 (%) например
+	    if (experience < expToNextLevel - expCoeff) {
+	        calcExpToPreviousLevel();
+	    }
 	}
-	private void calcExpToPreviousLevel() {
-		level--;
-		expToNextLevel -= expCoeff;
-		expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ParametersConstants.EXP_COEFF_ADDICTION);
-	}
+	else
+	    experience = 0;
+    }
+    private void calcExpToPreviousLevel() {
+        level--;
+	expToNextLevel -= expCoeff;
+	expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ParametersConstants.EXP_COEFF_ADDICTION);
+    }
     public void addExperience(int experience) {
-		this.experience += experience;
-		levelUp();
-	}
+        this.experience += experience;
+	levelUp();
+    }
     private void calcExpToNextLevel() {
         expCoeff = expCoeff * ParametersConstants.EXP_COEFF_ADDICTION / 1000;
         expToNextLevel += expCoeff;
     }
     private void calcExpToLevel(int level) {
         if (level > 0) {
-        	if (level - 1 >= 0) {
-        		experience = expToNextLevel;
-        	}
-			addSkillPoints();
-        	calcExpToNextLevel();
+            if (level - 1 >= 0) {
+        	experience = expToNextLevel;
+            }
+	    addSkillPoints();
+            calcExpToNextLevel();
             calcExpToLevel(level - 1);
-        }
+	}
     }
 
     private void levelUp() {
-		if (this.experience > expToNextLevel) {
-			level++;
-			if (levelMarkerForSkillPoints < level) {
-				addSkillPoints();
-				levelMarkerForSkillPoints = level;
-			}
-			calcExpToNextLevel();
-			levelUp();
-		}
+	if (this.experience > expToNextLevel) {
+	    level++;
+	    if (levelMarkerForSkillPoints < level) {
+	        addSkillPoints();
+		levelMarkerForSkillPoints = level;
+	    }
+	    calcExpToNextLevel();
+	    levelUp();
+	}
     }
     private void addSkillPoints() {
-		skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
-		if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
-			skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
+	skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
+	if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
+	    skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
     }
-//    todo : сделать невозможным получение скилпоинтов при повторном сливе и поднятии лвла
-//    todo : например через флаг в методах addExperience(int) и subtractExperience(int)
 //    todo : продумать выдачу скилпоинтов - ?
 
     public int getLevel() {
