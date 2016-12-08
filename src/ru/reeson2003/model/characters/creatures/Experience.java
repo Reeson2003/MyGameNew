@@ -13,7 +13,7 @@ class Experience {
 
     public Experience(int level) {
         this.level = level;
-	levelMarkerForSkillPoints = this.level;
+	    levelMarkerForSkillPoints = this.level;
         experience = 0;
         expCoeff = ParametersConstants.EXP_COEFF;
         expToNextLevel = expCoeff;
@@ -22,22 +22,22 @@ class Experience {
     }
     public void subtractExperience() {
         if (experience - expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF > 0) {
-	    experience -= expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF ; // EXP_SUBTRACTION_COEFF = 10 (%) например
-	    if (experience < expToNextLevel - expCoeff) {
-	        calcExpToPreviousLevel();
+	        experience -= expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF ; // EXP_SUBTRACTION_COEFF = 10 (%) например
+	        if (experience < expToNextLevel - expCoeff) {
+	            calcExpToPreviousLevel();
+	        }
 	    }
-	}
-	else
-	    experience = 0;
+	    else
+	        experience = 0;
     }
     private void calcExpToPreviousLevel() {
         level--;
-	expToNextLevel -= expCoeff;
-	expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ParametersConstants.EXP_COEFF_ADDICTION);
+	    expToNextLevel -= expCoeff;
+	    expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ParametersConstants.EXP_COEFF_ADDICTION);
     }
     public void addExperience(int experience) {
         this.experience += experience;
-	levelUp();
+	    levelUp();
     }
     private void calcExpToNextLevel() {
         expCoeff = expCoeff * ParametersConstants.EXP_COEFF_ADDICTION / 1000;
@@ -46,29 +46,29 @@ class Experience {
     private void calcExpToLevel(int level) {
         if (level > 0) {
             if (level - 1 >= 0) {
-        	experience = expToNextLevel;
+        	    experience = expToNextLevel;
             }
-	    addSkillPoints();
+	        addSkillPoints();
             calcExpToNextLevel();
             calcExpToLevel(level - 1);
-	}
+	    }
     }
 
     private void levelUp() {
-	if (this.experience > expToNextLevel) {
-	    level++;
-	    if (levelMarkerForSkillPoints < level) {
-	        addSkillPoints();
-		levelMarkerForSkillPoints = level;
+	    if (this.experience > expToNextLevel) {
+	        level++;
+	        if (levelMarkerForSkillPoints < level) {
+                addSkillPoints();
+		        levelMarkerForSkillPoints = level;
+	        }
+	        calcExpToNextLevel();
+	        levelUp();
 	    }
-	    calcExpToNextLevel();
-	    levelUp();
-	}
     }
     private void addSkillPoints() {
-	skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
-	if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
-	    skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
+	    skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
+	    if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
+	        skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
     }
 //    todo : продумать выдачу скилпоинтов - ?
 
