@@ -1,5 +1,7 @@
 package ru.reeson2003.model.characters.creatures;
 
+import java.util.List;
+
 /**
  * Created by reeson on 05.12.16.
  */
@@ -25,7 +27,7 @@ public class Experience {
 
     public Experience(int level) {
         this.level = level;
-	levelMarkerForSkillPoints = this.level;
+	    levelMarkerForSkillPoints = this.level;
         experience = 0;
         expCoeff = ParametersConstants.EXP_COEFF;
         expToNextLevel = expCoeff;
@@ -34,7 +36,7 @@ public class Experience {
     }
     public void subtractExperience() {
         if (experience - expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF > 0) {
-	    experience -= expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF ; // EXP_SUBTRACTION_COEFF = 10 (%) например
+	        experience -= expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF ; // EXP_SUBTRACTION_COEFF = 10 (%) например
 	    if (experience < expToNextLevel - expCoeff) {
 	        calcExpToPreviousLevel();
 	    }
@@ -44,8 +46,8 @@ public class Experience {
     }
     private void calcExpToPreviousLevel() {
         level--;
-	expToNextLevel -= expCoeff;
-	expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ParametersConstants.EXP_COEFF_ADDICTION);
+	    expToNextLevel -= expCoeff;
+	    expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ParametersConstants.EXP_COEFF_ADDICTION);
     }
     public void addExperience(int experience) {
         this.experience += experience;
