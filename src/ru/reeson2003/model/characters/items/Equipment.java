@@ -22,12 +22,11 @@ public class Equipment {
         parameters.addParameters(equip.getParameters());
         return result;
     }
-    public Equip undressEquip(Equip equip) {
+    public Equip putOff(Equip equip) {
         Equip result = equipment.remove(equip.getEquipType());
         parameters.subtractParameters(result.getParameters());
         return result;
     }
-
 
     public int getStrength() {
         return parameters.getStrength();
@@ -74,5 +73,10 @@ public class Equipment {
     public int getAccuracy() {
         return parameters.getAccuracy();
     }
-//    todo : getMovingSpeed(), getAttackRange();
+    public int getAttackRange() {
+        return parameters.getAttackRange();
+    }
+    public int getMovingSpeed() {
+        return parameters.getMovingSpeed();
+    }
 }

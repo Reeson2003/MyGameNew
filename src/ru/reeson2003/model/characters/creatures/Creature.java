@@ -64,11 +64,44 @@ public abstract class Creature{
     public int getAccuracy() {
         return parameters.getAccuracy() + equipment.getAccuracy();
     }
-//    todo : getMovingSpeed(), getAttackRange();
+    public int getAttackRange() {
+        return parameters.getAttackRange() + equipment.getAttackRange();
+    }
+    public int getMovingSpeed() {
+        return parameters.getMovingSpeed() + equipment.getMovingSpeed();
+    }
     public int getHealth() {
         return health;
     }
     public int getMana() {
         return mana;
+    }
+    public int getLevel() {
+        return experience.getLevel();
+    }
+    public int getSkillPoints() {
+        return experience.getSkillPoints();
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setParameters(Parameters parameters) {
+        this.parameters = parameters;
+    }
+    public void setExperience(Experience experience) {
+        this.experience = experience;
+    }
+    public void setEquipment(Equipment equipment) {
+        this.equipment = equipment;
+    }
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    public void setMana(int mana) {
+        this.mana = mana;
     }
 }

@@ -4,7 +4,6 @@ package ru.reeson2003.model.characters.creatures;
  * Created by reeson on 05.12.16.
  */
 public class Parameters {
-//    todo : to add: movingSpeed, attackRange; (+methods and builderMethods)
     private int strength;
     private int constitution;
     private int agility;
@@ -22,6 +21,8 @@ public class Parameters {
     private int attackSpeed;
     private int evasion;
     private int accuracy;
+    private int attackRange;
+    private int movingSpeed;
 
     public static class ParametersBuilder {
         Parameters parameters;
@@ -88,6 +89,14 @@ public class Parameters {
             parameters.accuracy = accuracy;
             return this;
         }
+        public ParametersBuilder attackRange(int attackRange) {
+            parameters.attackRange = attackRange;
+            return this;
+        }
+        public ParametersBuilder movingSpeed(int movingSpeed) {
+            parameters.movingSpeed = movingSpeed;
+            return this;
+        }
         public Parameters build() {
             return parameters;
         }
@@ -127,6 +136,8 @@ public class Parameters {
         this.attackSpeed += parameters.attackSpeed;
         this.evasion += parameters.evasion;
         this.accuracy += parameters.accuracy;
+        this.attackRange += parameters.attackRange;
+        this.movingSpeed += parameters.movingSpeed;
     }
     public void subtractParameters(Parameters parameters) {
         this.strength -= parameters.strength;
@@ -144,6 +155,8 @@ public class Parameters {
         this.attackSpeed -= parameters.attackSpeed;
         this.evasion -= parameters.evasion;
         this.accuracy -= parameters.accuracy;
+        this.attackRange -= parameters.attackRange;
+        this.movingSpeed -= parameters.movingSpeed;
     }
 
     public int getStrength() {
@@ -191,6 +204,12 @@ public class Parameters {
     public int getAccuracy() {
         return accuracy;
     }
+    public int getAttackRange() {
+        return attackRange;
+    }
+    public int getMovingSpeed() {
+        return movingSpeed;
+    }
     public void setStrength(int strength) {
         this.strength = strength;
     }
@@ -236,25 +255,33 @@ public class Parameters {
     public void setAccuracy(int accuracy) {
         this.accuracy = accuracy;
     }
+    public void setAttackRange(int attackRange) {
+        this.attackRange = attackRange;
+    }
+    public void setMovingSpeed(int movingSpeed) {
+        this.movingSpeed = movingSpeed;
+    }
 
     @Override
     public String toString() {
         return "Parameters{" +
                 "strength=" + strength +
-                ",\n\t constitution=" + constitution +
-                ",\n\t agility=" + agility +
-                ",\n\t wisdom=" + wisdom +
-                ",\n\t intellect=" + intellect +
-                ",\n\t maximumHealth=" + maximumHealth +
-                ",\n\t maximumMana=" + maximumMana +
-                ",\n\t healthRegen=" + healthRegen +
-                ",\n\t manaRegen=" + manaRegen +
-                ",\n\t physicalAttack=" + physicalAttack +
-                ",\n\t physicalDefence=" + physicalDefence +
-                ",\n\t criticalChance=" + criticalChance +
-                ",\n\t attackSpeed=" + attackSpeed +
-                ",\n\t evasion=" + evasion +
-                ",\n\t accuracy=" + accuracy +
+                ", constitution=" + constitution +
+                ", agility=" + agility +
+                ", wisdom=" + wisdom +
+                ", intellect=" + intellect +
+                ", maximumHealth=" + maximumHealth +
+                ", maximumMana=" + maximumMana +
+                ", healthRegen=" + healthRegen +
+                ", manaRegen=" + manaRegen +
+                ", physicalAttack=" + physicalAttack +
+                ", physicalDefence=" + physicalDefence +
+                ", criticalChance=" + criticalChance +
+                ", attackSpeed=" + attackSpeed +
+                ", evasion=" + evasion +
+                ", accuracy=" + accuracy +
+                ", attackRange=" + attackRange +
+                ", movingSpeed=" + movingSpeed +
                 '}';
     }
 }
