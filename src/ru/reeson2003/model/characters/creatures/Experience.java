@@ -3,54 +3,80 @@ package ru.reeson2003.model.characters.creatures;
 /**
  * Created by reeson on 05.12.16.
  */
-public class Experience {
+class Experience {
     private int level;
     private int experience;
     private int expToNextLevel;
     private int expCoeff;
     private int skillPoints;
+    private int levelMarkerForSkillPoints;
 
-    public Experience(int level) { // test push 3
+    public Experience(int level) {
         this.level = level;
+	levelMarkerForSkillPoints = this.level;
         experience = 0;
         expCoeff = ParametersConstants.EXP_COEFF;
         expToNextLevel = expCoeff;
         skillPoints = 0;
         calcExpToLevel(level);
     }
-    public void addExperience(int experience) {
-        if (this.experience + experience < expToNextLevel) {
-            this.experience += experience;
-        } else {
-            experience -= (expToNextLevel - this.experience);
-            this.experience = 0;
-          //this.experience = expToNextLevel; //если необходимо будет всё-таки не обнулять текущую exp
-            levelUp();
-            skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
-            if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
-                skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
-            calcExpToNextLevel();
-            addExperience(experience);
-        }
+    public void subtractExperience() {
+        if (experience - expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF > 0) {
+	    experience -= expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF ; // EXP_SUBTRACTION_COEFF = 10 (%) например
+	    if (experience < expToNextLevel - expCoeff) {
+	        calcExpToPreviousLevel();
+	    }
+	}
+	else
+	    experience = 0;
     }
-
+    private void calcExpToPreviousLevel() {
+        level--;
+	expToNextLevel -= expCoeff;
+	expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ParametersConstants.EXP_COEFF_ADDICTION);
+    }
+    public void addExperience(int experience) {
+        this.experience += experience;
+	levelUp();
+    }
     private void calcExpToNextLevel() {
         expCoeff = expCoeff * ParametersConstants.EXP_COEFF_ADDICTION / 1000;
-        expToNextLevel = expCoeff;
+        expToNextLevel += expCoeff;
     }
     private void calcExpToLevel(int level) {
-        if (level >0)
+        if (level > 0) {
+            if (level - 1 >= 0) {
+        	experience = expToNextLevel;
+            }
+	    addSkillPoints();
             calcExpToNextLevel();
-        if (level-1 > 0)
-            calcExpToLevel(level-1);
+            calcExpToLevel(level - 1);
+	}
     }
 
     private void levelUp() {
-        level++;
+	if (this.experience > expToNextLevel) {
+	    level++;
+	    if (levelMarkerForSkillPoints < level) {
+	        addSkillPoints();
+		levelMarkerForSkillPoints = level;
+	    }
+	    calcExpToNextLevel();
+	    levelUp();
+	}
     }
+    private void addSkillPoints() {
+	skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
+	if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
+	    skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
+    }
+//    todo : продумать выдачу скилпоинтов - ?
 
     public int getLevel() {
         return level;
+    }
+    public int getExpCoeff() {
+        return expCoeff;
     }
     public int getExperience() {
         return experience;
@@ -71,4 +97,5 @@ public class Experience {
                 ", skillPoints=" + skillPoints +
                 '}';
     }
+	
 }
