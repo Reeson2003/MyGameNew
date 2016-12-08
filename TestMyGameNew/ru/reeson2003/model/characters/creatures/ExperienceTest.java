@@ -60,7 +60,7 @@ public class ExperienceTest {
         exp.addExperience(18);
         assertEquals(1, exp.getSkillPoints());
     }
-
+// TODO: 08.12.2016 need Exception for  testAddExperiencePositiveAndNegativeNumber())))) 
 /**    @Test
     public void testAddExperiencePositiveAndNegativeNumber() throws Exception {
         Experience experience = new Experience(0);
