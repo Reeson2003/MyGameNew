@@ -1,8 +1,5 @@
 package ru.reeson2003.model.characters.creatures;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by reeson on 05.12.16.
  */
@@ -19,7 +16,6 @@ public class Experience {
     public void removeListener(ExperienceListener el) {
         experienceListeners.remove(el);
     }
-
     private int level;
     private int experience;
     private int expToNextLevel;
@@ -28,7 +24,6 @@ public class Experience {
     private int levelMarkerForSkillPoints;
 
     public Experience(int level) {
-        experienceListeners = new ArrayList<>();
         this.level = level;
 	levelMarkerForSkillPoints = this.level;
         experience = 0;
@@ -39,13 +34,13 @@ public class Experience {
     }
     public void subtractExperience() {
         if (experience - expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF > 0) {
-	        experience -= expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF ; // EXP_SUBTRACTION_COEFF = 10 (%) например
-	        if (experience < expToNextLevel - expCoeff) {
-	            calcExpToPreviousLevel();
-	        }
+	    experience -= expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF ; // EXP_SUBTRACTION_COEFF = 10 (%) например
+	    if (experience < expToNextLevel - expCoeff) {
+	        calcExpToPreviousLevel();
 	    }
-	    else
-	        experience = 0;
+	}
+	else
+	    experience = 0;
     }
     private void calcExpToPreviousLevel() {
         level--;
@@ -54,7 +49,7 @@ public class Experience {
     }
     public void addExperience(int experience) {
         this.experience += experience;
-	    levelUp();
+	levelUp();
     }
     private void calcExpToNextLevel() {
         expCoeff = expCoeff * ParametersConstants.EXP_COEFF_ADDICTION / 1000;
@@ -75,20 +70,13 @@ public class Experience {
 	    if (this.experience > expToNextLevel) {
 	        level++;
 	        if (levelMarkerForSkillPoints < level) {
-	            addSkillPoints();
+                addSkillPoints();
 		        levelMarkerForSkillPoints = level;
 	        }
-	    calcExpToNextLevel();
-	    levelUp();
+	        calcExpToNextLevel();
+	        levelUp();
 	    }
     }
-//    todo : notify lvlUp & lvlDown listeners in lvlUp/down methods
-    private void levelDown() {
-        for (ExperienceListener e: experienceListeners) {
-            e.levelDownEvent();
-        }
-    }
-
     private void addSkillPoints() {
 	skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
 	if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
