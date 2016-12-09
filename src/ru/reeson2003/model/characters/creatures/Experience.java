@@ -6,24 +6,18 @@ import java.util.List;
  * Created by reeson on 05.12.16.
  */
 public class Experience {
-    public interface ExperienceListener {
-        void levelUpEvent();
-        void levelDownEvent();
-    }
-
-    private List<ExperienceListener> experienceListeners;
-    public void addListener(ExperienceListener el) {
-        experienceListeners.add(el);
-    }
-    public void removeListener(ExperienceListener el) {
-        experienceListeners.remove(el);
-    }
-    private int level;
+	public interface ExperienceListeners {
+		public void updateLevelUp();
+		public void updateLevelDown();
+	}
+	private int level;
     private int experience;
     private int expToNextLevel;
     private int expCoeff;
     private int skillPoints;
     private int levelMarkerForSkillPoints;
+	
+    private List<ExperienceListeners> experienceListeners;
 
     public Experience(int level) {
         this.level = level;
@@ -33,25 +27,46 @@ public class Experience {
         expToNextLevel = expCoeff;
         skillPoints = 0;
         calcExpToLevel(level);
+		experienceListeners = new ArrayList<ExperienceListeners>();
     }
+	public void registerListener(final ExperienceListeners listener) {
+        experienceListeners.add(listener);
+    }
+    public void removeListener(final ExperienceListeners listener) {
+		final int indexOfListener = experienceListeners.indexOf(listener);
+		if (indexOfListener >= 0) {
+			experienceListeners.remove(indexOfListener);
+		}
+    }
+	void notifyListenersAboutLevelUp() {
+		for (ExperienceListeners listener : experienceListeners) {
+			listener.updateLevelUp();
+		}
+	}
+	void notifyListenersAboutLevelDown() {
+		for (ExperienceListeners listener : experienceListeners) {
+			listener.updateLevelDown();
+		}
+	}
     public void subtractExperience() {
         if (experience - expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF > 0) {
-	        experience -= expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF ; // EXP_SUBTRACTION_COEFF = 10 (%) например
-	        if (experience < expToNextLevel - expCoeff) {
+	        experience -= ((int)Math.ceil((float)expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF)); // EXP_SUBTRACTION_COEFF = 10 (%) например
+	        if (experience < expToNextLevel - expCoeff) {	
 	            calcExpToPreviousLevel();
             }
-	    }
-	    else
-	        experience = 0;
+		}
+		else
+			experience = 0;
     }
     private void calcExpToPreviousLevel() {
         level--;
-	    expToNextLevel -= expCoeff;
-	    expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ParametersConstants.EXP_COEFF_ADDICTION);
+		expToNextLevel -= expCoeff;
+		expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ParametersConstants.EXP_COEFF_ADDICTION);
+		notifyListenersAboutLevelDown();
     }
     public void addExperience(int experience) {
         this.experience += experience;
-	    levelUp();
+		levelUp();
     }
     private void calcExpToNextLevel() {
         expCoeff = expCoeff * ParametersConstants.EXP_COEFF_ADDICTION / 1000;
@@ -62,20 +77,21 @@ public class Experience {
             if (level - 1 >= 0) {
         	    experience = expToNextLevel;
             }
-	        addSkillPoints();
+	    	addSkillPoints();
             calcExpToNextLevel();
             calcExpToLevel(level - 1);
-	    }
+		}
     }
 
     private void levelUp() {
 	    if (this.experience > expToNextLevel) {
 	        level++;
 	        if (levelMarkerForSkillPoints < level) {
-                addSkillPoints();
-		        levelMarkerForSkillPoints = level;
+            	addSkillPoints();
+		    	levelMarkerForSkillPoints = level;
 	        }
 	        calcExpToNextLevel();
+			notifyListenersAboutLevelUp();
 	        levelUp();
 	    }
     }
@@ -84,8 +100,6 @@ public class Experience {
 	    if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
 	        skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
     }
-//    todo : продумать выдачу скилпоинтов - ?
-
     public int getLevel() {
         return level;
     }
