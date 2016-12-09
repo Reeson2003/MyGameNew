@@ -7,12 +7,11 @@ import static org.junit.Assert.assertEquals;
  * Created by nimtego_loc on 07.12.2016.
  */
 
-// TODO: 07.12.2016 Test не коректный изменилась логика методов
 public class ExperienceTest {
     @Test
     public void subtractExperience() throws Exception {
         final int validated = 1;
-        final int expected = 12;
+        final int expected = 11;
         Experience experience = new Experience(validated);
         experience.subtractExperience();
         assertEquals(expected, experience.getExperience());

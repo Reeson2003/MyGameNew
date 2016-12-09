@@ -39,12 +39,12 @@ public class Experience {
 			experienceListeners.remove(indexOfListener);
 		}
     }
-	void notifyListenersAboutLevelUp() {
+	private void notifyListenersAboutLevelUp() {
 		for (ExperienceListener listener : experienceListeners) {
 			listener.levelUpEvent();
 		}
 	}
-	void notifyListenersAboutLevelDown() {
+	private void notifyListenersAboutLevelDown() {
 		for (ExperienceListener listener : experienceListeners) {
 			listener.levelDownEvent();
 		}
