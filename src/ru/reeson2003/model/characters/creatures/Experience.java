@@ -1,14 +1,15 @@
 package ru.reeson2003.model.characters.creatures;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by reeson on 05.12.16.
  */
 public class Experience {
-	public interface ExperienceListeners {
-		public void updateLevelUp();
-		public void updateLevelDown();
+	public interface ExperienceListener {
+		void levelUpEvent();
+		void levelDownEvent();
 	}
 	private int level;
     private int experience;
@@ -17,7 +18,7 @@ public class Experience {
     private int skillPoints;
     private int levelMarkerForSkillPoints;
 	
-    private List<ExperienceListeners> experienceListeners;
+    private List<ExperienceListener> experienceListeners;
 
     public Experience(int level) {
         this.level = level;
@@ -27,27 +28,29 @@ public class Experience {
         expToNextLevel = expCoeff;
         skillPoints = 0;
         calcExpToLevel(level);
-		experienceListeners = new ArrayList<ExperienceListeners>();
+		experienceListeners = new ArrayList<ExperienceListener>();
     }
-	public void registerListener(final ExperienceListeners listener) {
+	public void addListener(final ExperienceListener listener) {
         experienceListeners.add(listener);
     }
-    public void removeListener(final ExperienceListeners listener) {
+    public void removeListener(final ExperienceListener listener) {
 		final int indexOfListener = experienceListeners.indexOf(listener);
 		if (indexOfListener >= 0) {
 			experienceListeners.remove(indexOfListener);
 		}
     }
 	void notifyListenersAboutLevelUp() {
-		for (ExperienceListeners listener : experienceListeners) {
-			listener.updateLevelUp();
+		for (ExperienceListener listener : experienceListeners) {
+			listener.levelUpEvent();
 		}
 	}
 	void notifyListenersAboutLevelDown() {
-		for (ExperienceListeners listener : experienceListeners) {
-			listener.updateLevelDown();
+		for (ExperienceListener listener : experienceListeners) {
+			listener.levelDownEvent();
 		}
 	}
+
+//	todo : неплохо было бы заложить такой же метод с интом, чтобы другой класс мог определять сколько опыта потерял плеер
     public void subtractExperience() {
         if (experience - expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF > 0) {
 	        experience -= ((int)Math.ceil((float)expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF)); // EXP_SUBTRACTION_COEFF = 10 (%) например

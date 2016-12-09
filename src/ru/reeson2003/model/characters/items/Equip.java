@@ -9,7 +9,8 @@ public class Equip extends Item{
     private EquipType equipType;
     private Parameters parameters;
 //  todo : add constructor
-    protected Equip() {
+    public Equip(EquipType equipType) {
+        this.equipType = equipType;
     }
 
     public EquipType getEquipType() {

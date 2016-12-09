@@ -264,24 +264,24 @@ public class Parameters {
 
     @Override
     public String toString() {
-        return "Parameters{" +
-                "strength=" + strength +
-                ", constitution=" + constitution +
-                ", agility=" + agility +
-                ", wisdom=" + wisdom +
-                ", intellect=" + intellect +
-                ", maximumHealth=" + maximumHealth +
-                ", maximumMana=" + maximumMana +
-                ", healthRegen=" + healthRegen +
-                ", manaRegen=" + manaRegen +
-                ", physicalAttack=" + physicalAttack +
-                ", physicalDefence=" + physicalDefence +
-                ", criticalChance=" + criticalChance +
-                ", attackSpeed=" + attackSpeed +
-                ", evasion=" + evasion +
-                ", accuracy=" + accuracy +
-                ", attackRange=" + attackRange +
-                ", movingSpeed=" + movingSpeed +
+        return "{" +
+                "str=" + strength +
+                ", con=" + constitution +
+                ", agl=" + agility +
+                ", wit=" + wisdom +
+                ", int=" + intellect +
+                ", MaxHP=" + maximumHealth +
+                ", MaxMP=" + maximumMana +
+                ", HPreg=" + healthRegen +
+                ", MPreg=" + manaRegen +
+                ", Patk=" + physicalAttack +
+                ", Pdef=" + physicalDefence +
+                ", Crit=" + criticalChance +
+                ", Aspd=" + attackSpeed +
+                ", Evas=" + evasion +
+                ", Accu=" + accuracy +
+                ", Atkr=" + attackRange +
+                ", Movs=" + movingSpeed +
                 '}';
     }
 }

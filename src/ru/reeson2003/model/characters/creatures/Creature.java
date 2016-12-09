@@ -104,4 +104,12 @@ public abstract class Creature{
     public void setMana(int mana) {
         this.mana = mana;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                "parameters=" + parameters +
+                ", \nexperience=" + experience +
+                '}';
+    }
 }
