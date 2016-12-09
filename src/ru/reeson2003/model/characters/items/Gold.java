@@ -16,14 +16,14 @@ final public class Gold {
         this.numberOfGold = gold.getNumberOfGold();
     }
     public Gold removePartOfGold(final long numberOfGold) throws IllegalArgumentException {
-        if (this.numberOfGold - numberOfGold <= 0) {
+        if (this.numberOfGold - numberOfGold < 0) {
             throw new IllegalArgumentException();
         }
         this.numberOfGold -= numberOfGold;
         return new Gold(numberOfGold);
     }
     public Gold removePartOfGold(final Gold gold) throws IllegalArgumentException {
-        if (this.numberOfGold - gold.getNumberOfGold() <= 0) {
+        if (this.numberOfGold - gold.getNumberOfGold() < 0) {
             throw new IllegalArgumentException();
         }
         this.numberOfGold -= gold.getNumberOfGold();
