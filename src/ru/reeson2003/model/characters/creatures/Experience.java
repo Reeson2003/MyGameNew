@@ -39,12 +39,12 @@ public class Experience {
 			experienceListeners.remove(indexOfListener);
 		}
     }
-	void notifyListenersAboutLevelUp() {
+	private void notifyListenersAboutLevelUp() {
 		for (ExperienceListener listener : experienceListeners) {
 			listener.levelUpEvent();
 		}
 	}
-	void notifyListenersAboutLevelDown() {
+	private void notifyListenersAboutLevelDown() {
 		for (ExperienceListener listener : experienceListeners) {
 			listener.levelDownEvent();
 		}
@@ -67,7 +67,9 @@ public class Experience {
 		expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ParametersConstants.EXP_COEFF_ADDICTION);
 		notifyListenersAboutLevelDown();
     }
-    public void addExperience(int experience) {
+    public void addExperience(int experience) throws IllegalArgumentException{
+        if (experience < 0)
+            throw new IllegalArgumentException();
         this.experience += experience;
 		levelUp();
     }

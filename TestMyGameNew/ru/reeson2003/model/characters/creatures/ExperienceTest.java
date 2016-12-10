@@ -2,12 +2,12 @@ package ru.reeson2003.model.characters.creatures;
 
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * Created by nimtego_loc on 07.12.2016.
  */
 
-// TODO: 07.12.2016 Test не коректный изменилась логика методов
 public class ExperienceTest {
     @Test
     public void subtractExperience() throws Exception {
@@ -60,23 +60,14 @@ public class ExperienceTest {
         exp.addExperience(18);
         assertEquals(1, exp.getSkillPoints());
     }
-// TODO: 08.12.2016 need Exception for  testAddExperiencePositiveAndNegativeNumber())))) 
-/**    @Test
-    public void testAddExperiencePositiveAndNegativeNumber() throws Exception {
+
+    @Test
+    public void testAddExperienceNegativeNumber() throws Exception {
         Experience experience = new Experience(0);
         int enteringNumber = -18;
-        final int  testNumber = 3;
-        int countTest = 0;
-        for (int i = 0; i < 2; i++) {
-            try {
-                experience.addExperience(enteringNumber);
-                assertEquals(testNumber, experience.getExperience());
-                countTest += 2;
-            } catch (IllegalArgumentException e) {
-                countTest += countTest == 0 ? 1 : 0;
-                enteringNumber += 36;
-            }
-        }
-        assertEquals(testNumber, countTest);
-    }*/
+        try {
+            experience.addExperience(enteringNumber);
+            fail();
+        } catch (IllegalArgumentException e) {}
+    }
 }
