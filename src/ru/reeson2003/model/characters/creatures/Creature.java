@@ -6,82 +6,114 @@ import ru.reeson2003.model.characters.items.Equipment;
 /**
  * Created by reeson on 04.12.16.
  */
-public abstract class Creature{
-//    todo : Enum CreatureType or int id or inheritance?
+public abstract class Creature {
+    //    todo : Enum CreatureType or int id or inheritance?
 //    todo : getLevel and other exp methods
     protected String name;
-    protected Parameters parameters;
+    protected ParametersController parametersController;
     protected Experience experience;
     protected Equipment equipment;
     protected int health;
     protected int mana;
+//    todo : баг: текущее хп и мп не уменьшается при изменении параметров. возможно надо перенести их в контроллер
 
-    protected Creature() {
+    public Creature(String name, ParametersController parametersController, Experience experience, Equipment equipment) {
+        this.name = name;
+        this.parametersController = parametersController;
+        this.experience = experience;
+        this.equipment = equipment;
+        this.health = parametersController.getMaximumHealth();
+        this.mana = parametersController.getMaximumMana();
     }
 
     public int getStrength() {
-        return parameters.getStrength() + equipment.getStrength();
+        return parametersController.getStrength();
     }
+
     public int getConstitution() {
-        return parameters.getConstitution() + equipment.getConstitution();
+        return parametersController.getConstitution();
     }
+
     public int getAgility() {
-        return parameters.getAgility() + equipment.getAgility();
+        return parametersController.getAgility();
     }
+
     public int getWisdom() {
-        return parameters.getWisdom() + equipment.getWisdom();
+        return parametersController.getWisdom();
     }
+
     public int getIntellect() {
-        return parameters.getIntellect() + equipment.getIntellect();
+        return parametersController.getIntellect();
     }
+
     public int getMaximumHealth() {
-        return parameters.getMaximumHealth() + equipment.getMaximumHealth();
+        return parametersController.getMaximumHealth();
     }
+
     public int getMaximumMana() {
-        return parameters.getMaximumMana() + equipment.getMaximumMana();
+        return parametersController.getMaximumMana();
     }
+
     public int getHealthRegen() {
-        return parameters.getHealthRegen() + equipment.getHealthRegen();
+        return parametersController.getHealthRegen();
     }
+
     public int getManaRegen() {
-        return parameters.getManaRegen() + equipment.getManaRegen();
+        return parametersController.getManaRegen();
     }
+
     public int getPhysicalAttack() {
-        return parameters.getPhysicalAttack() + equipment.getPhysicalAttack();
+        return parametersController.getPhysicalAttack();
     }
+
     public int getPhysicalDefence() {
-        return parameters.getPhysicalDefence() + equipment.getPhysicalDefence();
+        return parametersController.getPhysicalDefence();
     }
+
     public int getCriticalChance() {
-        return parameters.getCriticalChance() + equipment.getCriticalChance();
+        return parametersController.getCriticalChance();
     }
+
     public int getAttackSpeed() {
-        return parameters.getAttackSpeed() + equipment.getAttackSpeed();
+        return parametersController.getAttackSpeed();
     }
+
     public int getEvasion() {
-        return parameters.getEvasion() + equipment.getEvasion();
+        return parametersController.getEvasion();
     }
+
     public int getAccuracy() {
-        return parameters.getAccuracy() + equipment.getAccuracy();
+        return parametersController.getAccuracy();
     }
+
     public int getAttackRange() {
-        return parameters.getAttackRange() + equipment.getAttackRange();
+        return parametersController.getAttackRange();
     }
+
     public int getMovingSpeed() {
-        return parameters.getMovingSpeed() + equipment.getMovingSpeed();
+        return parametersController.getMovingSpeed();
     }
+
     public int getHealth() {
         return health;
     }
+
     public int getMana() {
         return mana;
     }
+
+    public int getExperience() {
+        return experience.getExperience();
+    }
+
     public int getLevel() {
         return experience.getLevel();
     }
+
     public int getSkillPoints() {
         return experience.getSkillPoints();
     }
+
     public String getName() {
         return name;
     }
@@ -89,27 +121,56 @@ public abstract class Creature{
     public void setName(String name) {
         this.name = name;
     }
-    public void setParameters(Parameters parameters) {
-        this.parameters = parameters;
-    }
+
     public void setExperience(Experience experience) {
         this.experience = experience;
     }
+
     public void setEquipment(Equipment equipment) {
         this.equipment = equipment;
     }
+
     public void setHealth(int health) {
         this.health = health;
     }
+
     public void setMana(int mana) {
         this.mana = mana;
     }
 
+    public void addHealth(int health) {
+        this.health += health;
+        if (this.health > parametersController.getMaximumHealth())
+            this.health = parametersController.getMaximumHealth();
+    }
+
+    public void subtractHealth(int health) {
+        this.health -= health;
+        if (this.health < 0)
+            this.health = 0;
+    }
+
     @Override
     public String toString() {
-        return "{" +
-                "parameters=" + parameters +
-                ", \nexperience=" + experience +
-                '}';
+        return  name + "HP = " + health + ", MP = " + mana + "\n" +
+                "Parameters{" +
+                "Str=" + parametersController.getStrength() +
+                ",Con=" + parametersController.getConstitution() +
+                ",Agl=" + parametersController.getAgility() +
+                ",Wit=" + parametersController.getWisdom() +
+                ",Int=" + parametersController.getIntellect() +
+                ",MaxHP=" + parametersController.getMaximumHealth() +
+                ",MaxMP=" + parametersController.getMaximumMana() +
+                ",HPreg=" + parametersController.getHealthRegen() +
+                ",MPreg=" + parametersController.getManaRegen() +
+                ",Patk=" + parametersController.getPhysicalAttack() +
+                ",Pdef=" + parametersController.getPhysicalDefence() +
+                ",Crit=" + parametersController.getCriticalChance() +
+                ",Aspd=" + parametersController.getAttackSpeed() +
+                ",Evas=" + parametersController.getEvasion() +
+                ",Accu=" + parametersController.getAccuracy() +
+                ",Atkr=" + parametersController.getAttackRange() +
+                ",Movs=" + parametersController.getMovingSpeed() +
+                "}\n" + experience;
     }
 }

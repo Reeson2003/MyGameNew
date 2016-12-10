@@ -11,6 +11,9 @@ public abstract class Item{
     int weight;
 //  todo : add constructor
     protected Item() {
+        this.name = "NO NAME";
+        this.price = 0;
+        this.weight = 0;
     }
 
     public String getName() {

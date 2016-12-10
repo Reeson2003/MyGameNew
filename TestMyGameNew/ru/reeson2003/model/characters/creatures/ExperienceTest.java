@@ -12,7 +12,7 @@ public class ExperienceTest {
     @Test
     public void subtractExperience() throws Exception {
         final int validated = 1;
-        final int expected = 12;
+        final int expected = 11;
         Experience experience = new Experience(validated);
         experience.subtractExperience();
         assertEquals(expected, experience.getExperience());
