@@ -16,7 +16,7 @@ final public class Gold {
         this.numberOfGold = gold.getNumberOfGold();
     }
     public Gold removePartOfGold(final long numberOfGold) throws IllegalArgumentException {
-        if (this.numberOfGold - numberOfGold < 0) {
+        if (this.numberOfGold - numberOfGold < 0 || numberOfGold < 0) {
             throw new IllegalArgumentException();
         }
         this.numberOfGold -= numberOfGold;
@@ -31,6 +31,11 @@ final public class Gold {
     }
     public void addGold(final Gold gold) {
         this.numberOfGold += gold.getNumberOfGold();
+    }
+    public void addGold(final long gold) throws IllegalArgumentException {
+        if (gold < 0 || this.numberOfGold - gold < 0)
+            throw new IllegalArgumentException();
+        this.numberOfGold += gold;
     }
     public Gold mergeGold(Gold ... gold) {
         Gold merge = new Gold();
