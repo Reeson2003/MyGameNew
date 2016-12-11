@@ -1,6 +1,8 @@
 package ru.reeson2003.model.characters.creatures;
 
 import org.junit.Test;
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
+import static org.junit.Assert.assertEquals;
 
 /**
  * Created by nimtego_loc on 11.12.2016.
@@ -123,7 +125,9 @@ public class CreatureTest {
 
     @Test
     public void setName() throws Exception {
-
+        final String nameTest = "DEER";
+        Creature testCreature = new Monster(nameTest);
+        assertEquals(nameTest, testCreature.getName());
     }
 
     @Test
