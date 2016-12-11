@@ -1,14 +1,19 @@
 package ru.reeson2003.model.characters.creatures;
 
 
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterParametersController;
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerParametersController;
 import ru.reeson2003.model.characters.items.Equipment;
 
 /**
  * Created by User on 12.11.2016.
  * фабрика выпускает контроллеры параметров.
+ * Базовый класс имеет реализацию методов addHealth() и addMana(),
  */
 public abstract class ParametersController {
+    protected int health;
+
+    protected int mana;
 
     public abstract int getStrength();
 
@@ -48,14 +53,26 @@ public abstract class ParametersController {
 
     public abstract int getMana();
 
-    public abstract void addHealth(int health);
+    public void addHealth(int health) {
+        this.health += health;
+        if (this.health > this.getMaximumHealth())
+            this.health = this.getMaximumHealth();
+        if (this.health < 0)
+            this.health = 0;
+    }
 
-    public abstract void addMana(int mana);
+    public void addMana(int mana) {
+        this.mana += mana;
+        if (this.mana >= this.getMaximumMana())
+            this.mana = this.getMaximumMana();
+        if (this.mana < 0)
+            this.mana = 0;
+    }
 
     public static ParametersController getPlayerParametersController(int str, int con, int agl, int wit, int itl, Experience exp, Equipment eq) {
         return new PlayerParametersController(str, con, agl, wit, itl, exp, eq);
     }
     public static ParametersController getMonsterParametersController(int monsterID) {
-        return null;
-    };
+        return new MonsterParametersController(monsterID);
+    }
 }

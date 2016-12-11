@@ -11,6 +11,6 @@ import ru.reeson2003.model.characters.items.Equipment;
 public class Monster extends Creature{
 
     public Monster(String name, ParametersController parametersController, Experience experience, Equipment equipment) {
-        super(name, parametersController, experience, equipment);
+        super(name, parametersController);
     }
 }
