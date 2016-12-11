@@ -2,12 +2,17 @@ package ru.reeson2003.model.characters.creatures;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by nimtego_loc on 09.12.2016.
  */
 public class PlayerCharacterTest {
     @Test
-    public void newbiePlayerIstance() throws Exception {
+    public void newbiePlayerInstance() throws Exception {
+        final String testName = "Test Name";
+        PlayerCharacter testNewbiePlayer = PlayerCharacter.NewbiePlayerIstance(testName, 1, 1, 1, 1, 1);
+        assertEquals(testNewbiePlayer, testNewbiePlayer);
 
     }
 
@@ -30,5 +35,4 @@ public class PlayerCharacterTest {
     public void putOff() throws Exception {
 
     }
-
 }

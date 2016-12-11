@@ -49,17 +49,25 @@ public class GoldTest {
 
     @Test
     public void mergeGold() throws Exception {
-
+        Gold gold1 = new Gold(100);
+        Gold gold2 = new Gold(100);
+        Gold gold3 = new Gold(100);
+        gold3.mergeGold(gold1, gold2, new Gold(100));
+        assertEquals(400, gold3.getNumberOfGold());
     }
 
     @Test
     public void getNumberOfGold() throws Exception {
-
+        final long testGold = 100;
+        Gold gold = new Gold(testGold);
+        assertEquals(testGold, gold.getNumberOfGold());
     }
 
     @Test
     public void setNumberOfGold() throws Exception {
-
+        final long testGold = 100;
+        Gold gold = new Gold(testGold);
+        assertEquals(testGold, gold.getNumberOfGold());
     }
 
 }
