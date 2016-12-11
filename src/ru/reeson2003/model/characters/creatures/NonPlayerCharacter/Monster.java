@@ -15,6 +15,6 @@ public class Monster extends Creature {
                 new Equipment());
     }
     public Monster(String name, ParametersController parametersController, Experience experience, Equipment equipment) {
-        super(name, parametersController, experience, equipment);
+        super(name, parametersController);
     }
 }

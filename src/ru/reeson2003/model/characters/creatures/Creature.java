@@ -1,24 +1,16 @@
 package ru.reeson2003.model.characters.creatures;
 
-
-import ru.reeson2003.model.characters.items.Equipment;
-
 /**
  * Created by reeson on 04.12.16.
  */
 public abstract class Creature {
     //    todo : Enum CreatureType or int id or inheritance?
-//    todo : getLevel and other exp methods
     protected String name;
     protected ParametersController parametersController;
-    protected Experience experience;
-    protected Equipment equipment;
 
-    public Creature(String name, ParametersController parametersController, Experience experience, Equipment equipment) {
+    public Creature(String name, ParametersController parametersController) {
         this.name = name;
         this.parametersController = parametersController;
-        this.experience = experience;
-        this.equipment = equipment;
     }
 
     public int getStrength() {
@@ -97,32 +89,12 @@ public abstract class Creature {
         return parametersController.getMana();
     }
 
-    public int getExperience() {
-        return experience.getExperience();
-    }
-
-    public int getLevel() {
-        return experience.getLevel();
-    }
-
-    public int getSkillPoints() {
-        return experience.getSkillPoints();
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setExperience(Experience experience) {
-        this.experience = experience;
-    }
-
-    public void setEquipment(Equipment equipment) {
-        this.equipment = equipment;
     }
 
     public void addHealth(int health) {
@@ -156,7 +128,6 @@ public abstract class Creature {
                 ",Accu=" + parametersController.getAccuracy() +
                 ",Atkr=" + parametersController.getAttackRange() +
                 ",Movs=" + parametersController.getMovingSpeed() +
-                "}\n" + "|" + experience +
-                "\n --------------------------------------------------------------";
+                "}";
     }
 }

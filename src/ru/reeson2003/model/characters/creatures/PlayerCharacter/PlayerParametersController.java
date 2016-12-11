@@ -18,8 +18,8 @@ public class PlayerParametersController extends ParametersController
     private Parameters parameters;
     private Experience experience;
     private Equipment equipment;
-    private int health;
-    private int mana;
+//    private int health;
+//    private int mana;
 
     public PlayerParametersController(int str, int con, int agl, int wit, int itl, Experience exp, Equipment eq) {
         parameters = new Parameters.ParametersBuilder().strength(str).
@@ -138,24 +138,6 @@ public class PlayerParametersController extends ParametersController
     @Override
     public int getMana() {
         return mana;
-    }
-
-    @Override
-    public void addHealth(int health) {
-        this.health += health;
-        if (this.health > parameters.getMaximumHealth())
-            this.health = parameters.getMaximumHealth();
-        if (this.health < 0)
-            this.health = 0;
-    }
-
-    @Override
-    public void addMana(int mana) {
-        this.mana += mana;
-        if (this.mana >= parameters.getMaximumMana())
-            this.mana = parameters.getMaximumMana();
-        if (this.mana < 0)
-            this.mana = 0;
     }
 
     private void calculateParameters() {
