@@ -1,6 +1,7 @@
 package ru.reeson2003.model.characters.creatures;
 
 import org.junit.Test;
+import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 
 import static org.junit.Assert.assertEquals;
 

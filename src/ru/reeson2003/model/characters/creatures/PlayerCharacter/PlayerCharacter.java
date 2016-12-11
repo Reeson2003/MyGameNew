@@ -1,5 +1,8 @@
-package ru.reeson2003.model.characters.creatures;
+package ru.reeson2003.model.characters.creatures.PlayerCharacter;
 
+import ru.reeson2003.model.characters.creatures.Creature;
+import ru.reeson2003.model.characters.creatures.Experience;
+import ru.reeson2003.model.characters.creatures.ParametersController;
 import ru.reeson2003.model.characters.items.Equip;
 import ru.reeson2003.model.characters.items.EquipType;
 import ru.reeson2003.model.characters.items.Equipment;

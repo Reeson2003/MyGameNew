@@ -24,7 +24,7 @@ public class Experience {
         this.level = level;
 	    levelMarkerForSkillPoints = this.level;
         experience = 0;
-        expCoeff = ParametersConstants.EXP_COEFF;
+        expCoeff = ExperienceConstants.EXP_COEFF;
         expToNextLevel = expCoeff;
         skillPoints = 0;
         calcExpToLevel(level);
@@ -52,8 +52,8 @@ public class Experience {
 
 //	todo : неплохо было бы заложить такой же метод с интом, чтобы другой класс мог определять сколько опыта потерял плеер
     public void subtractExperience() {
-        if (experience - expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF > 0) {
-	        experience -= ((int)Math.ceil((float)expToNextLevel / ParametersConstants.EXP_SUBTRACTION_COEFF)); // EXP_SUBTRACTION_COEFF = 10 (%) например
+        if (experience - expToNextLevel / ExperienceConstants.EXP_SUBTRACTION_COEFF > 0) {
+	        experience -= ((int)Math.ceil((float)expToNextLevel / ExperienceConstants.EXP_SUBTRACTION_COEFF)); // EXP_SUBTRACTION_COEFF = 10 (%) например
 	        if (experience < expToNextLevel - expCoeff) {	
 	            calcExpToPreviousLevel();
             }
@@ -64,7 +64,7 @@ public class Experience {
     private void calcExpToPreviousLevel() {
         level--;
 		expToNextLevel -= expCoeff;
-		expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ParametersConstants.EXP_COEFF_ADDICTION);
+		expCoeff = (int)Math.ceil((float)expCoeff * 1000 / ExperienceConstants.EXP_COEFF_ADDICTION);
 		notifyListenersAboutLevelDown();
     }
     public void addExperience(int experience) throws IllegalArgumentException{
@@ -74,7 +74,7 @@ public class Experience {
 		levelUp();
     }
     private void calcExpToNextLevel() {
-        expCoeff = expCoeff * ParametersConstants.EXP_COEFF_ADDICTION / 1000;
+        expCoeff = expCoeff * ExperienceConstants.EXP_COEFF_ADDICTION / 1000;
         expToNextLevel += expCoeff;
     }
     private void calcExpToLevel(int level) {
@@ -101,9 +101,9 @@ public class Experience {
 	    }
     }
     private void addSkillPoints() {
-	    skillPoints += ParametersConstants.SKILL_POINTS_ADDICTION;
-	    if (level % ParametersConstants.EXTRA_SP_EACH_LVL == 0)
-	        skillPoints += ParametersConstants.EXTRA_SP_ADDICTION;
+	    skillPoints += ExperienceConstants.SKILL_POINTS_ADDICTION;
+	    if (level % ExperienceConstants.EXTRA_SP_EACH_LVL == 0)
+	        skillPoints += ExperienceConstants.EXTRA_SP_ADDICTION;
     }
     public int getLevel() {
         return level;

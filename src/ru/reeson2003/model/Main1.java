@@ -1,7 +1,7 @@
 package ru.reeson2003.model;
 
 import ru.reeson2003.model.characters.creatures.Parameters;
-import ru.reeson2003.model.characters.creatures.PlayerCharacter;
+import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 import ru.reeson2003.model.characters.items.Equip;
 import ru.reeson2003.model.characters.items.EquipType;
 
@@ -14,7 +14,7 @@ import java.io.Reader;
  */
 public class Main1 {
     public static void main(String[] args) {
-        PlayerCharacter p = PlayerCharacter.NewbiePlayerIstance("John",10,15,45,0,4);
+        PlayerCharacter p = PlayerCharacter.NewbiePlayerIstance("John",10,15,10,0,4);
         System.out.println(p);
         Equip shirt = new Equip(EquipType.UpperBody);
         shirt.setParameters(new Parameters.ParametersBuilder().physicalDefence(15).constitution(-10).build());

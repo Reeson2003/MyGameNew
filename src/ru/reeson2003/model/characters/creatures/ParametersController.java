@@ -1,6 +1,7 @@
 package ru.reeson2003.model.characters.creatures;
 
 
+import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerParametersController;
 import ru.reeson2003.model.characters.items.Equipment;
 
 /**

@@ -1,5 +1,9 @@
-package ru.reeson2003.model.characters.creatures;
+package ru.reeson2003.model.characters.creatures.PlayerCharacter;
 
+import ru.reeson2003.model.characters.creatures.Experience;
+import ru.reeson2003.model.characters.creatures.Parameters;
+import ru.reeson2003.model.characters.creatures.ParametersConstants;
+import ru.reeson2003.model.characters.creatures.ParametersController;
 import ru.reeson2003.model.characters.items.Equipment;
 
 /**
@@ -23,7 +27,7 @@ public class PlayerParametersController extends ParametersController
         this.experience = exp;
         experience.addListener(this);
         this.equipment = eq;
-        eq.addListener(this);
+        equipment.addListener(this);
         calculateParameters();
         this.health = parameters.getMaximumHealth();
         this.mana = parameters.getMaximumMana();
