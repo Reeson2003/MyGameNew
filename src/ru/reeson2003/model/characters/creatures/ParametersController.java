@@ -43,6 +43,13 @@ public abstract class ParametersController {
 
     public abstract int getMovingSpeed();
 
+    public abstract int getHealth();
+
+    public abstract int getMana();
+
+    public abstract void addHealth(int health);
+
+    public abstract void addMana(int mana);
 
     public static ParametersController getPlayerParametersController(int str, int con, int agl, int wit, int itl, Experience exp, Equipment eq) {
         return new PlayerParametersController(str, con, agl, wit, itl, exp, eq);

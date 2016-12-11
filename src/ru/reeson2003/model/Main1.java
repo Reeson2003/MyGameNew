@@ -14,7 +14,7 @@ import java.io.Reader;
  */
 public class Main1 {
     public static void main(String[] args) {
-        PlayerCharacter p = PlayerCharacter.NewbiePlayerIstance("",10,15,45,0,4);
+        PlayerCharacter p = PlayerCharacter.NewbiePlayerIstance("John",10,15,45,0,4);
         System.out.println(p);
         Equip shirt = new Equip(EquipType.UpperBody);
         shirt.setParameters(new Parameters.ParametersBuilder().physicalDefence(15).constitution(-10).build());
@@ -22,7 +22,8 @@ public class Main1 {
         System.out.println(p);
         p.addExperience(16);
         System.out.println(p);
-        p.addHealth(100);
+        p.addHealth(-33);
+        p.addMana(-15);
         System.out.println(p);
     }
     public static char getKey() {

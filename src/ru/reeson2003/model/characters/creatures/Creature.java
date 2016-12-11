@@ -13,17 +13,12 @@ public abstract class Creature {
     protected ParametersController parametersController;
     protected Experience experience;
     protected Equipment equipment;
-    protected int health;
-    protected int mana;
-//    todo : баг: текущее хп и мп не уменьшается при изменении параметров. возможно надо перенести их в контроллер
 
     public Creature(String name, ParametersController parametersController, Experience experience, Equipment equipment) {
         this.name = name;
         this.parametersController = parametersController;
         this.experience = experience;
         this.equipment = equipment;
-        this.health = parametersController.getMaximumHealth();
-        this.mana = parametersController.getMaximumMana();
     }
 
     public int getStrength() {
@@ -95,11 +90,11 @@ public abstract class Creature {
     }
 
     public int getHealth() {
-        return health;
+        return parametersController.getHealth();
     }
 
     public int getMana() {
-        return mana;
+        return parametersController.getMana();
     }
 
     public int getExperience() {
@@ -130,30 +125,20 @@ public abstract class Creature {
         this.equipment = equipment;
     }
 
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    public void setMana(int mana) {
-        this.mana = mana;
-    }
-
     public void addHealth(int health) {
-        this.health += health;
-        if (this.health > parametersController.getMaximumHealth())
-            this.health = parametersController.getMaximumHealth();
+        parametersController.addHealth(health);
     }
 
-    public void subtractHealth(int health) {
-        this.health -= health;
-        if (this.health < 0)
-            this.health = 0;
+    public void addMana(int mana) {
+        parametersController.addMana(mana);
     }
 
     @Override
     public String toString() {
-        return  name + "HP = " + health + ", MP = " + mana + "\n" +
-                "Parameters{" +
+        return  " ______________________________________________________________\n" +
+                "|" + name + "{HP = " + parametersController.getHealth()+ ", MP = " +
+                parametersController.getMana() + "}\n" +
+                "|Parameters{" +
                 "Str=" + parametersController.getStrength() +
                 ",Con=" + parametersController.getConstitution() +
                 ",Agl=" + parametersController.getAgility() +
@@ -171,6 +156,7 @@ public abstract class Creature {
                 ",Accu=" + parametersController.getAccuracy() +
                 ",Atkr=" + parametersController.getAttackRange() +
                 ",Movs=" + parametersController.getMovingSpeed() +
-                "}\n" + experience;
+                "}\n" + "|" + experience +
+                "\n --------------------------------------------------------------";
     }
 }
