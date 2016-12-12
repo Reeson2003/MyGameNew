@@ -19,7 +19,10 @@ public class Experience {
     private int levelMarkerForSkillPoints;
 	
     private List<ExperienceListener> experienceListeners;
-
+	
+	public Experience() {
+		this(0);
+	}
     public Experience(int level) {
         this.level = level;
 	    levelMarkerForSkillPoints = this.level;
