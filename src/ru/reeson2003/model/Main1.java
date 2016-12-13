@@ -14,7 +14,7 @@ import java.io.Reader;
  */
 public class Main1 {
     public static void main(String[] args) {
-        PlayerCharacter p = PlayerCharacter.NewbiePlayerIstance("John",10,15,10,0,4);
+        PlayerCharacter p = PlayerCharacter.NewbiePlayerIstance("John",5,5,5,5,5);
         System.out.println(p);
         Equip shirt = new Equip(EquipType.UpperBody);
         shirt.setParameters(new Parameters.ParametersBuilder().physicalDefence(15).constitution(-10).build());
