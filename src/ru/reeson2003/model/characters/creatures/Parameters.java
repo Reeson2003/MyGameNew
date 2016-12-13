@@ -3,7 +3,7 @@ package ru.reeson2003.model.characters.creatures;
 /**
  * Created by reeson on 05.12.16.
  */
-public class Parameters {
+public class Parameters implements Cloneable{
     private int strength;
     private int constitution;
     private int agility;
@@ -91,7 +91,7 @@ public class Parameters {
             return this;
         }
 
-        public ParametersBuilder atackSpeed(int atackSpeed) {
+        public ParametersBuilder attackSpeed(int atackSpeed) {
             parameters.attackSpeed = atackSpeed;
             return this;
         }
@@ -334,6 +334,29 @@ public class Parameters {
 
     public void setMovingSpeed(int movingSpeed) {
         this.movingSpeed = movingSpeed;
+    }
+
+    @Override
+    public Parameters clone() {
+        Parameters result = new Parameters();
+        result.strength = this.strength;
+        result.constitution = this.constitution;
+        result.agility = this.agility;
+        result.wisdom = this.wisdom;
+        result.intellect = this.intellect;
+        result.maximumHealth = this.maximumHealth;
+        result.maximumMana = this.maximumMana;
+        result.healthRegen = this.healthRegen;
+        result.manaRegen = this.manaRegen;
+        result.physicalAttack = this.physicalAttack;
+        result.physicalDefence = this.physicalDefence;
+        result.criticalChance = this.criticalChance;
+        result.attackSpeed = this.attackSpeed;
+        result.evasion = this.evasion;
+        result.accuracy = this.accuracy;
+        result.attackRange = this.attackRange;
+        result.movingSpeed = this.getMovingSpeed();
+        return result;
     }
 
     @Override

@@ -5,104 +5,21 @@ import ru.reeson2003.model.characters.creatures.ParametersController;
 /**
  * Created by reeson on 11.12.16.
  */
-public class MonsterParametersController extends ParametersController{
+public class MonsterParametersController extends ParametersController implements Cloneable {
+    private MonsterParametersController() {}
+
     public MonsterParametersController(int monsterID) {
-
+        this.parameters = MonsterParametersManager.getInstance().getParameters(monsterID);
+        this.health = parameters.getMaximumHealth();
+        this.mana = parameters.getMaximumMana();
     }
 
     @Override
-    public int getStrength() {
-        return 0;
+    public MonsterParametersController clone() {
+        MonsterParametersController result = new MonsterParametersController();
+        result.parameters = this.parameters.clone();
+        result.health = this.health;
+        result.mana = this.mana;
+        return result;
     }
-
-    @Override
-    public int getConstitution() {
-        return 0;
-    }
-
-    @Override
-    public int getAgility() {
-        return 0;
-    }
-
-    @Override
-    public int getWisdom() {
-        return 0;
-    }
-
-    @Override
-    public int getIntellect() {
-        return 0;
-    }
-
-    @Override
-    public int getMaximumHealth() {
-        return 0;
-    }
-
-    @Override
-    public int getMaximumMana() {
-        return 0;
-    }
-
-    @Override
-    public int getHealthRegen() {
-        return 0;
-    }
-
-    @Override
-    public int getManaRegen() {
-        return 0;
-    }
-
-    @Override
-    public int getPhysicalAttack() {
-        return 0;
-    }
-
-    @Override
-    public int getPhysicalDefence() {
-        return 0;
-    }
-
-    @Override
-    public int getCriticalChance() {
-        return 0;
-    }
-
-    @Override
-    public int getAttackSpeed() {
-        return 0;
-    }
-
-    @Override
-    public int getEvasion() {
-        return 0;
-    }
-
-    @Override
-    public int getAccuracy() {
-        return 0;
-    }
-
-    @Override
-    public int getAttackRange() {
-        return 0;
-    }
-
-    @Override
-    public int getMovingSpeed() {
-        return 0;
-    }
-
-    @Override
-    public int getHealth() {
-        return 0;
-    }
-
-    @Override
-    public int getMana() {
-        return 0;
-    }
-
 }

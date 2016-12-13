@@ -10,48 +10,88 @@ import ru.reeson2003.model.characters.items.Equipment;
  * фабрика выпускает контроллеры параметров.
  * Базовый класс имеет реализацию методов addHealth() и addMana(),
  */
-public abstract class ParametersController {
+public abstract class ParametersController implements Cloneable {
+    protected Parameters parameters;
+
     protected int health;
 
     protected int mana;
 
-    public abstract int getStrength();
+    public int getStrength() {
+        return parameters.getStrength();
+    }
 
-    public abstract int getConstitution();
+    public int getConstitution() {
+        return parameters.getConstitution();
+    }
 
-    public abstract int getAgility();
+    public int getAgility() {
+        return parameters.getAgility();
+    }
 
-    public abstract int getWisdom();
+    public int getWisdom() {
+        return parameters.getWisdom();
+    }
 
-    public abstract int getIntellect();
+    public int getIntellect() {
+        return parameters.getIntellect();
+    }
 
-    public abstract int getMaximumHealth();
+    public int getMaximumHealth() {
+        return parameters.getMaximumHealth();
+    }
 
-    public abstract int getMaximumMana();
+    public int getMaximumMana() {
+        return parameters.getMaximumMana();
+    }
 
-    public abstract int getHealthRegen();
+    public int getHealthRegen() {
+        return parameters.getHealthRegen();
+    }
 
-    public abstract int getManaRegen();
+    public int getManaRegen() {
+        return parameters.getManaRegen();
+    }
 
-    public abstract int getPhysicalAttack();
+    public int getPhysicalAttack() {
+        return parameters.getPhysicalAttack();
+    }
 
-    public abstract int getPhysicalDefence();
+    public int getPhysicalDefence() {
+        return parameters.getPhysicalDefence();
+    }
 
-    public abstract int getCriticalChance();
+    public int getCriticalChance() {
+        return parameters.getCriticalChance();
+    }
 
-    public abstract int getAttackSpeed();
+    public int getAttackSpeed() {
+        return parameters.getAttackSpeed();
+    }
 
-    public abstract int getEvasion();
+    public int getEvasion() {
+        return parameters.getEvasion();
+    }
 
-    public abstract int getAccuracy();
+    public int getAccuracy() {
+        return parameters.getAccuracy();
+    }
 
-    public abstract int getAttackRange();
+    public int getAttackRange() {
+        return parameters.getAttackRange();
+    }
 
-    public abstract int getMovingSpeed();
+    public int getMovingSpeed() {
+        return parameters.getMovingSpeed();
+    }
 
-    public abstract int getHealth();
+    public int getHealth() {
+        return health;
+    }
 
-    public abstract int getMana();
+    public int getMana() {
+        return mana;
+    }
 
     public void addHealth(int health) {
         this.health += health;
@@ -67,6 +107,11 @@ public abstract class ParametersController {
             this.mana = this.getMaximumMana();
         if (this.mana < 0)
             this.mana = 0;
+    }
+
+    @Override
+    public  ParametersController clone() {
+        return this;
     }
 
     public static ParametersController getPlayerParametersController(int str, int con, int agl, int wit, int itl, Experience exp, Equipment eq) {

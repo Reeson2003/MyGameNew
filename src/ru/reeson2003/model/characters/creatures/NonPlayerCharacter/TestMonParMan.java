@@ -13,15 +13,24 @@ public class TestMonParMan extends MonsterParametersManager {
 
     @Override
     public Parameters getParameters(int monsterID) {
-        return new Parameters.ParametersBuilder().constitution(5).
+        return new Parameters.ParametersBuilder().
+                constitution(5).
                 strength(5).
-                accuracy(5).
                 agility(5).
-                atackSpeed(5).
-                attackRange(5).
-                criticalChance(5).
+                wisdom(5).
+                intellect(5).
+                maximumHealth(1000).
+                maximumMana(200).
+                healthRegen(5).
+                manaRegen(5).
+                physicalAttack(20).
+                physicalDefence(20).
+                criticalChance(30).
+                attackSpeed(10).
                 evasion(5).
-                maximumHealth(100).
+                accuracy(5).
+                attackRange(5).
+                movingSpeed(10).
                 build();
     }
 }

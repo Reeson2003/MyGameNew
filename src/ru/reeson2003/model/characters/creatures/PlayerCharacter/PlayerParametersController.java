@@ -15,11 +15,8 @@ import ru.reeson2003.model.characters.items.Equipment;
 public class PlayerParametersController extends ParametersController
         implements Experience.ExperienceListener, Equipment.EquipmentListener {
 
-    private Parameters parameters;
     private Experience experience;
     private Equipment equipment;
-//    private int health;
-//    private int mana;
 
     public PlayerParametersController(int str, int con, int agl, int wit, int itl, Experience exp, Equipment eq) {
         parameters = new Parameters.ParametersBuilder().strength(str).
@@ -182,17 +179,20 @@ public class PlayerParametersController extends ParametersController
         calculateParameters();
     }
 
+//  todo : не работает пересчет производных параметров при надевании эквипа,
+//  todo : изменяющего базовые параметры.
+
     @Override
     public void putOnEvent() {
         System.out.println("PUT ON parameters controller");
         parameters = parameters.addParameters(equipment.getParameters());
-        calculateParameters();
+//        calculateParameters();
     }
 
     @Override
     public void putOffEvent() {
         System.out.println("PUT OFF parameters controller");
         parameters = parameters.addParameters(equipment.getParameters());
-        calculateParameters();
+//        calculateParameters();
     }
 }
