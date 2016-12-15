@@ -1,4 +1,4 @@
-package ru.reeson2003.model.map;
+package ru.reeson2003.model.characters.creatures;
 
 import ru.reeson2003.model.characters.creatures.Fight;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
@@ -34,6 +34,13 @@ public class Main2 {
         System.out.println(player);
         Fight fight = new Fight(player, monster);
         fight.fight();
+        System.out.println(player);
+        System.out.println(monster);
+        monster.addHealth(1000);
+        player.addHealth(1000);
+        fight.fight();
+        System.out.println(player);
+        System.out.println(monster);
 
     }
 }
