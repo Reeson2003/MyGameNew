@@ -1,18 +1,19 @@
 package ru.reeson2003.model.characters.creatures;
 
+import ru.reeson2003.model.characters.WorldObject;
+import ru.reeson2003.model.service.Abonent;
 import ru.reeson2003.model.service.Address;
 
 /**
  * Created by reeson on 04.12.16.
  */
-public abstract class Creature implements Address.Abonent{
+public abstract class Creature extends WorldObject implements Abonent {
     //    todo : Enum CreatureType or int id or inheritance?
+    protected Creature target;
     protected String name;
     protected ParametersController parametersController;
-    protected final Address address;
 
     public Creature(String name, ParametersController parametersController) {
-        this.address = new Address();
         this.name = name;
         this.parametersController = parametersController;
     }
@@ -95,6 +96,14 @@ public abstract class Creature implements Address.Abonent{
 
     public String getName() {
         return name;
+    }
+
+    public Creature getTarget() {
+        return target;
+    }
+
+    public void setTarget(Creature target) {
+        this.target = target;
     }
 
     public void setName(String name) {

@@ -1,23 +1,31 @@
 package ru.reeson2003.model.service;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.ArrayDeque;
+import java.util.Queue;
 
 /**
  * Created by reeson on 15.12.16.
  */
 public class Address {
-    private static AtomicInteger abonentIdCreator = new AtomicInteger(0);
-    final private int abonentId;
-
+    private static long abonentIdCreator = 100;
+    private static Queue<Long> freeIDs = new ArrayDeque<>();
+    final private long abonentId;
+//  todo : taking back id's when object disappears and make ability to use them.
     public Address() {
-        this.abonentId = abonentIdCreator.getAndIncrement();
+        Long id = freeIDs.poll();
+        if (id == null)
+            this.abonentId = abonentIdCreator++;
+        else
+            this.abonentId = id;
     }
 
-    public int getAbonentId() {
+    public long getAbonentId() {
         return abonentId;
     }
 
-    public interface Abonent {
-        Address getAddress();
+    @Override
+    protected void finalize() {
+        AbonentTable.removeAbonent(this);
+        freeIDs.add(abonentId);
     }
 }

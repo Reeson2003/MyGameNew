@@ -1,12 +1,14 @@
 package ru.reeson2003.model.characters.items;
 
 
+import ru.reeson2003.model.characters.WorldObject;
+import ru.reeson2003.model.service.Abonent;
 import ru.reeson2003.model.service.Address;
 
 /**
  * Created by Тоня on 03.10.2016.
  */
-public abstract class Item implements Address.Abonent {
+public abstract class Item extends WorldObject implements Abonent {
 //    todo : Enum ItemType or int id or inheritance?
     protected final Address address;
     String name;

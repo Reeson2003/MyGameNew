@@ -5,8 +5,8 @@ package ru.reeson2003.model.service;
  */
 public abstract class Msg {
 
-    private Address from;
-    private Address to;
+    protected Address from;
+    protected Address to;
 
     public Msg(Address from, Address to) {
         this.from = from;
@@ -21,5 +21,5 @@ public abstract class Msg {
         return to;
     }
 
-    public abstract void exec(Address.Abonent abonent);
+    public abstract void exec();
 }
