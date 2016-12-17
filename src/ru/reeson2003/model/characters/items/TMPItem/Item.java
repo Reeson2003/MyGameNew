@@ -46,7 +46,7 @@ class Item {
     }
 
     public ItemState getMapItemState() {
-        return inventoryItemState;
+        return mapItemState;
     }
 
     public ItemState getInventoryItemState() {
