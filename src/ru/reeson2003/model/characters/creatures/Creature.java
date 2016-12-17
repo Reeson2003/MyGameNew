@@ -2,7 +2,6 @@ package ru.reeson2003.model.characters.creatures;
 
 import ru.reeson2003.model.characters.WorldObject;
 import ru.reeson2003.model.service.Abonent;
-import ru.reeson2003.model.service.Address;
 
 /**
  * Created by reeson on 04.12.16.
@@ -117,12 +116,7 @@ public abstract class Creature extends WorldObject implements Abonent {
     public void addMana(int mana) {
         parametersController.addMana(mana);
     }
-
-    @Override
-    public Address getAddress() {
-        return address;
-    }
-
+    
     @Override
     public String toString() {
         return  " ______________________________________________________________\n" +

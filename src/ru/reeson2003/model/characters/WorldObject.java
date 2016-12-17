@@ -17,7 +17,7 @@ public abstract class WorldObject implements Abonent{
     }
 
     @Override
-    public Address getAddress() {
+    final public Address getAddress() {
         return address;
     }
 }
