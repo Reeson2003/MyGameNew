@@ -13,7 +13,7 @@ import java.util.Date;
 public class Main5 {
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
         Class.forName("ru.reeson2003.model.characters.creatures.NonPlayerCharacter.TestMonParMan").newInstance();
-        PlayerCharacter player = PlayerCharacter.NewbiePlayerIstance("DanielDefo",20,5,20,10,10);
+        PlayerCharacter player = PlayerCharacter.NewbiePlayerIstance("DanielDefo",10,5,20,10,10);
         Monster antQueen = new MonsterFactoryTestImpl().getMonster(1);
         TestAI ai = new TestAI();
         ai.addMob(antQueen);

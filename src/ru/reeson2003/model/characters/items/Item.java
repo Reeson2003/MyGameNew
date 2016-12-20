@@ -46,8 +46,4 @@ public abstract class Item extends WorldObject implements Abonent {
         this.weight = weight;
     }
 
-    @Override
-    public Address getAddress() {
-        return address;
-    }
 }

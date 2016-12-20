@@ -1,8 +1,8 @@
 package ru.reeson2003.model.characters.creatures;
 
 import ru.reeson2003.model.characters.WorldObject;
+import ru.reeson2003.model.characters.battle.abilities.HitAbility;
 import ru.reeson2003.model.service.Abonent;
-import ru.reeson2003.model.service.Address;
 
 /**
  * Created by reeson on 04.12.16.
@@ -13,9 +13,14 @@ public abstract class Creature extends WorldObject implements Abonent {
     protected String name;
     protected ParametersController parametersController;
 
+    //for test
+    HitAbility hitAbility;
+
     public Creature(String name, ParametersController parametersController) {
         this.name = name;
         this.parametersController = parametersController;
+        //for test
+        hitAbility = new HitAbility(300+10000/parametersController.getAttackSpeed());
     }
 
     public int getStrength() {
@@ -118,9 +123,11 @@ public abstract class Creature extends WorldObject implements Abonent {
         parametersController.addMana(mana);
     }
 
-    @Override
-    public Address getAddress() {
-        return address;
+    //for test
+
+
+    public HitAbility getHitAbility() {
+        return hitAbility;
     }
 
     @Override
