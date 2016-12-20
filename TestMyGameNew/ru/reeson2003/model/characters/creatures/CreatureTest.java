@@ -121,10 +121,12 @@ public class CreatureTest {
 
     }
 
-    @Test
+  /*  @Test
     public void setName() throws Exception {
-
-    }
+        final String nameTest = "DEER";
+        Creature testCreature = new Monster(nameTest);
+        assertEquals(nameTest, testCreature.getName());
+    }*/
 
     @Test
     public void setExperience() throws Exception {
