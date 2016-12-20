@@ -4,7 +4,7 @@ import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterFactoryTestImpl;
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
-import ru.reeson2003.model.service.battle.HitMsg;
+import ru.reeson2003.model.characters.battle.HitMsg;
 
 /**
  * Created by reeson on 15.12.16.

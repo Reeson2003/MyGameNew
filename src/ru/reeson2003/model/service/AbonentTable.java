@@ -7,21 +7,21 @@ import java.util.Map;
  * Created by reeson on 16.12.16.
  */
 public class AbonentTable {
-    private static Map<Long, Abonent> abonents = new HashMap<>();
+    private static Map<Address, Abonent> abonents = new HashMap<>();
 
     public static void addAbonent(Abonent abonent) {
-        abonents.put(abonent.getAddress().getAbonentId(),abonent);
+        abonents.put(abonent.getAddress(),abonent);
     }
 
     public static void removeAbonent(Abonent abonent) {
-        abonents.remove(abonent.getAddress().getAbonentId());
+        abonents.remove(abonent.getAddress());
     }
 
     public static void removeAbonent(Address address) {
-        abonents.remove(address.getAbonentId());
+        abonents.remove(address);
     }
 
     public static Abonent getAbonent(Address address) {
-        return abonents.get(address.getAbonentId());
+        return abonents.get(address);
     }
 }

@@ -140,25 +140,36 @@ public class PlayerParametersController extends ParametersController
     private void calculateParameters() {
         parameters.setMaximumHealth(ParametersConstants.HEALTH_BASE + experience.getLevel() * ParametersConstants.HEALTH_LVL_COEFF
                 + parameters.getConstitution() * ParametersConstants.HEALTH_CON_COEFF);
+
         parameters.setHealthRegen(ParametersConstants.HEALTH_REGEN_BASE +
                 parameters.getConstitution() * ParametersConstants.HEALTH_REGEN_COEFF / ParametersConstants.COEFF_DIVISOR);
+
         parameters.setMaximumMana(ParametersConstants.MANA_BASE + experience.getLevel() * ParametersConstants.MANA_LVL_COEFF
                 + parameters.getWisdom() * ParametersConstants.MANA_WIT_COEFF);
+
         parameters.setManaRegen(ParametersConstants.MANA_REGEN_BASE +
                 parameters.getIntellect() * ParametersConstants.MANA_REGEN_COEFF / ParametersConstants.COEFF_DIVISOR);
+
         parameters.setPhysicalAttack(ParametersConstants.PATACK_BASE +
                 parameters.getStrength() * ParametersConstants.PATACK_STR_COEFF / ParametersConstants.COEFF_DIVISOR);
+
         parameters.setPhysicalDefence(ParametersConstants.PDEF_BASE +
                 parameters.getConstitution() * ParametersConstants.PDEF_CON_COEFF / ParametersConstants.COEFF_DIVISOR);
+
         parameters.setCriticalChance(ParametersConstants.CRITCHANCE_BASE +
                 parameters.getAgility() * ParametersConstants.CRITCHANCE_AGL_COEFF / ParametersConstants.COEFF_DIVISOR);
+
         parameters.setAttackSpeed(ParametersConstants.ATKSPEED_BASE +
                 parameters.getAgility() * ParametersConstants.ATKSPEED_AGL_COEFF / ParametersConstants.COEFF_DIVISOR);
+
         parameters.setEvasion(ParametersConstants.EVASION_BASE +
                 parameters.getAgility() * ParametersConstants.EVASION_AGL_COEFF / ParametersConstants.COEFF_DIVISOR);
+
         parameters.setAccuracy(ParametersConstants.ACCURACY_BASE +
                 parameters.getAgility() * ParametersConstants.ACCURACY_AGL_COEFF / ParametersConstants.COEFF_DIVISOR);
+
         parameters.setAttackRange(ParametersConstants.ATTACK_RANGE_BASE);
+
         parameters.setMovingSpeed(ParametersConstants.MOVING_SPEED_BASE +
                 parameters.getAgility() * ParametersConstants.MOVING_SPEED_AGL_COEFF / ParametersConstants.COEFF_DIVISOR);
         if (health > parameters.getMaximumHealth())
