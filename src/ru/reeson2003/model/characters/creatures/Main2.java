@@ -1,10 +1,9 @@
 package ru.reeson2003.model.characters.creatures;
 
-import ru.reeson2003.model.characters.creatures.Fight;
+import ru.reeson2003.model.characters.battle.Fight;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterFactory;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterFactoryTestImpl;
-import ru.reeson2003.model.characters.creatures.Parameters;
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 import ru.reeson2003.model.characters.items.Equip;
 import ru.reeson2003.model.characters.items.EquipType;

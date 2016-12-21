@@ -8,9 +8,8 @@ import ru.reeson2003.model.service.Address;
 /**
  * Created by Тоня on 03.10.2016.
  */
-public abstract class Item extends WorldObject implements Abonent {
+public abstract class Item extends WorldObject {
 //    todo : Enum ItemType or int id or inheritance?
-    protected final Address address;
     String name;
     int price;
     int weight;

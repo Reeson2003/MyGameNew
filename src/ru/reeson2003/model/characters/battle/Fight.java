@@ -1,4 +1,6 @@
-package ru.reeson2003.model.characters.creatures;
+package ru.reeson2003.model.characters.battle;
+
+import ru.reeson2003.model.characters.creatures.Creature;
 
 import java.util.Date;
 import java.util.Random;
@@ -34,12 +36,12 @@ public class Fight {
             if (date.getTime() - op1hit > 300+10000/opponent1.getAttackSpeed()) {
                 hit(opponent1, opponent2);
                 op1hit = date.getTime();
-                System.out.println(opponent2.name + " " + opponent2.getHealth());
+                System.out.println(opponent2.getName() + " " + opponent2.getHealth());
             }
             if (date.getTime() - op2hit > 300+10000/opponent2.getAttackSpeed()) {
                 hit(opponent2, opponent1);
                 op2hit = date.getTime();
-                System.out.println(opponent1.name + " " + opponent1.getHealth());
+                System.out.println(opponent1.getName() + " " + opponent1.getHealth());
             }
             try {
                 Thread.sleep(50);
@@ -48,11 +50,11 @@ public class Fight {
             }
         }
         if(opponent1.getHealth()>0)
-            System.out.println(opponent1.name + " won " + opponent2.name);
+            System.out.println(opponent1.getName() + " won " + opponent2.getName());
         else if(opponent2.getHealth() >0)
-            System.out.println(opponent2.name + " won " + opponent1.name);
+            System.out.println(opponent2.getName() + " won " + opponent1.getName());
         else
-            System.out.println(opponent1.name + " draw " + opponent2.name);
+            System.out.println(opponent1.getName() + " draw " + opponent2.getName());
         //System.out.println(opponent1.getHealth());
         //System.out.println(opponent2.getHealth());
     }
@@ -69,6 +71,6 @@ public class Fight {
             damage = 0;
         damage = damage*(100 - dispersion/2 + random.nextInt(dispersion))/100;
         getDamage.addHealth(-damage);
-        System.out.println(giveDamage.name + " hits " +damage);
+        System.out.println(giveDamage.getName() + " hits " +damage);
     }
 }

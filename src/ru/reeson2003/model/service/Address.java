@@ -10,7 +10,7 @@ public class Address {
     private static long abonentIdCreator = 100;
     private static Queue<Long> freeIDs = new ArrayDeque<>();
     final private long abonentId;
-//  todo : taking back id's when object disappears and make ability to use them.
+
     public Address() {
         Long id = freeIDs.poll();
         if (id == null)
@@ -21,6 +21,21 @@ public class Address {
 
     public long getAbonentId() {
         return abonentId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Address address = (Address) o;
+
+        return abonentId == address.abonentId;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (abonentId ^ (abonentId >>> 32));
     }
 
     @Override

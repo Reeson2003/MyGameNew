@@ -1,4 +1,4 @@
-package ru.reeson2003.model.service.battle;
+package ru.reeson2003.model.characters.battle;
 
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.Abonent;
