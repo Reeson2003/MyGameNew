@@ -8,13 +8,13 @@ import java.util.Date;
 /**
  * Created by reeson on 20.12.16.
  */
-public abstract class CoolDownAbility extends Ability implements TimeDependent {
+public class CoolDownAbility implements TimeDependent {
     protected boolean isActive;
     Date useDate;
     Date currentDate;
     int coolDownMilliseconds;
 
-    protected CoolDownAbility(int coolDownMilliseconds) {
+    public CoolDownAbility(int coolDownMilliseconds) {
         TimeActivator.getInstance().addTimeDependent(this);
         isActive = true;
         this.coolDownMilliseconds = coolDownMilliseconds;
@@ -32,6 +32,9 @@ public abstract class CoolDownAbility extends Ability implements TimeDependent {
             if((useDate.getTime() + coolDownMilliseconds) <= date.getTime())
                 isActive = true;
         }
+    }
+    public boolean getIsActive() {
+        return isActive;
     }
 
     @Override

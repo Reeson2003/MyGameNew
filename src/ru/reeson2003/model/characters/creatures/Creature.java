@@ -2,7 +2,6 @@ package ru.reeson2003.model.characters.creatures;
 
 import ru.reeson2003.model.characters.WorldObject;
 import ru.reeson2003.model.characters.battle.abilities.HitAbility;
-import ru.reeson2003.model.service.Abonent;
 
 /**
  * Created by reeson on 04.12.16.
@@ -20,7 +19,7 @@ public abstract class Creature extends WorldObject {
         this.name = name;
         this.parametersController = parametersController;
         //for test
-        hitAbility = new HitAbility(300+10000/parametersController.getAttackSpeed());
+        hitAbility = new HitAbility(this);
     }
 
     public int getStrength() {

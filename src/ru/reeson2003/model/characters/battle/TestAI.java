@@ -1,6 +1,5 @@
 package ru.reeson2003.model.characters.battle;
 
-import ru.reeson2003.model.characters.battle.abilities.HitAbility;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.TimeActivator;
 import ru.reeson2003.model.service.TimeDependent;
@@ -27,7 +26,7 @@ public class TestAI implements TimeDependent {
     public void activate() {
         for (Creature c : mobs) {
             if (c.getTarget() != null)
-                c.getHitAbility().use(c, c.getTarget());
+                c.getHitAbility().use(c);
         }
     }
 

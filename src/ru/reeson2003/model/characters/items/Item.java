@@ -2,8 +2,6 @@ package ru.reeson2003.model.characters.items;
 
 
 import ru.reeson2003.model.characters.WorldObject;
-import ru.reeson2003.model.service.Abonent;
-import ru.reeson2003.model.service.Address;
 
 /**
  * Created by Тоня on 03.10.2016.
@@ -15,7 +13,7 @@ public abstract class Item extends WorldObject {
     int weight;
 //  todo : add constructor
     protected Item() {
-        this.address = new Address();
+        super();
         this.name = "NO NAME";
         this.price = 0;
         this.weight = 0;

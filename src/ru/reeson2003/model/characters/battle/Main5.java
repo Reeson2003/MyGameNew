@@ -37,7 +37,7 @@ public class Main5 {
         while (player.getHealth() > 0 && (m1.getHealth() >0 || m2.getHealth() >0 || m3.getHealth() >0 || m4.getHealth() >0)) {
             TimeActivator.getInstance().tick(new Date());
             if(iterator.hasNext())
-                player.getHitAbility().use(player,iterator.next());
+                player.getHitAbility().use(player);
             else
                 iterator = targets.iterator();
         }

@@ -16,10 +16,11 @@ public abstract class Msg {
     public Address getFrom() {
         return from;
     }
-
     public Address getTo() {
         return to;
     }
-
+    public void setTo(Address to) {
+        this.to = to;
+    }
     public abstract void exec();
 }
