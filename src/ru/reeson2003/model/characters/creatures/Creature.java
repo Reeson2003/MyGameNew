@@ -2,7 +2,6 @@ package ru.reeson2003.model.characters.creatures;
 
 import ru.reeson2003.model.characters.WorldObject;
 import ru.reeson2003.model.characters.battle.abilities.HitAbility;
-import ru.reeson2003.model.service.Abonent;
 
 /**
  * Created by reeson on 04.12.16.

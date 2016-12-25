@@ -15,7 +15,6 @@ public abstract class Item extends WorldObject {
     int weight;
 //  todo : add constructor
     protected Item() {
-        this.address = new Address();
         this.name = "NO NAME";
         this.price = 0;
         this.weight = 0;
