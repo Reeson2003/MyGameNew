@@ -5,14 +5,20 @@ import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.Address;
 import ru.reeson2003.model.service.Msg;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
  * Created by reeson on 16.12.16.
  */
-public class HitMsg extends Msg {
+public class HitMsg extends Msg implements Serializable{
+    private static final long serialVersionUID = 1L;
+
     public HitMsg(Address from, Address to) {
         super(from, to);
+    }
+
+    public HitMsg() {
     }
 
     @Override

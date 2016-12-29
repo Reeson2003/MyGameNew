@@ -1,12 +1,13 @@
 package ru.reeson2003.model.service;
 
+import java.io.Serializable;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
  * Created by reeson on 15.12.16.
  */
-public class Address {
+public class Address implements Serializable{
     private static long abonentIdCreator = 100;
     private static Queue<Long> freeIDs = new ArrayDeque<>();
     final private long abonentId;
