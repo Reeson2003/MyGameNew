@@ -7,7 +7,6 @@ import ru.reeson2003.model.characters.battle.abilities.HitAbility;
  * Created by reeson on 04.12.16.
  */
 public abstract class Creature extends WorldObject {
-    //    todo : Enum CreatureType or int id or inheritance?
     protected Creature target;
     protected String name;
     protected ParametersController parametersController;

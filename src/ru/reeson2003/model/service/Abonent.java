@@ -1,7 +1,7 @@
 package ru.reeson2003.model.service;
 
 /**
- * Created by reeson on 16.12.16.
+ * Abonent interface to keeping int the abonent table.
  */
 public interface Abonent {
     Address getAddress();

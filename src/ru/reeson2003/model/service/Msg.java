@@ -3,7 +3,7 @@ package ru.reeson2003.model.service;
 import java.io.Serializable;
 
 /**
- * Created by reeson on 15.12.16.
+ * Message superclass to exchange between client and server.
  */
 public abstract class Msg implements Serializable{
     private static final long serialVersionUID = 1L;
@@ -35,5 +35,8 @@ public abstract class Msg implements Serializable{
         this.to = to;
     }
 
+    /**
+     * Method for executing on server.
+     */
     public abstract void exec();
 }

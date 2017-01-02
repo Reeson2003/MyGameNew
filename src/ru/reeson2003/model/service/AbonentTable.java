@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by reeson on 16.12.16.
+ * Abonents container. Use to get abonent by the address.
  */
 public class AbonentTable {
     private static Map<Address, Abonent> abonents = new HashMap<>();

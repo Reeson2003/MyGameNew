@@ -5,7 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by reeson on 20.12.16.
+ * Singleton. Contains list of objects, that are time-depending.
+ * Objects must implement TimeDependent interface.
  */
 public class TimeActivator {
     private static TimeActivator instance;
@@ -29,6 +30,10 @@ public class TimeActivator {
         timeDependents.remove(timeDependent);
     }
 
+    /**
+     * Activate all of the TimeDependents.
+     * @param date is the current Date.
+     */
     public void tick(Date date) {
         for (TimeDependent d: timeDependents) {
             d.tick(date);

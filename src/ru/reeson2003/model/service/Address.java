@@ -5,13 +5,16 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * Created by reeson on 15.12.16.
+ * Instance contains unique long field abonentID.
  */
 public class Address implements Serializable{
     private static long abonentIdCreator = 100;
     private static Queue<Long> freeIDs = new ArrayDeque<>();
     final private long abonentId;
 
+    /**
+     * makes unique abonentID.
+     */
     public Address() {
         Long id = freeIDs.poll();
         if (id == null)
@@ -39,6 +42,9 @@ public class Address implements Serializable{
         return (int) (abonentId ^ (abonentId >>> 32));
     }
 
+    /**
+     * after finalizing returns its abonentID into freeId's queue.
+     */
     @Override
     protected void finalize() {
         AbonentTable.removeAbonent(this);
