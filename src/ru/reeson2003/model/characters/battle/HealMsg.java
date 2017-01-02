@@ -3,7 +3,7 @@ package ru.reeson2003.model.characters.battle;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.Address;
-import ru.reeson2003.model.service.Msg;
+import ru.reeson2003.model.service.messages.Msg;
 
 import java.io.Serializable;
 
@@ -24,7 +24,7 @@ public class HealMsg extends Msg implements Serializable{
     public void exec() {
         Creature giveHeal = (Creature) AbonentTable.getAbonent(from);
         Creature getHeal = (Creature)AbonentTable.getAbonent(to);
-        giveHeal.addMana(-10);
-        getHeal.addHealth(20);
+        giveHeal.changeMana(-10);
+        getHeal.changeHealth(20);
     }
 }

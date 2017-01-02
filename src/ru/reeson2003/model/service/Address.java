@@ -8,22 +8,22 @@ import java.util.Queue;
  * Instance contains unique long field abonentID.
  */
 public class Address implements Serializable{
-    private static long abonentIdCreator = 100;
-    private static Queue<Long> freeIDs = new ArrayDeque<>();
-    final private long abonentId;
+    private static int abonentIdCreator = Integer.MIN_VALUE;
+    private static Queue<Integer> freeIDs = new ArrayDeque<>();
+    final private int abonentId;
 
     /**
      * makes unique abonentID.
      */
     public Address() {
-        Long id = freeIDs.poll();
+        Integer id = freeIDs.poll();
         if (id == null)
             this.abonentId = abonentIdCreator++;
         else
             this.abonentId = id;
     }
 
-    public long getAbonentId() {
+    public int getAbonentId() {
         return abonentId;
     }
 
@@ -31,15 +31,13 @@ public class Address implements Serializable{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Address address = (Address) o;
-
         return abonentId == address.abonentId;
     }
 
     @Override
     public int hashCode() {
-        return (int) (abonentId ^ (abonentId >>> 32));
+        return abonentId;
     }
 
     /**

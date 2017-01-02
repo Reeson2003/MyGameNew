@@ -19,8 +19,8 @@ public class Main2 {
         System.out.println(monster);
         Monster monster1 = monster.clone();
         System.out.println(monster == monster1);
-        monster.addMana(-15);
-        monster.addHealth(-100);
+        monster.changeMana(-15);
+        monster.changeHealth(-100);
         System.out.println(monster1);
         System.out.println(monster);
         PlayerCharacter player = PlayerCharacter.NewbiePlayerIstance("xXxTURBOGLAD3000xXx",5,5,5,5,5);
@@ -35,8 +35,8 @@ public class Main2 {
         fight.fight();
         System.out.println(player);
         System.out.println(monster);
-        monster.addHealth(1000);
-        player.addHealth(1000);
+        monster.changeHealth(1000);
+        player.changeHealth(1000);
         fight.fight();
         System.out.println(player);
         System.out.println(monster);

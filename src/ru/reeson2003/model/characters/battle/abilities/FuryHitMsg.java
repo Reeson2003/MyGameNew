@@ -4,7 +4,7 @@ import ru.reeson2003.model.characters.battle.UnderAttackMsg;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.Address;
-import ru.reeson2003.model.service.Msg;
+import ru.reeson2003.model.service.messages.Msg;
 
 /**
  * Created by nimtego_loc on 21.12.2016.
@@ -23,7 +23,7 @@ public class FuryHitMsg extends Msg {
             int damage = 100; // furyHitAbility.getDamageAbility() - getDamage.getPhysicalDefence()/10;
             if (damage < 2)
                 damage = 2;
-            getDamage.addHealth(-damage);
+            getDamage.changeHealth(-damage);
             System.out.println(giveDamage.getName() + " hits " +damage);
 /**
  * for test

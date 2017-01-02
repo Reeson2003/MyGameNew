@@ -1,7 +1,7 @@
 package ru.reeson2003.model.characters.battle.abilities;
 
 import ru.reeson2003.model.characters.battle.Ability;
-import ru.reeson2003.model.characters.battle.CoolDownAbility;
+import ru.reeson2003.model.characters.battle.CoolDown;
 import ru.reeson2003.model.characters.battle.HitMsg;
 import ru.reeson2003.model.characters.creatures.Creature;
 
@@ -12,23 +12,19 @@ import ru.reeson2003.model.characters.creatures.Creature;
 public class HitAbility extends Ability {
 
     public HitAbility(Creature owner) {
-        this.name = "Atack";
-        this.information = "Causes a loss";
+        this.name = "Attack";
         this.owner = owner;
         this.msg = new HitMsg(this.owner.getAddress(), null);
-        this.coolDownAbility = new CoolDownAbility(owner.getAttackSpeed() * 1000);  // 1 - один хит персеконд (спид атак 1 по умолчанию думаю надо дабл делать)
+        this.coolDown = new CoolDown(owner.getAttackSpeed() * 100);  // 1 - один хит персеконд (спид атак 1 по умолчанию думаю надо дабл делать)
+        this.information = name + ", Causes a loss: " + owner.getPhysicalAttack();
     }
     @Override
     public void use(Creature to) {
         msg.setTo(to.getAddress());
-        if(coolDownAbility.getIsActive()) {
-            coolDownAbility.use();
+        if(coolDown.isActive()) {
+            coolDown.use();
             msg.exec();
         }
-    }
-    @Override
-    public String getInformation() {
-        return  "" +information +" - " +owner.getPhysicalAttack();
     }
 }
 

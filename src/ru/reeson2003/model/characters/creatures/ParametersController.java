@@ -8,13 +8,11 @@ import ru.reeson2003.model.characters.items.Equipment;
 /**
  * Created by User on 12.11.2016.
  * фабрика выпускает контроллеры параметров.
- * Базовый класс имеет реализацию методов addHealth() и addMana(),
+ * Базовый класс имеет реализацию методов changeHealth() и changeMana(),
  */
 public abstract class ParametersController implements Cloneable {
     protected Parameters parameters;
-
     protected int health;
-
     protected int mana;
 
     public int getStrength() {

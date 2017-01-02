@@ -6,7 +6,7 @@ import ru.reeson2003.model.characters.creatures.Parameters;
  * Created by reeson on 11.12.16.
  */
 public abstract class MonsterParametersManager {
-    protected static MonsterParametersManager instance = null;
+    protected static MonsterParametersManager instance = new TestMonParMan();
     protected MonsterParametersManager( ) {
     }
     public static MonsterParametersManager getInstance() {

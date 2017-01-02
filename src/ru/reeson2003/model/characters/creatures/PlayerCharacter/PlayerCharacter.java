@@ -52,6 +52,10 @@ public class PlayerCharacter extends Creature {
         return experience.getSkillPoints();
     }
 
+    public int getExpToNextLevel() {
+        return experience.getExpToNextLevel();
+    }
+
     public Equip putOn(Equip equip) {
         return this.equipment.putOn(equip);
     }

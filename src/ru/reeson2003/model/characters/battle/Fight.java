@@ -29,8 +29,8 @@ public class Fight {
         while (opponent1.getHealth() >0 && opponent2.getHealth() >0) {
             date = new Date();
             if (date.getTime() - healthRegen > 2000) {
-                opponent1.addHealth(opponent1.getHealthRegen());
-                opponent2.addHealth(opponent2.getHealthRegen());
+                opponent1.changeHealth(opponent1.getHealthRegen());
+                opponent2.changeHealth(opponent2.getHealthRegen());
                 healthRegen = date.getTime();
             }
             if (date.getTime() - op1hit > 300+10000/opponent1.getAttackSpeed()) {
@@ -70,7 +70,7 @@ public class Fight {
         if (check >=0 && check < getDamage.getEvasion() - giveDamage.getAccuracy()/10)
             damage = 0;
         damage = damage*(100 - dispersion/2 + random.nextInt(dispersion))/100;
-        getDamage.addHealth(-damage);
+        getDamage.changeHealth(-damage);
         System.out.println(giveDamage.getName() + " hits " +damage);
     }
 }

@@ -1,4 +1,6 @@
-package ru.reeson2003.model.service;
+package ru.reeson2003.model.service.messages;
+
+import ru.reeson2003.model.service.Address;
 
 import java.io.Serializable;
 

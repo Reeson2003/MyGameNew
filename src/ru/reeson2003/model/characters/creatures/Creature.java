@@ -1,24 +1,35 @@
 package ru.reeson2003.model.characters.creatures;
 
 import ru.reeson2003.model.characters.WorldObject;
+import ru.reeson2003.model.characters.battle.Ability;
+import ru.reeson2003.model.characters.battle.abilities.EasyHealAbility;
+import ru.reeson2003.model.characters.battle.abilities.HealAbility;
 import ru.reeson2003.model.characters.battle.abilities.HitAbility;
 
 /**
  * Created by reeson on 04.12.16.
  */
 public abstract class Creature extends WorldObject {
+    //for tests
+    HitAbility hitAbility;
+    EasyHealAbility healAbility;
+    public HitAbility getHitAbility() {
+        return hitAbility;
+    }
+    public EasyHealAbility getHealAbility() {
+        return healAbility;
+    }
+
     protected Creature target;
     protected String name;
     protected ParametersController parametersController;
 
-    //for test
-    HitAbility hitAbility;
-
     public Creature(String name, ParametersController parametersController) {
         this.name = name;
         this.parametersController = parametersController;
-        //for test
+        //for tests
         hitAbility = new HitAbility(this);
+        healAbility = new EasyHealAbility(this);
     }
 
     public int getStrength() {
@@ -113,19 +124,20 @@ public abstract class Creature extends WorldObject {
         this.name = name;
     }
 
-    public void addHealth(int health) {
-        parametersController.addHealth(health);
+    /**
+     * Method for healing or damaging creature.
+     * @param deltaHealth Positive for heal, negative for damage.
+     */
+    public void changeHealth(int deltaHealth) {
+        parametersController.addHealth(deltaHealth);
     }
 
-    public void addMana(int mana) {
-        parametersController.addMana(mana);
-    }
-
-    //for test
-
-
-    public HitAbility getHitAbility() {
-        return hitAbility;
+    /**
+     * Method for change of current mana amount.
+     * @param deltaMana Positive for add, negative for subtract.
+     */
+    public void changeMana(int deltaMana) {
+        parametersController.addMana(deltaMana);
     }
 
     @Override

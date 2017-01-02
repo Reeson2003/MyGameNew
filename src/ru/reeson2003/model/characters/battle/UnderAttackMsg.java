@@ -4,7 +4,7 @@ import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.Abonent;
 import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.Address;
-import ru.reeson2003.model.service.Msg;
+import ru.reeson2003.model.service.messages.Msg;
 
 /**
  * Created by reeson on 17.12.16.

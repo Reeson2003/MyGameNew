@@ -1,7 +1,7 @@
 package ru.reeson2003.model.characters.battle.abilities;
 
 import ru.reeson2003.model.characters.battle.Ability;
-import ru.reeson2003.model.characters.battle.CoolDownAbility;
+import ru.reeson2003.model.characters.battle.CoolDown;
 import ru.reeson2003.model.characters.creatures.Creature;
 
 /**
@@ -17,21 +17,18 @@ public class FuryHitAbility extends Ability {
         this.owner = owner;
         this.msg = new FuryHitMsg(this.owner.getAddress());
         this.damageAbility = AbilityConstants.FURY_HIT_COEFF + (owner.getStrength() / 2);
-        this.coolDownAbility =
-                new CoolDownAbility(AbilityConstants.FURY_HIT_COOLDOWN / owner.getAttackSpeed());
+        this.coolDown =
+                new CoolDown(AbilityConstants.FURY_HIT_COOLDOWN / owner.getAttackSpeed());
     }
     @Override
     public void use(Creature to) {
         msg.setTo(to.getAddress());
-        if(coolDownAbility.getIsActive()) {
-            coolDownAbility.use();
+        if(coolDown.isActive()) {
+            coolDown.use();
             msg.exec();
         }
     }
-    @Override
-    public String getInformation() {
-        return  "" +information +" - " +damageAbility;
-    }
+
     public int getDamageAbility() {
         return damageAbility;
     }
