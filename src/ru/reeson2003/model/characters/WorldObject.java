@@ -9,7 +9,6 @@ import ru.reeson2003.model.service.Address;
  * Created by reeson on 16.12.16.
  */
 public abstract class WorldObject implements Abonent{
-
     protected final Address address;
 
     protected Coordinate coordinate;

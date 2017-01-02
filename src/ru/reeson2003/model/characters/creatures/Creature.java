@@ -18,7 +18,7 @@ public abstract class Creature extends WorldObject {
         this.name = name;
         this.parametersController = parametersController;
         //for test
-        hitAbility = new HitAbility(300+10000/parametersController.getAttackSpeed());
+        hitAbility = new HitAbility(this);
     }
 
     public int getStrength() {
