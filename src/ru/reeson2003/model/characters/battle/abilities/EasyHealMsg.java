@@ -1,5 +1,7 @@
 package ru.reeson2003.model.characters.battle.abilities;
 
+import ru.reeson2003.model.characters.creatures.Creature;
+import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.Address;
 import ru.reeson2003.model.service.Msg;
 
@@ -14,16 +16,16 @@ public class EasyHealMsg extends Msg {
     @Override
     public void exec() {
         Creature giveHeal = (Creature)AbonentTable.getAbonent(from);
-        Creature getHeal = (Creature)AbonentTable.getAbonent(to);
-        int healCost =;
-        int manaCost =;
+        Creature getHeal = (Creature) AbonentTable.getAbonent(to);
+      //  int healCost = getHeal.;
+      //  int manaCost =;
         
         
         
         
         
         
-        if (damage < 2)
+     /*   if (damage < 2)
             damage = 2;
         Random random = new Random();
         int dispersion = 40;
@@ -35,6 +37,6 @@ public class EasyHealMsg extends Msg {
             damage = 0;
         damage = damage*(100 - dispersion/2 + random.nextInt(dispersion))/100;
         getDamage.addHealth(-damage);
-        System.out.println(giveDamage.getName() + " hits " +damage);
+        System.out.println(giveDamage.getName() + " hits " +damage);*/
     }
 }

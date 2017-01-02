@@ -16,10 +16,9 @@ public class FuryHitAbility extends Ability {
         this.information = "Causes a loss";
         this.owner = owner;
         this.msg = new FuryHitMsg(this.owner.getAddress());
-        this.damageAbility = /*AbilityConstant.FURY_HIT_COEFF*/100 + (owner.getStrength() / 2);
+        this.damageAbility = AbilityConstants.FURY_HIT_COEFF + (owner.getStrength() / 2);
         this.coolDownAbility =
-                /*AbilityConstant.FURY_HIT_COOLDOWN*/new CoolDownAbility(5000 / owner.getAttackSpeed());
-        // 1 - один хит персеконд (спид атак 1 по умолчанию думаю надо дабл делать)
+                new CoolDownAbility(AbilityConstants.FURY_HIT_COOLDOWN / owner.getAttackSpeed());
     }
     @Override
     public void use(Creature to) {

@@ -17,9 +17,9 @@ public class EasyHealAbility extends Ability {
         this.information = "Value of heal";
         this.owner = owner;
         this.msg = new EasyHealMsg(this.owner.getAddress());
-        this.healSize = AbilityConstant.EASY_HEAL_COEFF + (owner.getIntellect() / 2);
-        this.manaCost = AbilityConstant.EASY_HEAL_MANACOST;
-        this.coolDownAbility = new CoolDownAbility(AbilityConstant.EASY_HEAL_COOLDOWN / (owner.getWisdom() / 10));  // 1 - один хит персеконд (спид атак 1 по умолчанию думаю надо дабл делать)
+        this.healSize = AbilityConstants.EASY_HEAL_COEFF + (owner.getIntellect() / 2);
+        this.manaCost = AbilityConstants.EASY_HEAL_MANACOST;
+        this.coolDownAbility = new CoolDownAbility(AbilityConstants.EASY_HEAL_COOLDOWN / (owner.getWisdom() / 10));  // 1 - один хит персеконд (спид атак 1 по умолчанию думаю надо дабл делать)
     }
     @Override
     public void use(Creature to) {
