@@ -1,13 +1,14 @@
 package ru.reeson2003.model.main;
 
 import ru.reeson2003.model.service.client_content.ClientPacketMessage;
-import ru.reeson2003.model.service.client_content.MonsterAgent;
-import ru.reeson2003.model.service.client_content.PlayerCharacterAgent;
+import ru.reeson2003.model.service.client_content.CreatureSurrogate;
+import ru.reeson2003.model.service.client_content.PlayerCharacterSurrogate;
 import ru.reeson2003.model.service.messages.Msg;
 import ru.reeson2003.model.service.messages.remote_messages.HitMsgRemote;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.List;
 
 /**
  * Created by reeson on 02.01.17.
@@ -48,14 +49,16 @@ public class ClientTest {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
-            PlayerCharacterAgent player = clientPacketMessage.getPlayerCharacter();
-            MonsterAgent[] monsters = clientPacketMessage.getMonsters();
+            PlayerCharacterSurrogate player = clientPacketMessage.getPlayerSurrogate();
+            List<CreatureSurrogate> creatureSurrogates = clientPacketMessage.getCreatures();
             System.out.println(player);
-            for (int i = 0; i < monsters.length; i++) {
-                System.out.println(monsters[i]);
+            for (CreatureSurrogate c: creatureSurrogates) {
+                System.out.println(c);
             }
             System.out.println("\n\n\n\n\n");
-            Msg toServer = new HitMsgRemote(player.getAddress(), monsters[0].getAddress());
+            if (creatureSurrogates.size() == 0)
+                break;
+            Msg toServer = new HitMsgRemote(player.getAddress(), creatureSurrogates.get(0).getAddress());
             try {
                 objectOutputStream.writeObject(toServer);
             } catch (IOException e) {

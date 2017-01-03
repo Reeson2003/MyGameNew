@@ -8,7 +8,8 @@ import java.io.Serializable;
 /**
  * Agent for PlayerCharacter to send to client
  */
-public class PlayerCharacterAgent implements Serializable{
+public class PlayerCharacterSurrogate implements Serializable{
+    private static final long serialVersionUID = 13L;
     private Address address;
     private String name;
     private int health;
@@ -39,11 +40,11 @@ public class PlayerCharacterAgent implements Serializable{
     private int expToNextLevel;
     private int skillPoints;
 
-    public static PlayerCharacterAgent getAgent(PlayerCharacter playerCharacter) {
-        return new PlayerCharacterAgent(playerCharacter);
+    public static PlayerCharacterSurrogate getAgent(PlayerCharacter playerCharacter) {
+        return new PlayerCharacterSurrogate(playerCharacter);
     }
 
-    private PlayerCharacterAgent(PlayerCharacter playerCharacter) {
+    private PlayerCharacterSurrogate(PlayerCharacter playerCharacter) {
         this.address = playerCharacter.getAddress();
 
         this.name = playerCharacter.getName();
@@ -76,7 +77,7 @@ public class PlayerCharacterAgent implements Serializable{
         this.skillPoints = playerCharacter.getSkillPoints();
     }
 
-    public PlayerCharacterAgent() {
+    public PlayerCharacterSurrogate() {
 
     }
 

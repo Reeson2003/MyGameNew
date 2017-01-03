@@ -13,14 +13,14 @@ public class MonsterFactoryTestImpl implements MonsterFactory {
     }
 
     @Override
-    public Monster getMonster(int monsterID) {
+    public Creature getMonster(int monsterID) {
         if (monsterID == 1)
-            return new Monster("Ant Qeen", ParametersController.getMonsterParametersController(monsterID));
+            return new Creature("Ant Qeen", ParametersController.getMonsterParametersController(monsterID));
         else if (monsterID == 2)
-            return new Monster("Skeleton Raider", ParametersController.getMonsterParametersController(monsterID));
+            return new Creature("Skeleton Raider", ParametersController.getMonsterParametersController(monsterID));
         else if (monsterID == 3)
-            return new Monster("Goblin scout", ParametersController.getMonsterParametersController(monsterID));
+            return new Creature("Goblin scout", ParametersController.getMonsterParametersController(monsterID));
         else
-            return new Monster("Elpy", ParametersController.getMonsterParametersController(monsterID));
+            return new Creature("Elpy", ParametersController.getMonsterParametersController(monsterID));
     }
 }

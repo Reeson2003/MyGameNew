@@ -1,11 +1,9 @@
 package ru.reeson2003.model.main;
 
-import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Creature;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterFactoryTestImpl;
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 import ru.reeson2003.model.service.messages.Msg;
-import ru.reeson2003.model.service.messages.remote_messages.EasyHealMsgRemote;
-import ru.reeson2003.model.service.messages.remote_messages.HitMsgRemote;
 
 import java.io.*;
 
@@ -16,8 +14,8 @@ public class MainSerializeTest {
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException, IOException {
 //        Class.forName("ru.reeson2003.model.characters.creatures.NonPlayerCharacter.TestMonParMan").newInstance();
         PlayerCharacter player = PlayerCharacter.NewbiePlayerIstance("Reeson",5,5,5,5,5);
-        Monster monster = new MonsterFactoryTestImpl().getMonster(1);
-//        HitMsgRemote hitMsg = new HitMsgRemote(monster.getAddress(), player.getAddress());
+        Creature creature = new MonsterFactoryTestImpl().getMonster(1);
+//        HitMsgRemote hitMsg = new HitMsgRemote(creature.getAddress(), player.getAddress());
 //        EasyHealMsgRemote healMsg = new EasyHealMsgRemote(player.getAddress(), player.getAddress());
 //        FileOutputStream fos = new FileOutputStream("out.txt");
 //        ObjectOutputStream outputStream = new ObjectOutputStream(fos);

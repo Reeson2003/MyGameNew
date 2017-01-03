@@ -1,7 +1,6 @@
 package ru.reeson2003.model.main;
 
 import ru.reeson2003.model.characters.creatures.Creature;
-import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterFactory;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterFactoryTestImpl;
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
@@ -13,6 +12,7 @@ import ru.reeson2003.model.service.messages.Msg;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -23,11 +23,8 @@ public class ServerTest {
         PlayerCharacter player = PlayerCharacter.NewbiePlayerIstance("Reeson",5,5,5,5,5);
         TimeActivator timeActivator = TimeActivator.getInstance();
         MonsterFactory mf = new MonsterFactoryTestImpl();
-        Monster aq = mf.getMonster(1);
-        Monster sk = mf.getMonster(2);
-        Monster[] monsters = new Monster[2];
-        monsters[0] = aq;
-        monsters[1] = sk;
+        Creature aq = mf.getMonster(1);
+        Creature sk = mf.getMonster(2);
 //==============================================================================
         Socket socket = null;
         try {
@@ -56,7 +53,12 @@ public class ServerTest {
 
         while (true) {
             timeActivator.tick(new Date());
-            ClientPacketMessage cpm = new ClientPacketMessage(player, monsters);
+            ArrayList<Creature> creatureArrayList = new ArrayList<>();
+            if (aq.getHealth() > 0)
+                creatureArrayList.add(aq);
+            if (sk.getHealth() > 0)
+                creatureArrayList.add(sk);
+            ClientPacketMessage cpm = new ClientPacketMessage(player, creatureArrayList);
             try {
                 objectOutputStream.writeObject(cpm);
             } catch (IOException e) {
@@ -66,11 +68,8 @@ public class ServerTest {
             Msg msg = null;
             try {
                 msg = (Msg)objectInputStream.readObject();
-                System.out.println("from:" + msg.getFrom().getAbonentId() +
-                        " to:" + msg.getTo().getAbonentId());
                 msg.exec();
-                Creature monster = (Creature) AbonentTable.getAbonent(msg.getTo());
-                System.out.println(monster.getHealth());
+                ru.reeson2003.model.characters.creatures.Creature creature = (ru.reeson2003.model.characters.creatures.Creature) AbonentTable.getAbonent(msg.getTo());
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {

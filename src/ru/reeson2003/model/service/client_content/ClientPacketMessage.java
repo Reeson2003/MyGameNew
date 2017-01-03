@@ -1,41 +1,44 @@
 package ru.reeson2003.model.service.client_content;
 
-import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
+import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by reeson on 02.01.17.
  */
 public class ClientPacketMessage implements Serializable {
-    private PlayerCharacterAgent playerCharacter;
-    private MonsterAgent[] monsters;
+    private static final long serialVersionUID = 12L;
+    private PlayerCharacterSurrogate playerSurrogate;
+    private List<CreatureSurrogate> creaturesSurrogate;
 
-    public ClientPacketMessage(PlayerCharacter playerCharacter, Monster[] monsters) {
-        this.playerCharacter = PlayerCharacterAgent.getAgent(playerCharacter);
-        this.monsters = new MonsterAgent[monsters.length];
-        for (int i = 0; i < monsters.length; i++) {
-            this.monsters[i] = MonsterAgent.getAgent(monsters[i]);
+    public ClientPacketMessage(PlayerCharacter playerSurrogate, List<Creature> creatures) {
+        this.playerSurrogate = PlayerCharacterSurrogate.getAgent(playerSurrogate);
+        this.creaturesSurrogate = new ArrayList<>(creatures.size());
+        for (Creature c: creatures) {
+            creaturesSurrogate.add(CreatureSurrogate.createSurrogate(c));
         }
     }
 
     public ClientPacketMessage() {
     }
 
-    public PlayerCharacterAgent getPlayerCharacter() {
-        return playerCharacter;
+    public PlayerCharacterSurrogate getPlayerSurrogate() {
+        return playerSurrogate;
     }
 
-    public MonsterAgent[] getMonsters() {
-        return monsters;
+    public List<CreatureSurrogate> getCreatures() {
+        return creaturesSurrogate;
     }
 
-    public void setPlayerCharacter(PlayerCharacterAgent playerCharacter) {
-        this.playerCharacter = playerCharacter;
+    public void setPlayerSurrogate(PlayerCharacterSurrogate playerSurrogate) {
+        this.playerSurrogate = playerSurrogate;
     }
 
-    public void setMonsters(MonsterAgent[] monsters) {
-        this.monsters = monsters;
+    public void setMonsters(List<CreatureSurrogate> creaturesSurrogate) {
+        this.creaturesSurrogate = creaturesSurrogate;
     }
 }

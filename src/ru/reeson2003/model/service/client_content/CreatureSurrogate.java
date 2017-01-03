@@ -1,6 +1,6 @@
 package ru.reeson2003.model.service.client_content;
 
-import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
+import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.Address;
 
 import java.io.Serializable;
@@ -8,7 +8,8 @@ import java.io.Serializable;
 /**
  * Created by reeson on 02.01.17.
  */
-public class MonsterAgent implements Serializable {
+public class CreatureSurrogate implements Serializable {
+    private static final long serialVersionUID = 14L;
     Address address;
     private String name;
     private int health;
@@ -16,20 +17,20 @@ public class MonsterAgent implements Serializable {
     private int mana;
     private int maximumMana;
 
-    public static MonsterAgent getAgent(Monster monster) {
-        return new MonsterAgent(monster);
+    public static CreatureSurrogate createSurrogate(Creature creature) {
+        return new CreatureSurrogate(creature);
     }
 
-    private MonsterAgent(Monster monster) {
-        this.address = monster.getAddress();
-        this.name = monster.getName();
-        this.health = monster.getHealth();
-        this.maximumHealth = monster.getMaximumHealth();
-        this.mana = monster.getMana();
-        this.maximumMana = monster.getMaximumMana();
+    private CreatureSurrogate(Creature creature) {
+        this.address = creature.getAddress();
+        this.name = creature.getName();
+        this.health = creature.getHealth();
+        this.maximumHealth = creature.getMaximumHealth();
+        this.mana = creature.getMana();
+        this.maximumMana = creature.getMaximumMana();
     }
 
-    public MonsterAgent() {
+    public CreatureSurrogate() {
 
     }
 
