@@ -7,7 +7,7 @@ import ru.reeson2003.model.characters.WorldObject;
  */
 public abstract class Creature extends WorldObject {
     //for tests
-    private FamousAbility famousAbility;
+    private KnownAbility knownAbility;
     protected Creature target;
     protected String name;
     protected ParametersController parametersController;
@@ -18,7 +18,7 @@ public abstract class Creature extends WorldObject {
         //for tests
 /*        hitAbility = new HitAbility(this);
         healAbility = new EasyHealAbility(this); */
-        famousAbility = new FamousAbility(this);
+        knownAbility = new KnownAbility(this);
     }
     public int getStrength() {
         return parametersController.getStrength();

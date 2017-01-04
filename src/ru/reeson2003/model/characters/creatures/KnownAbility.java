@@ -11,11 +11,11 @@ import java.util.HashMap;
 /**
  * Created by nimtego_loc on 26.12.2016.
  */
-public class FamousAbility {
+public class KnownAbility {
     private HashMap<String, Ability> famousAbility;
     private Creature owner;
 
-    protected FamousAbility(final Creature owner) {
+    protected KnownAbility(final Creature owner) {
         this.owner = owner;
         this.famousAbility =  new HashMap<>();
         setAbility(new HitAbility(owner));
