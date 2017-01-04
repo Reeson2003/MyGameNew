@@ -1,25 +1,13 @@
 package ru.reeson2003.model.characters.creatures;
 
 import ru.reeson2003.model.characters.WorldObject;
-import ru.reeson2003.model.characters.battle.Ability;
-import ru.reeson2003.model.characters.battle.abilities.EasyHealAbility;
-import ru.reeson2003.model.characters.battle.abilities.HealAbility;
-import ru.reeson2003.model.characters.battle.abilities.HitAbility;
 
 /**
  * Created by reeson on 04.12.16.
  */
 public abstract class Creature extends WorldObject {
     //for tests
-    HitAbility hitAbility;
-    EasyHealAbility healAbility;
-    public HitAbility getHitAbility() {
-        return hitAbility;
-    }
-    public EasyHealAbility getHealAbility() {
-        return healAbility;
-    }
-
+    private FamousAbility famousAbility;
     protected Creature target;
     protected String name;
     protected ParametersController parametersController;
@@ -28,10 +16,10 @@ public abstract class Creature extends WorldObject {
         this.name = name;
         this.parametersController = parametersController;
         //for tests
-        hitAbility = new HitAbility(this);
-        healAbility = new EasyHealAbility(this);
+/*        hitAbility = new HitAbility(this);
+        healAbility = new EasyHealAbility(this); */
+        famousAbility = new FamousAbility(this);
     }
-
     public int getStrength() {
         return parametersController.getStrength();
     }
