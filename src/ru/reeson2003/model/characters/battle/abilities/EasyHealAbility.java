@@ -8,7 +8,6 @@ import ru.reeson2003.model.characters.creatures.Creature;
  */
 public class EasyHealAbility extends Ability {
     private int healSize;
-    private int manaCost;
 
     public EasyHealAbility(Creature owner) {
         this.name = "Easy Heal";
