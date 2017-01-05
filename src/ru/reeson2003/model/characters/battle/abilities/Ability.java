@@ -2,6 +2,7 @@ package ru.reeson2003.model.characters.battle.abilities;
 
 import ru.reeson2003.model.characters.battle.CoolDown;
 import ru.reeson2003.model.characters.creatures.Creature;
+import ru.reeson2003.model.service.exception.MyGameException;
 import ru.reeson2003.model.service.messages.Msg;
 
 /**
@@ -12,6 +13,8 @@ public abstract class Ability {
     protected String information;
     protected CoolDown coolDown;
     protected Creature owner;
+    protected int manaCost = 0;
+    protected int healCost = 0;
     protected Msg msg;
 
     public final String getName() {
@@ -59,5 +62,5 @@ public abstract class Ability {
             this.coolDown.setCoolDownMilliseconds(minutes * 60000);
     }
 
-    public abstract void use(Creature to);
+    public abstract void use(Creature to) throws MyGameException;
 }
