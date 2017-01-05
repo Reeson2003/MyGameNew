@@ -1,6 +1,7 @@
 package ru.reeson2003.model.main;
 
 import ru.reeson2003.model.characters.battle.Fight;
+import ru.reeson2003.model.characters.battle.abilities.EasyHealAbility;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.*;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
 import ru.reeson2003.model.characters.creatures.Parameters;
@@ -8,6 +9,7 @@ import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 import ru.reeson2003.model.characters.items.Equip;
 import ru.reeson2003.model.characters.creatures.EquipType;
 import ru.reeson2003.model.service.TimeActivator;
+import ru.reeson2003.model.service.exception.MyGameException;
 import ru.reeson2003.view.SwingView;
 
 import java.util.Date;
@@ -36,6 +38,7 @@ public class Main2 {
         player.putOn(dragonSlayer);
         Fight fight = new Fight(player, creature);
         creature.changeHealth(-500);
+        player.addAbility(new EasyHealAbility(player));
         TimeActivator timeActivator = TimeActivator.getInstance();
         while (player.getHealth() < player.getMaximumHealth()) {
             timeActivator.tick(new Date());
@@ -43,6 +46,9 @@ public class Main2 {
                     .append(player)
                     .append(creature)
                     .show();
+            try {
+                player.getAbility("Easy Heal").use(player);
+            } catch (MyGameException e) {}
         }
     }
 }
