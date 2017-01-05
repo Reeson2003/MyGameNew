@@ -25,8 +25,8 @@ public class EasyHealMsg extends Msg {
 
     @Override
     public void exec() {
-        Creature giveHeal = (Creature) AbonentTable.getAbonent(from);
-        Creature getHeal = (Creature) AbonentTable.getAbonent(to);
+        Creature giveHeal = (Creature) AbonentTable.getAbonent(to);
+        Creature getHeal = (Creature) AbonentTable.getAbonent(from);
         giveHeal.changeHealth(healAmount);
         getHeal.changeMana(-manaCost);
     }

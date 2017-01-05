@@ -47,7 +47,7 @@ public class Main2 {
                     .append(creature)
                     .show();
             try {
-                player.getAbility("Easy Heal").use(player);
+                player.getAbility("Easy Heal").use(creature);
             } catch (MyGameException e) {}
         }
     }
