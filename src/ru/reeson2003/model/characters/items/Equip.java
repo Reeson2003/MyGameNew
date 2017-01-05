@@ -1,5 +1,6 @@
 package ru.reeson2003.model.characters.items;
 
+import ru.reeson2003.model.characters.creatures.EquipType;
 import ru.reeson2003.model.characters.creatures.Parameters;
 
 /**

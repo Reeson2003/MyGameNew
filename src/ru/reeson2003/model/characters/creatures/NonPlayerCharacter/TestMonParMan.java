@@ -3,7 +3,7 @@ package ru.reeson2003.model.characters.creatures.NonPlayerCharacter;
 import ru.reeson2003.model.characters.creatures.Parameters;
 
 /**
- * Created by reeson on 11.12.16.
+ * Тестовый мэнеджер параметров для экспериментов.
  */
 public class TestMonParMan extends MonsterParametersManager {
     public TestMonParMan() {
@@ -13,24 +13,67 @@ public class TestMonParMan extends MonsterParametersManager {
 
     @Override
     public Parameters getParameters(int monsterID) {
-        return new Parameters.ParametersBuilder().
-                constitution(5).
-                strength(5).
-                agility(5).
-                wisdom(5).
-                intellect(5).
-                maximumHealth(1000).
-                maximumMana(200).
-                healthRegen(5).
-                manaRegen(5).
-                physicalAttack(20).
-                physicalDefence(20).
-                criticalChance(30).
-                attackSpeed(10).
-                evasion(5).
-                accuracy(5).
-                attackRange(5).
-                movingSpeed(10).
-                build();
+        switch (monsterID) {
+            case 1:
+                return new Parameters.ParametersBuilder().
+                        maximumHealth(1000).
+                        maximumMana(200).
+                        healthRegen(5).
+                        manaRegen(5).
+                        physicalAttack(20).
+                        physicalDefence(20).
+                        criticalChance(30).
+                        attackSpeed(2000).
+                        evasion(5).
+                        accuracy(5).
+                        attackRange(5).
+                        movingSpeed(10).
+                        build();
+            case 2:
+                return new Parameters.ParametersBuilder().
+                        maximumHealth(200).
+                        maximumMana(50).
+                        healthRegen(2).
+                        manaRegen(1).
+                        physicalAttack(7).
+                        physicalDefence(3).
+                        criticalChance(10).
+                        attackSpeed(700).
+                        evasion(5).
+                        accuracy(5).
+                        attackRange(5).
+                        movingSpeed(800).
+                        build();
+            case 3:
+                return new Parameters.ParametersBuilder().
+                        maximumHealth(160).
+                        maximumMana(30).
+                        healthRegen(2).
+                        manaRegen(5).
+                        physicalAttack(10).
+                        physicalDefence(8).
+                        criticalChance(15).
+                        attackSpeed(600).
+                        evasion(5).
+                        accuracy(5).
+                        attackRange(5).
+                        movingSpeed(10).
+                        build();
+            default:
+                return new Parameters.ParametersBuilder().
+                        maximumHealth(50).
+                        maximumMana(1).
+                        healthRegen(1).
+                        manaRegen(1).
+                        physicalAttack(1).
+                        physicalDefence(1).
+                        criticalChance(1).
+                        attackSpeed(100).
+                        evasion(5).
+                        accuracy(5).
+                        attackRange(5).
+                        movingSpeed(0).
+                        build();
+        }
     }
 }

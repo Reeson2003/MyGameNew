@@ -1,5 +1,6 @@
-package ru.reeson2003.model.characters.battle;
+package ru.reeson2003.model.characters.battle.abilities;
 
+import ru.reeson2003.model.characters.battle.CoolDown;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.messages.Msg;
 

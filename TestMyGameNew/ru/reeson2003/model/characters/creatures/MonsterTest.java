@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * Created by nimtego_loc on 11.12.2016.
  */
-public class CreatureTest {
+public class MonsterTest {
     @Test
     public void getStrength() throws Exception {
 
@@ -124,7 +124,7 @@ public class CreatureTest {
   /*  @Test
     public void setName() throws Exception {
         final String nameTest = "DEER";
-        Creature testCreature = new Creature(nameTest);
+        Monster testCreature = new Monster(nameTest);
         assertEquals(nameTest, testCreature.getName());
     }*/
 

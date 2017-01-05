@@ -1,43 +1,23 @@
 package ru.reeson2003.model.characters.creatures;
 
 import ru.reeson2003.model.characters.WorldObject;
+import ru.reeson2003.model.characters.battle.abilities.KnownAbility;
+import ru.reeson2003.model.service.TimeDependent;
+
+import java.util.Date;
 
 /**
- * Created by reeson on 04.12.16.
+ * Superclass for NPCs and PCs.
  */
-public abstract class Creature extends WorldObject {
-    //for tests
+public abstract class Creature extends WorldObject implements TimeDependent {
     private KnownAbility knownAbility;
     protected Creature target;
-    protected String name;
     protected ParametersController parametersController;
 
     public Creature(String name, ParametersController parametersController) {
         this.name = name;
         this.parametersController = parametersController;
-        //for tests
-/*        hitAbility = new HitAbility(this);
-        healAbility = new EasyHealAbility(this); */
         knownAbility = new KnownAbility(this);
-    }
-    public int getStrength() {
-        return parametersController.getStrength();
-    }
-
-    public int getConstitution() {
-        return parametersController.getConstitution();
-    }
-
-    public int getAgility() {
-        return parametersController.getAgility();
-    }
-
-    public int getWisdom() {
-        return parametersController.getWisdom();
-    }
-
-    public int getIntellect() {
-        return parametersController.getIntellect();
     }
 
     public int getMaximumHealth() {
@@ -96,10 +76,6 @@ public abstract class Creature extends WorldObject {
         return parametersController.getMana();
     }
 
-    public String getName() {
-        return name;
-    }
-
     public Creature getTarget() {
         return target;
     }
@@ -108,16 +84,12 @@ public abstract class Creature extends WorldObject {
         this.target = target;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     /**
      * Method for healing or damaging creature.
      * @param deltaHealth Positive for heal, negative for damage.
      */
     public void changeHealth(int deltaHealth) {
-        parametersController.addHealth(deltaHealth);
+        parametersController.changeHealth(deltaHealth);
     }
 
     /**
@@ -125,7 +97,27 @@ public abstract class Creature extends WorldObject {
      * @param deltaMana Positive for add, negative for subtract.
      */
     public void changeMana(int deltaMana) {
-        parametersController.addMana(deltaMana);
+        parametersController.changeMana(deltaMana);
+    }
+
+    public void setHealth(int health) {
+        parametersController.setHealth(health);
+    }
+
+    public void setMana(int mana) {
+        parametersController.setMana(mana);
+    }
+
+    public abstract boolean kill();
+
+    public abstract int getExperienceForKill();
+
+    public abstract void subtractExperienceForKill();
+
+    public abstract void addExperience(int experience);
+    @Override
+    public void tick(Date date) {
+        parametersController.tick(date);
     }
 
     @Override
@@ -134,11 +126,6 @@ public abstract class Creature extends WorldObject {
                 "|" + name + "{HP = " + parametersController.getHealth()+ ", MP = " +
                 parametersController.getMana() + "}\n" +
                 "|Parameters{" +
-                "Str=" + parametersController.getStrength() +
-                ",Con=" + parametersController.getConstitution() +
-                ",Agl=" + parametersController.getAgility() +
-                ",Wit=" + parametersController.getWisdom() +
-                ",Int=" + parametersController.getIntellect() +
                 ",MaxHP=" + parametersController.getMaximumHealth() +
                 ",MaxMP=" + parametersController.getMaximumMana() +
                 ",HPreg=" + parametersController.getHealthRegen() +

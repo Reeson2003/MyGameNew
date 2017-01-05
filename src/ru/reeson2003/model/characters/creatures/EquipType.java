@@ -1,4 +1,4 @@
-package ru.reeson2003.model.characters.items;
+package ru.reeson2003.model.characters.creatures;
 
 /**
  * Created by reeson on 07.12.16.

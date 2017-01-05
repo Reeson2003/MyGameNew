@@ -1,6 +1,4 @@
-package ru.reeson2003.model.characters.creatures;
-
-import ru.reeson2003.model.characters.battle.Ability;
+package ru.reeson2003.model.characters.battle.abilities;
 
 import java.util.ArrayList;
 import java.util.List;

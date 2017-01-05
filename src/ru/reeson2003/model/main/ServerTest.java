@@ -6,7 +6,7 @@ import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterFactor
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.TimeActivator;
-import ru.reeson2003.model.service.client_content.ClientPacketMessage;
+import ru.reeson2003.model.client_content.ClientPacketMessage;
 import ru.reeson2003.model.service.messages.Msg;
 
 import java.io.*;
@@ -20,7 +20,7 @@ import java.util.Date;
  */
 public class ServerTest {
     public static void main(String[] args) {
-        PlayerCharacter player = PlayerCharacter.NewbiePlayerIstance("Reeson",5,5,5,5,5);
+        PlayerCharacter player = PlayerCharacter.NewbiePlayerIstance("Reeson");
         TimeActivator timeActivator = TimeActivator.getInstance();
         MonsterFactory mf = new MonsterFactoryTestImpl();
         Creature aq = mf.getMonster(1);
@@ -76,10 +76,6 @@ public class ServerTest {
                 e.printStackTrace();
             }
         }
-
-    }
-
-    public static void mainLoop() {
 
     }
 }

@@ -1,20 +1,23 @@
 package ru.reeson2003.model.characters.creatures;
 
 /**
- * Created by reeson on 05.12.16.
+ * Parameters class. Contains builder for simple initializing.
+ * To get instance:
+ * 1. get new Parameters.ParametersBuilder();
+ * 2. use strength(),constitution(),agility() etc methods of
+ * builder instance to set the initial values of the fields.
+ * You can use the chain methods use like:
+ * parametersBuilder.strength(10).constitution(10).agility(10) etc,
+ * other fields initialized by Zero.
+ * 3. use build() method to get the Parameters instance.
+ * Method clone() return new instance with same fields values.
  */
-public class Parameters implements Cloneable{
-    private int strength;
-    private int constitution;
-    private int agility;
-    private int wisdom;
-    private int intellect;
+public class Parameters implements Cloneable {
 
     private int maximumHealth;
     private int maximumMana;
     private int healthRegen;
     private int manaRegen;
-
     private int physicalAttack;
     private int physicalDefence;
     private int criticalChance;
@@ -24,36 +27,14 @@ public class Parameters implements Cloneable{
     private int attackRange;
     private int movingSpeed;
 
+    /**
+     * Chain builder pattern implementation.
+     */
     public static class ParametersBuilder {
         Parameters parameters;
 
         public ParametersBuilder() {
             parameters = new Parameters();
-        }
-
-        public ParametersBuilder strength(int strength) {
-            parameters.strength = strength;
-            return this;
-        }
-
-        public ParametersBuilder constitution(int constitution) {
-            parameters.constitution = constitution;
-            return this;
-        }
-
-        public ParametersBuilder agility(int agility) {
-            parameters.agility = agility;
-            return this;
-        }
-
-        public ParametersBuilder wisdom(int wisdom) {
-            parameters.wisdom = wisdom;
-            return this;
-        }
-
-        public ParametersBuilder intellect(int intellect) {
-            parameters.intellect = intellect;
-            return this;
         }
 
         public ParametersBuilder maximumHealth(int maximumHealth) {
@@ -122,11 +103,6 @@ public class Parameters implements Cloneable{
     }
 
     private Parameters() {
-        strength = 0;
-        constitution = 0;
-        agility = 0;
-        wisdom = 0;
-        intellect = 0;
         maximumHealth = 0;
         maximumMana = 0;
         healthRegen = 0;
@@ -141,11 +117,6 @@ public class Parameters implements Cloneable{
 
     public Parameters addParameters(Parameters parameters) {
         Parameters result = new Parameters();
-        result.strength = this.strength + parameters.strength;
-        result.constitution = this.constitution + parameters.constitution;
-        result.agility = this.agility + parameters.agility;
-        result.wisdom = this.wisdom + parameters.wisdom;
-        result.intellect = this.intellect + parameters.intellect;
         result.maximumHealth = this.maximumHealth + parameters.maximumHealth;
         result.maximumMana = this.maximumMana + parameters.maximumMana;
         result.healthRegen = this.healthRegen + parameters.healthRegen;
@@ -162,29 +133,7 @@ public class Parameters implements Cloneable{
     }
 
     public Parameters subtractParameters(Parameters parameters) {
-//        this.strength -= parameters.strength;
-//        this.constitution -= parameters.constitution;
-//        this.agility -= parameters.agility;
-//        this.wisdom -= parameters.wisdom;
-//        this.intellect -= parameters.intellect;
-//        this.maximumHealth -= parameters.maximumHealth;
-//        this.maximumMana -= parameters.maximumMana;
-//        this.healthRegen -= parameters.healthRegen;
-//        this.manaRegen -= parameters.manaRegen;
-//        this.physicalAttack -= parameters.physicalAttack;
-//        this.physicalDefence -= parameters.physicalDefence;
-//        this.criticalChance -= parameters.criticalChance;
-//        this.attackSpeed -= parameters.attackSpeed;
-//        this.evasion -= parameters.evasion;
-//        this.accuracy -= parameters.accuracy;
-//        this.attackRange -= parameters.attackRange;
-//        this.movingSpeed -= parameters.movingSpeed;
         Parameters result = new Parameters();
-        result.strength = this.strength - parameters.strength;
-        result.constitution = this.constitution - parameters.constitution;
-        result.agility = this.agility - parameters.agility;
-        result.wisdom = this.wisdom - parameters.wisdom;
-        result.intellect = this.intellect - parameters.intellect;
         result.maximumHealth = this.maximumHealth - parameters.maximumHealth;
         result.maximumMana = this.maximumMana - parameters.maximumMana;
         result.healthRegen = this.healthRegen - parameters.healthRegen;
@@ -198,26 +147,6 @@ public class Parameters implements Cloneable{
         result.attackRange = this.attackRange - parameters.attackRange;
         result.movingSpeed = this.movingSpeed - parameters.movingSpeed;
         return result;
-    }
-
-    public int getStrength() {
-        return strength;
-    }
-
-    public int getConstitution() {
-        return constitution;
-    }
-
-    public int getAgility() {
-        return agility;
-    }
-
-    public int getWisdom() {
-        return wisdom;
-    }
-
-    public int getIntellect() {
-        return intellect;
     }
 
     public int getMaximumHealth() {
@@ -266,26 +195,6 @@ public class Parameters implements Cloneable{
 
     public int getMovingSpeed() {
         return movingSpeed;
-    }
-
-    public void setStrength(int strength) {
-        this.strength = strength;
-    }
-
-    public void setConstitution(int constitution) {
-        this.constitution = constitution;
-    }
-
-    public void setAgility(int agility) {
-        this.agility = agility;
-    }
-
-    public void setWisdom(int wisdom) {
-        this.wisdom = wisdom;
-    }
-
-    public void setIntellect(int intellect) {
-        this.intellect = intellect;
     }
 
     public void setMaximumHealth(int maximumHealth) {
@@ -339,11 +248,6 @@ public class Parameters implements Cloneable{
     @Override
     public Parameters clone() {
         Parameters result = new Parameters();
-        result.strength = this.strength;
-        result.constitution = this.constitution;
-        result.agility = this.agility;
-        result.wisdom = this.wisdom;
-        result.intellect = this.intellect;
         result.maximumHealth = this.maximumHealth;
         result.maximumMana = this.maximumMana;
         result.healthRegen = this.healthRegen;
@@ -362,11 +266,6 @@ public class Parameters implements Cloneable{
     @Override
     public String toString() {
         return "{" +
-                "str=" + strength +
-                ", con=" + constitution +
-                ", agl=" + agility +
-                ", wit=" + wisdom +
-                ", int=" + intellect +
                 ", MaxHP=" + maximumHealth +
                 ", MaxMP=" + maximumMana +
                 ", HPreg=" + healthRegen +

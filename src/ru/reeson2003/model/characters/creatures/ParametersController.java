@@ -1,86 +1,90 @@
 package ru.reeson2003.model.characters.creatures;
 
 
-import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterParametersController;
-import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerParametersController;
-import ru.reeson2003.model.characters.items.Equipment;
+import ru.reeson2003.model.characters.items.Equip;
+import ru.reeson2003.model.service.TimeDependent;
+
+import java.util.Date;
 
 /**
- * Created by User on 12.11.2016.
- * фабрика выпускает контроллеры параметров.
- * Базовый класс имеет реализацию методов changeHealth() и changeMana(),
+ * Абстрактный класс ParametersController.
+ * Геттеры имеют проверку на отрицательные значения параметров.
  */
-public abstract class ParametersController implements Cloneable {
+public abstract class ParametersController implements Equipment.EquipmentListener, TimeDependent, Cloneable {
     protected Parameters parameters;
     protected int health;
     protected int mana;
+    protected Equipment equipment;
+    private Date healthTick;
+    private Date manaTick;
 
-    public int getStrength() {
-        return parameters.getStrength();
-    }
-
-    public int getConstitution() {
-        return parameters.getConstitution();
-    }
-
-    public int getAgility() {
-        return parameters.getAgility();
-    }
-
-    public int getWisdom() {
-        return parameters.getWisdom();
-    }
-
-    public int getIntellect() {
-        return parameters.getIntellect();
+    protected ParametersController() {
+        this.parameters = new Parameters.ParametersBuilder().build();
+        this.equipment = new Equipment();
+        equipment.addListener(this);
+        Date date = new Date();
+        this.healthTick = date;
+        this.manaTick = date;
     }
 
     public int getMaximumHealth() {
-        return parameters.getMaximumHealth();
+        int result = parameters.getMaximumHealth() + equipment.getParameters().getMaximumHealth();
+        return result < 0 ? 0 : result;
     }
 
     public int getMaximumMana() {
-        return parameters.getMaximumMana();
+        int result = parameters.getMaximumMana() + equipment.getParameters().getMaximumMana();
+        return result < 0 ? 0 : result;
     }
 
     public int getHealthRegen() {
-        return parameters.getHealthRegen();
+        int result = parameters.getHealthRegen() + equipment.getParameters().getHealthRegen();
+        return result < 0 ? 0 : result;
     }
 
     public int getManaRegen() {
-        return parameters.getManaRegen();
+        int result = parameters.getManaRegen() + equipment.getParameters().getManaRegen();
+        return result < 0 ? 0 : result;
     }
 
     public int getPhysicalAttack() {
-        return parameters.getPhysicalAttack();
+        int result = parameters.getPhysicalAttack() + equipment.getParameters().getPhysicalAttack();
+        return result < 0 ? 0 : result;
     }
 
     public int getPhysicalDefence() {
-        return parameters.getPhysicalDefence();
+        int result = parameters.getPhysicalDefence() + equipment.getParameters().getPhysicalDefence();
+        return result < 0 ? 0 : result;
     }
 
     public int getCriticalChance() {
-        return parameters.getCriticalChance();
+        int result = parameters.getCriticalChance() + equipment.getParameters().getCriticalChance();
+        return result < 0 ? 0 : result;
     }
 
     public int getAttackSpeed() {
-        return parameters.getAttackSpeed();
+        int result = parameters.getAttackSpeed() + equipment.getParameters().getAttackSpeed();
+        return result < 0 ? 0 : result;
     }
 
     public int getEvasion() {
-        return parameters.getEvasion();
+        int result = parameters.getEvasion() + equipment.getParameters().getEvasion();
+        return result < 0 ? 0 : result;
     }
 
     public int getAccuracy() {
-        return parameters.getAccuracy();
+        int result = parameters.getAccuracy() + equipment.getParameters().getAccuracy();
+        return result < 0 ? 0 : result;
     }
 
     public int getAttackRange() {
-        return parameters.getAttackRange();
+        int result = parameters.getAttackRange() + equipment.getParameters().getAttackRange();
+        return result < 0 ? 0 : result;
     }
 
     public int getMovingSpeed() {
-        return parameters.getMovingSpeed();
+        int result = parameters.getMovingSpeed() + equipment.getParameters().getAttackSpeed();
+        return result < 0 ? 0 : result;
     }
 
     public int getHealth() {
@@ -91,31 +95,86 @@ public abstract class ParametersController implements Cloneable {
         return mana;
     }
 
-    public void addHealth(int health) {
-        this.health += health;
+    public void changeHealth(int deltaHealth) {
+        this.health += deltaHealth;
         if (this.health > this.getMaximumHealth())
             this.health = this.getMaximumHealth();
         if (this.health < 0)
             this.health = 0;
     }
 
-    public void addMana(int mana) {
-        this.mana += mana;
+    public void changeMana(int deltaMana) {
+        this.mana += deltaMana;
         if (this.mana >= this.getMaximumMana())
             this.mana = this.getMaximumMana();
         if (this.mana < 0)
             this.mana = 0;
     }
 
-    @Override
-    public  ParametersController clone() {
-        return this;
+    public void setHealth(int health) {
+        if (health < 0)
+            this.health = 0;
+        else if (health > getMaximumHealth())
+            this.health = getMaximumHealth();
+        else
+            this.health = health;
     }
 
-    public static ParametersController getPlayerParametersController(int str, int con, int agl, int wit, int itl, Experience exp, Equipment eq) {
-        return new PlayerParametersController(str, con, agl, wit, itl, exp, eq);
+    public void setMana(int mana) {
+        if (mana < 0)
+            this.mana = 0;
+        else if (mana > getMaximumMana())
+            this.mana = getMaximumMana();
+        else
+            this.mana = mana;
     }
-    public static ParametersController getMonsterParametersController(int monsterID) {
-        return new MonsterParametersController(monsterID);
+
+    public Equip putOn(Equip equip) {
+        return this.equipment.putOn(equip);
+    }
+
+    public Equip putOff(EquipType equipType) {
+        return this.equipment.putOff(equipType);
+    }
+
+    @Override
+    public void putOnEvent() {
+
+    }
+
+    @Override
+    public void putOffEvent() {
+
+    }
+
+    public void setParameters(Parameters parameters) {
+        this.parameters = parameters;
+    }
+
+    public Parameters getParameters() {
+        return parameters;
+    }
+
+    @Override
+    public abstract ParametersController clone();
+
+    @Override
+    public void tick(Date date) {
+        healthTick(date);
+        manaTick(date);
+    }
+
+    private void healthTick(Date date) {
+        if (healthTick.getTime() + ParametersConstants.HEALTH_REGEN_MILLISECONDS < date.getTime()) {
+            healthTick = date;
+            changeHealth(+getHealthRegen());
+        }
+    }
+
+    private void manaTick(Date date) {
+        if (manaTick.getTime() + ParametersConstants.MANA_REGEN_MILLISECONDS < date.getTime()) {
+            manaTick = date;
+            changeMana(+getManaRegen());
+        }
     }
 }

@@ -1,4 +1,4 @@
-package ru.reeson2003.model.service.client_content;
+package ru.reeson2003.model.client_content;
 
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 import ru.reeson2003.model.service.Address;
@@ -50,12 +50,6 @@ public class PlayerCharacterSurrogate implements Serializable{
         this.name = playerCharacter.getName();
         this.health = playerCharacter.getHealth();
         this.mana = playerCharacter.getMana();
-
-        this.strength = playerCharacter.getStrength();
-        this.constitution = playerCharacter.getConstitution();
-        this.agility = playerCharacter.getAgility();
-        this.wisdom = playerCharacter.getWisdom();
-        this.intellect = playerCharacter.getIntellect();
 
         this.maximumHealth = playerCharacter.getMaximumHealth();
         this.maximumMana = playerCharacter.getMaximumMana();

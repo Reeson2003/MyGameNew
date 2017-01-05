@@ -25,8 +25,6 @@ public class TestAI implements TimeDependent {
 
     public void activate() {
         for (Creature c : mobs) {
-            if (c.getTarget() != null)
-                c.getHitAbility().use(c);
         }
     }
 

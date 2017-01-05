@@ -1,7 +1,7 @@
-package ru.reeson2003.model.characters.items;
+package ru.reeson2003.model.characters.creatures;
 
 
-import ru.reeson2003.model.characters.creatures.Parameters;
+import ru.reeson2003.model.characters.items.Equip;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,15 +9,26 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by reeson on 05.12.16.
+ * Equipment class contains interface for put on and put off
+ * notification.
  */
 public class Equipment {
     public interface EquipmentListener {
         void putOnEvent();
         void putOffEvent();
     }
+
+    /**
+     * Listeners of put on and put off events.
+     */
     private List<EquipmentListener> equipmentListeners;
+    /**
+     * Equip container. Contains an unique type of equip.
+     */
     private Map<EquipType, Equip> equipment;
+    /**
+     * total parameters of equipment.
+     */
     private Parameters parameters;
 
     public Equipment() {
@@ -47,6 +58,13 @@ public class Equipment {
         }
     }
 
+    /**
+     * Put on method.
+     * Puts the Equip in the container and change total parameters.
+     * Notify listeners of put on event.
+     * @param equip
+     * @return current Equip if exists or null if not exists.
+     */
     public Equip putOn(Equip equip) {
         Equip result = equipment.put(equip.getEquipType(), equip);
         if (result != null)
@@ -56,6 +74,13 @@ public class Equipment {
         return result;
     }
 
+    /**
+     * Put off method.
+     * Remove the Equip from container and change total parameters.
+     * Notify listeners of put off event.
+     * @param equipType the type of equip to put off.
+     * @return current Equip if exists or null if not exists.
+     */
     public Equip putOff(EquipType equipType) {
         Equip result = equipment.remove(equipType);
         if (result != null)

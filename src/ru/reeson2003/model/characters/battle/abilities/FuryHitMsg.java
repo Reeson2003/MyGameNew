@@ -10,21 +10,27 @@ import ru.reeson2003.model.service.messages.Msg;
  * Created by nimtego_loc on 21.12.2016.
  */
 public class FuryHitMsg extends Msg {
+    private int damage;
 
-    public FuryHitMsg(Address from) {this(from, null);}
-    public FuryHitMsg(Address from, Address to) {super(from, to);}
+    public FuryHitMsg(Address from, int damage) {
+        this(from, null, damage);
+    }
+
+    public FuryHitMsg(Address from, Address to, int damage) {
+        super(from, to);
+        this.damage = damage;
+    }
 
     @Override
     public void exec() {
         if (to != null) {
-            Creature giveDamage = (Creature) AbonentTable.getAbonent(from);					// HashMap<AbilityID, Ability> abilityMap = new HashMap<>();
-            Creature getDamage = (Creature)AbonentTable.getAbonent(to);		// ArrayList<Ability> abilityList = new ArrayList<>();
-//            Ability furyHitAbility = giveDamage.getAbilityByKey(1);
-            int damage = 100; // furyHitAbility.getDamageAbility() - getDamage.getPhysicalDefence()/10;
+            Creature giveDamage = (Creature) AbonentTable.getAbonent(from);
+            Creature getDamage = (Creature) AbonentTable.getAbonent(to);
+            int damage = 100;
             if (damage < 2)
                 damage = 2;
             getDamage.changeHealth(-damage);
-            System.out.println(giveDamage.getName() + " hits " +damage);
+            System.out.println(giveDamage.getName() + " hits " + damage);
 /**
  * for test
  */

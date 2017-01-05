@@ -12,7 +12,7 @@ public class PlayerCharacterTest {
     @Test
     public void newbiePlayerInstance() throws Exception {
         final String testName = "Test Name";
-        PlayerCharacter testNewbiePlayer = PlayerCharacter.NewbiePlayerIstance(testName, 1, 1, 1, 1, 1);
+        PlayerCharacter testNewbiePlayer = PlayerCharacter.NewbiePlayerIstance(testName);
         assertEquals(testNewbiePlayer, testNewbiePlayer);
 
     }

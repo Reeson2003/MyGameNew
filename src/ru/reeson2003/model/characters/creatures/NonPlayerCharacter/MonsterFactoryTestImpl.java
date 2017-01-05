@@ -1,9 +1,7 @@
 package ru.reeson2003.model.characters.creatures.NonPlayerCharacter;
 
-import ru.reeson2003.model.characters.creatures.ParametersController;
-
 /**
- * Created by reeson on 13.12.16.
+ * тестовая фабрика монстров для экспериментов.
  */
 public class MonsterFactoryTestImpl implements MonsterFactory {
     private MonsterParametersManager manager;
@@ -13,14 +11,16 @@ public class MonsterFactoryTestImpl implements MonsterFactory {
     }
 
     @Override
-    public Creature getMonster(int monsterID) {
+    public Monster getMonster(int monsterID) {
         if (monsterID == 1)
-            return new Creature("Ant Qeen", ParametersController.getMonsterParametersController(monsterID));
+            return new Monster("Ant Queen", new MonsterParametersController(monsterID), 100);
         else if (monsterID == 2)
-            return new Creature("Skeleton Raider", ParametersController.getMonsterParametersController(monsterID));
+            return new Monster("Skeleton Raider", new MonsterParametersController(monsterID),30);
         else if (monsterID == 3)
-            return new Creature("Goblin scout", ParametersController.getMonsterParametersController(monsterID));
+            return new Monster("Goblin scout", new MonsterParametersController(monsterID), 20);
         else
-            return new Creature("Elpy", ParametersController.getMonsterParametersController(monsterID));
+            return new Monster("Elpy", new MonsterParametersController(monsterID), 1);
     }
+
+
 }

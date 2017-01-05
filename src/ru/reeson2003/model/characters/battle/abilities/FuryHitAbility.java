@@ -1,6 +1,5 @@
 package ru.reeson2003.model.characters.battle.abilities;
 
-import ru.reeson2003.model.characters.battle.Ability;
 import ru.reeson2003.model.characters.battle.CoolDown;
 import ru.reeson2003.model.characters.creatures.Creature;
 
@@ -15,8 +14,8 @@ public class FuryHitAbility extends Ability {
         this.name = "Fury Hit";
         this.information = "Causes a loss";
         this.owner = owner;
-        this.msg = new FuryHitMsg(this.owner.getAddress());
-        this.damageAbility = AbilityConstants.FURY_HIT_COEFF + (owner.getStrength() / 2);
+        this.damageAbility = AbilityConstants.FURY_HIT_COEFF + (owner.getPhysicalAttack() / 2);
+        this.msg = new FuryHitMsg(this.owner.getAddress(), this.damageAbility);
         this.coolDown =
                 new CoolDown(AbilityConstants.FURY_HIT_COOLDOWN / owner.getAttackSpeed());
     }

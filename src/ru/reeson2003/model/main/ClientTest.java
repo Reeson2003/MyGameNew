@@ -1,8 +1,8 @@
 package ru.reeson2003.model.main;
 
-import ru.reeson2003.model.service.client_content.ClientPacketMessage;
-import ru.reeson2003.model.service.client_content.CreatureSurrogate;
-import ru.reeson2003.model.service.client_content.PlayerCharacterSurrogate;
+import ru.reeson2003.model.client_content.ClientPacketMessage;
+import ru.reeson2003.model.client_content.CreatureSurrogate;
+import ru.reeson2003.model.client_content.PlayerCharacterSurrogate;
 import ru.reeson2003.model.service.messages.Msg;
 import ru.reeson2003.model.service.messages.remote_messages.HitMsgRemote;
 

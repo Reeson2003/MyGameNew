@@ -1,7 +1,8 @@
-package ru.reeson2003.model.characters.creatures;
+package ru.reeson2003.model.characters.battle.abilities;
 
-import ru.reeson2003.model.characters.battle.Ability;
+import ru.reeson2003.model.characters.battle.abilities.Ability;
 import ru.reeson2003.model.characters.battle.abilities.HitAbility;
+import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.exception.MyGameException;
 import ru.reeson2003.model.service.exception.NonExistentKeyAbility;
 import ru.reeson2003.model.service.exception.NotLearnStillAbility;
@@ -15,7 +16,7 @@ public class KnownAbility {
     private HashMap<String, Ability> famousAbility;
     private Creature owner;
 
-    protected KnownAbility(final Creature owner) {
+    public KnownAbility(final Creature owner) {
         this.owner = owner;
         this.famousAbility =  new HashMap<>();
         setAbility(new HitAbility(owner));

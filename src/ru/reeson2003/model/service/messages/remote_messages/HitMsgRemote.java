@@ -20,6 +20,6 @@ public class HitMsgRemote extends Msg {
         Abonent toAbonent = AbonentTable.getAbonent(to);
         Creature giveHit = (Creature)fromAbonent;
         Creature getDamage = (Creature)toAbonent;
-        giveHit.getHitAbility().use(getDamage);
+//        giveHit.getHitAbility().use(getDamage);
     }
 }
