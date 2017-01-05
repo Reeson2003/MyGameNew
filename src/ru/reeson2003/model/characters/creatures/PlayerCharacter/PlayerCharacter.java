@@ -23,6 +23,8 @@ public class PlayerCharacter extends Creature {
                 manaRegen(ParametersConstants.MANA_REGEN_BASE).
                 physicalAttack(ParametersConstants.PATACK_BASE).
                 physicalDefence(ParametersConstants.PDEF_BASE).
+                magicAttack(ParametersConstants.MATACK_BASE).
+                magicDefence(ParametersConstants.MDEF_BASE).
                 criticalChance(ParametersConstants.CRITCHANCE_BASE).
                 attackSpeed(ParametersConstants.ATKSPEED_BASE).
                 evasion(ParametersConstants.EVASION_BASE).

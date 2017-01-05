@@ -1,6 +1,7 @@
 package ru.reeson2003.view;
 
 import ru.reeson2003.model.characters.creatures.Creature;
+import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 
 /**
  * Created by reeson on 03.01.17.
@@ -12,6 +13,7 @@ public class SwingView {
 
     private SwingView() {
         this.mainWindow = new MainWindow();
+        this.text = "<html>";
     }
 
     public static SwingView getInstance() {
@@ -58,8 +60,21 @@ public class SwingView {
         return this;
     }
 
+    public SwingView append(PlayerCharacter playerCharacter) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(creatureToString(playerCharacter));
+        stringBuilder.append("<br>");
+        stringBuilder.append("Experience: [");
+        stringBuilder.append(playerCharacter.getExperience());
+        stringBuilder.append("/");
+        stringBuilder.append(playerCharacter.getExpToNextLevel());
+        stringBuilder.append("]");
+        this.text += stringBuilder.toString();
+        return this;
+    }
+
     public SwingView append(String text) {
-        this.text += text.replace("\n", "<br>");
+        this.text = this.text + "<br>" + text.replace("\n", "<br>");
         return this;
     }
 
@@ -88,8 +103,30 @@ public class SwingView {
         sb.append(hpMpString(creature.getMana(), creature.getMaximumMana()));
         sb.append("[" +creature.getMana() + "/" + creature.getMaximumMana() + "]");
         sb.append("<br>");
-        sb.append("----------------------------------------------------------------------------------");
+        sb.append("[P.atk:");
+        sb.append(creature.getPhysicalAttack());
+        sb.append("][P.def:");
+        sb.append(creature.getPhysicalDefence());
+        sb.append("][M.atk:");
+        sb.append(creature.getMagicAttack());
+        sb.append("][M.def:");
+        sb.append(creature.getMagicDefence());
+        sb.append("][Crit:");
+        sb.append(creature.getCriticalChance());
+        sb.append("][A.spd:");
+        sb.append(creature.getAttackSpeed());
+        sb.append("][Evas:");
+        sb.append(creature.getEvasion());
+        sb.append("][Accur:");
+        sb.append(creature.getAccuracy());
+        sb.append("][A.rng:");
+        sb.append(creature.getAttackRange());
+        sb.append("][M.spd:");
+        sb.append(creature.getMovingSpeed());
+        sb.append("]");
         sb.append("<br>");
+        sb.append("Coordinate:");
+        sb.append(creature.getCoordinate().toString());
         return sb.toString();
     }
 

@@ -20,6 +20,8 @@ public class Parameters implements Cloneable {
     private int manaRegen;
     private int physicalAttack;
     private int physicalDefence;
+    private int magicAttack;
+    private int magicDefence;
     private int criticalChance;
     private int attackSpeed;
     private int evasion;
@@ -67,6 +69,16 @@ public class Parameters implements Cloneable {
             return this;
         }
 
+        public ParametersBuilder magicAttack(int magicAttack) {
+            parameters.magicAttack = magicAttack;
+            return this;
+        }
+
+        public ParametersBuilder magicDefence(int magicDefence) {
+            parameters.magicDefence = magicDefence;
+            return this;
+        }
+
         public ParametersBuilder criticalChance(int criticalChance) {
             parameters.criticalChance = criticalChance;
             return this;
@@ -109,6 +121,8 @@ public class Parameters implements Cloneable {
         manaRegen = 0;
         physicalAttack = 0;
         physicalDefence = 0;
+        magicAttack = 0;
+        magicDefence = 0;
         criticalChance = 0;
         attackSpeed = 0;
         evasion = 0;
@@ -123,6 +137,8 @@ public class Parameters implements Cloneable {
         result.manaRegen = this.manaRegen + parameters.manaRegen;
         result.physicalAttack = this.physicalAttack + parameters.physicalAttack;
         result.physicalDefence = this.physicalDefence + parameters.physicalDefence;
+        result.magicAttack = this.magicAttack + parameters.magicAttack;
+        result.magicDefence = this.magicDefence + parameters.magicDefence;
         result.criticalChance = this.criticalChance + parameters.criticalChance;
         result.attackSpeed = this.attackSpeed + parameters.attackSpeed;
         result.evasion = this.evasion + parameters.evasion;
@@ -140,6 +156,8 @@ public class Parameters implements Cloneable {
         result.manaRegen = this.manaRegen - parameters.manaRegen;
         result.physicalAttack = this.physicalAttack - parameters.physicalAttack;
         result.physicalDefence = this.physicalDefence - parameters.physicalDefence;
+        result.magicAttack = this.magicAttack - parameters.magicAttack;
+        result.magicDefence = this.magicDefence - parameters.magicDefence;
         result.criticalChance = this.criticalChance - parameters.criticalChance;
         result.attackSpeed = this.attackSpeed - parameters.attackSpeed;
         result.evasion = this.evasion - parameters.evasion;
@@ -171,6 +189,14 @@ public class Parameters implements Cloneable {
 
     public int getPhysicalDefence() {
         return physicalDefence;
+    }
+
+    public int getMagicAttack() {
+        return magicAttack;
+    }
+
+    public int getMagicDefence() {
+        return magicDefence;
     }
 
     public int getCriticalChance() {
@@ -221,6 +247,14 @@ public class Parameters implements Cloneable {
         this.physicalDefence = physicalDefence;
     }
 
+    public void setMagicAttack(int magicAttack) {
+        this.magicAttack = magicAttack;
+    }
+
+    public void setMagicDefence(int magicDefence) {
+        this.magicDefence = magicDefence;
+    }
+
     public void setCriticalChance(int criticalChance) {
         this.criticalChance = criticalChance;
     }
@@ -254,6 +288,8 @@ public class Parameters implements Cloneable {
         result.manaRegen = this.manaRegen;
         result.physicalAttack = this.physicalAttack;
         result.physicalDefence = this.physicalDefence;
+        result.magicAttack = this.magicAttack;
+        result.magicDefence = this.magicDefence;
         result.criticalChance = this.criticalChance;
         result.attackSpeed = this.attackSpeed;
         result.evasion = this.evasion;
@@ -272,6 +308,8 @@ public class Parameters implements Cloneable {
                 ", MPreg=" + manaRegen +
                 ", Patk=" + physicalAttack +
                 ", Pdef=" + physicalDefence +
+                ", Matk=" + magicAttack +
+                ", Mdef=" + magicDefence +
                 ", Crit=" + criticalChance +
                 ", Aspd=" + attackSpeed +
                 ", Evas=" + evasion +

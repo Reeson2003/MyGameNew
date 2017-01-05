@@ -32,6 +32,14 @@ public class ParametersConstants {
     public static final int PDEF_CON_COEFF = 800;
     public static final int MIN_PDEF = PDEF_BASE;
 
+    public static final int MATACK_BASE = 5;
+    public static final int MATACK_INT_COEFF = 800;
+    public static final int MIN_MATACK = MATACK_BASE;
+
+    public static final int MDEF_BASE = 5;
+    public static final int MDEF_WIT_COEFF = 800;
+    public static final int MIN_MDEF = MDEF_BASE;
+
     public static final int CRITCHANCE_BASE = 5;
     public static final int CRITCHANCE_AGL_COEFF = 800;
     public static final int MIN_CRITCHANCE = CRITCHANCE_BASE;

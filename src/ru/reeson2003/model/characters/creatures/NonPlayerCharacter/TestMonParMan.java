@@ -22,6 +22,8 @@ public class TestMonParMan extends MonsterParametersManager {
                         manaRegen(5).
                         physicalAttack(20).
                         physicalDefence(20).
+                        magicAttack(10).
+                        magicDefence(10).
                         criticalChance(30).
                         attackSpeed(2000).
                         evasion(5).
@@ -37,6 +39,8 @@ public class TestMonParMan extends MonsterParametersManager {
                         manaRegen(1).
                         physicalAttack(7).
                         physicalDefence(3).
+                        magicAttack(2).
+                        magicDefence(3).
                         criticalChance(10).
                         attackSpeed(700).
                         evasion(5).
@@ -52,6 +56,8 @@ public class TestMonParMan extends MonsterParametersManager {
                         manaRegen(5).
                         physicalAttack(10).
                         physicalDefence(8).
+                        magicAttack(2).
+                        magicDefence(1).
                         criticalChance(15).
                         attackSpeed(600).
                         evasion(5).
@@ -67,6 +73,8 @@ public class TestMonParMan extends MonsterParametersManager {
                         manaRegen(1).
                         physicalAttack(1).
                         physicalDefence(1).
+                        magicAttack(0).
+                        magicDefence(0).
                         criticalChance(1).
                         attackSpeed(100).
                         evasion(5).

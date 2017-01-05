@@ -34,15 +34,9 @@ public class Main2 {
         dragonSlayer.setParameters(new Parameters.ParametersBuilder().physicalAttack(50).build());
         player.putOn(turboGloves);
         player.putOn(dragonSlayer);
-//        System.out.println(player);
-//        Fight fight = new Fight(player, creature);
-//        fight.fight();
-//        System.out.println(player);
-//        System.out.println(creature);
+        Fight fight = new Fight(player, creature);
         creature.changeHealth(-500);
         TimeActivator timeActivator = TimeActivator.getInstance();
-        timeActivator.addTimeDependent(player);
-        timeActivator.addTimeDependent(creature);
         while (player.getHealth() < player.getMaximumHealth()) {
             timeActivator.tick(new Date());
             SwingView.getInstance().clear()
@@ -50,7 +44,5 @@ public class Main2 {
                     .append(creature)
                     .show();
         }
-//        fight.fight();
-
     }
 }

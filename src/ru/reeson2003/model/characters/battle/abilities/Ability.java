@@ -2,12 +2,15 @@ package ru.reeson2003.model.characters.battle.abilities;
 
 import ru.reeson2003.model.characters.battle.CoolDown;
 import ru.reeson2003.model.characters.creatures.Creature;
+import ru.reeson2003.model.service.TimeDependent;
 import ru.reeson2003.model.service.messages.Msg;
+
+import java.util.Date;
 
 /**
  * Created by reeson on 20.12.16.
  */
-public abstract class Ability {
+public abstract class Ability implements TimeDependent {
     protected String name;
     protected String information;
     protected CoolDown coolDown;
@@ -59,5 +62,14 @@ public abstract class Ability {
             this.coolDown.setCoolDownMilliseconds(minutes * 60000);
     }
 
+    public final void setOwner(Creature creature) {
+        this.owner = creature;
+    }
+
     public abstract void use(Creature to);
+
+    @Override
+    public void tick(Date date) {
+        coolDown.tick(date);
+    }
 }

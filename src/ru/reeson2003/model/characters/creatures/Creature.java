@@ -1,23 +1,28 @@
 package ru.reeson2003.model.characters.creatures;
 
 import ru.reeson2003.model.characters.WorldObject;
-import ru.reeson2003.model.characters.battle.abilities.KnownAbility;
+import ru.reeson2003.model.characters.battle.abilities.Ability;
+import ru.reeson2003.model.characters.battle.abilities.Abilities;
+import ru.reeson2003.model.service.TimeActivator;
 import ru.reeson2003.model.service.TimeDependent;
+import ru.reeson2003.model.service.exception.MyGameException;
 
 import java.util.Date;
 
 /**
  * Superclass for NPCs and PCs.
+ *
  */
 public abstract class Creature extends WorldObject implements TimeDependent {
-    private KnownAbility knownAbility;
+    private Abilities abilities;
     protected Creature target;
     protected ParametersController parametersController;
 
     public Creature(String name, ParametersController parametersController) {
         this.name = name;
         this.parametersController = parametersController;
-        knownAbility = new KnownAbility(this);
+        abilities = new Abilities(this);
+        TimeActivator.getInstance().addTimeDependent(this);
     }
 
     public int getMaximumHealth() {
@@ -42,6 +47,14 @@ public abstract class Creature extends WorldObject implements TimeDependent {
 
     public int getPhysicalDefence() {
         return parametersController.getPhysicalDefence();
+    }
+
+    public int getMagicAttack() {
+        return parametersController.getMagicAttack();
+    }
+
+    public int getMagicDefence() {
+        return parametersController.getMagicDefence();
     }
 
     public int getCriticalChance() {
@@ -74,6 +87,14 @@ public abstract class Creature extends WorldObject implements TimeDependent {
 
     public int getMana() {
         return parametersController.getMana();
+    }
+
+    public Ability getAbility(String name) throws MyGameException {
+        return abilities.getAbility(name);
+    }
+
+    public void addAbility(Ability ability) {
+        this.abilities.add(ability);
     }
 
     public Creature getTarget() {

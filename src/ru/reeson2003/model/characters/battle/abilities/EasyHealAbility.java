@@ -14,7 +14,7 @@ public class EasyHealAbility extends Ability {
         this.name = "Easy Heal";
         this.information = "Value of heal";
         this.owner = owner;
-//        this.healSize = AbilityConstants.EASY_HEAL_COEFF + (owner.getIntellect() / 2);
+        this.healSize = AbilityConstants.EASY_HEAL_COEFF + (owner.getMagicAttack() / 2);
         this.manaCost = AbilityConstants.EASY_HEAL_MANACOST;
         this.msg = EasyHealMsg.getEasyHealMsg(healSize, manaCost);
         this.msg.setFrom(this.owner.getAddress());

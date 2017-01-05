@@ -16,6 +16,7 @@ public abstract class WorldObject implements Abonent {
     public WorldObject() {
         this.address = new Address();
         AbonentTable.addAbonent(this);
+        this.coordinate = new Coordinate();
     }
 
     public Coordinate getCoordinate() {

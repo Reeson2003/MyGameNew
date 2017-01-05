@@ -57,6 +57,15 @@ public abstract class ParametersController implements Equipment.EquipmentListene
         return result < 0 ? 0 : result;
     }
 
+    public int getMagicAttack() {
+        int result = parameters.getMagicAttack() + equipment.getParameters().getMagicAttack();
+        return result < 0 ? 0 : result;    }
+
+    public int getMagicDefence() {
+        int result = parameters.getMagicDefence() + equipment.getParameters().getMagicDefence();
+        return result < 0 ? 0 : result;
+    }
+
     public int getCriticalChance() {
         int result = parameters.getCriticalChance() + equipment.getParameters().getCriticalChance();
         return result < 0 ? 0 : result;

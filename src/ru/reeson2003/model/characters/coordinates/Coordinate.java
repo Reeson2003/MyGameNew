@@ -14,6 +14,10 @@ public class Coordinate {
         setZ(z);
     }
 
+    public Coordinate() {
+        this(0,0,0);
+    }
+
     public void setX(int x) {
         if(x < CoordinateConstants.X_MIN)
             this.x = CoordinateConstants.X_MIN;
@@ -59,5 +63,10 @@ public class Coordinate {
         int dZ = this.z - from.z;
         int result = (int) Math.sqrt(dX*dX + dY*dY + dZ*dZ);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "{X = " + x + ", Y = " + y + ", Z = " + z + "}";
     }
 }
