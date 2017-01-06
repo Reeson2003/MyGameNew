@@ -34,6 +34,10 @@ public class FuryHitMsg extends Msg {
                 manaCost = giveDamage.getAbility("Fury Hit").manaCost;
                 damage = giveDamage.getAbility("Fury Hit").damageAbility;
                 giveDamage.changeMana(-manaCost);
+                //test
+                System.out.println(giveDamage.getName() +" FURY HIT TO "
+                                    +getDamage.getName() +" " +damage);
+                //test
                 new DamageMsg(from, to, -damage).exec();
             } catch (MyGameException e) {
                 e.printStackTrace();

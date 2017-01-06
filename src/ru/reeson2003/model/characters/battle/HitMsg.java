@@ -26,7 +26,7 @@ public class HitMsg extends Msg implements Serializable{
     public void exec() {
         Creature giveDamage = (Creature)AbonentTable.getAbonent(from);
         Creature getDamage = (Creature)AbonentTable.getAbonent(to);
-        int damage = giveDamage.getPhysicalAttack() - getDamage.getPhysicalDefence()/10;
+        int damage = giveDamage.getPhysicalAttack()  - getDamage.getPhysicalDefence()/10;
         if (damage < 2)
             damage = 2;
         Random random = new Random();

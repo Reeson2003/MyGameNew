@@ -35,9 +35,9 @@ public class Main2 {
 //        System.out.println(creature);
         PlayerCharacter player = PlayerCharacter.NewbiePlayerIstance("xXxTURBOGLAD3000xXx");
         Equip turboGloves = new Equip(EquipType.Gloves);
-        turboGloves.setParameters(new Parameters.ParametersBuilder().attackSpeed(50).build());
+        turboGloves.setParameters(new Parameters.ParametersBuilder().attackSpeed(0).manaRegen(10).build());
         Equip dragonSlayer = new Equip(EquipType.Weapon);
-        dragonSlayer.setParameters(new Parameters.ParametersBuilder().physicalAttack(10).build());
+        dragonSlayer.setParameters(new Parameters.ParametersBuilder().physicalAttack(40).build());
         player.putOn(turboGloves);
         player.putOn(dragonSlayer);
         Fight fight = new Fight(player, creature);
@@ -62,8 +62,10 @@ public class Main2 {
                 player.getAbility("Attack").use(creature);
             } catch (MyGameException e) {
             }
-            if (creature.getHealth() == 0)
+            if (creature.getHealth() == 0) {
                 creature = factory.getMonster(i++);
+                creature.addAbility(new FuryHitAbility(creature));
+            }
             if (i > 4)
                 i = 1;
         }

@@ -9,7 +9,7 @@ public class AbilityConstants {
     public static final int EASY_HEAL_COOLDOWN = 6000;
     public static final int EASY_HEAL_MANACOST = 10;
     //Fury
-    public static final int FURY_HIT_COEFF = 20;
+    public static final int FURY_HIT_COEFF = 100;
     public static final int FURY_HIT_COOLDOWN = 1500;
     public static final int FURY_HIT_MANACOST = 10;
 }
