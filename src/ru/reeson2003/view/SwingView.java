@@ -69,6 +69,8 @@ public class SwingView {
         stringBuilder.append("/");
         stringBuilder.append(playerCharacter.getExpToNextLevel());
         stringBuilder.append("]");
+        stringBuilder.append(" Level: ");
+        stringBuilder.append(playerCharacter.getLevel());
         this.text += stringBuilder.toString();
         return this;
     }
@@ -132,18 +134,21 @@ public class SwingView {
 
     private String hpMpString(int current, int maximum) {
         StringBuilder stringBuilder = new StringBuilder();
-        int size = maximum / (maximum / 10);
-        for (int i = 0; i < size; i++) {
-            if(i < current*size/maximum) {
-                stringBuilder.append("\u2665");
-                stringBuilder.append(" ");
+        try {
+            int size = maximum / (maximum / 10);
+            for (int i = 0; i < size; i++) {
+                if (i < current * size / maximum) {
+                    stringBuilder.append("\u2665");
+                    stringBuilder.append(" ");
+                } else {
+                    stringBuilder.append("\u2661");
+                    stringBuilder.append(" ");
+                }
             }
-            else {
-                stringBuilder.append("\u2661");
-                stringBuilder.append(" ");
-            }
+            return stringBuilder.toString();
+        } catch (ArithmeticException e) {
+            return "";
         }
-        return stringBuilder.toString();
     }
 
 }

@@ -6,6 +6,7 @@ import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.Address;
 import ru.reeson2003.model.service.exception.MyGameException;
 import ru.reeson2003.model.service.messages.Msg;
+import ru.reeson2003.model.service.messages.local_messages.DamageMsg;
 
 /**
  * Created by nimtego_loc on 21.12.2016.
@@ -27,17 +28,16 @@ public class FuryHitMsg extends Msg {
         if (to != null) {
             Creature giveDamage = (Creature) AbonentTable.getAbonent(from);
             Creature getDamage = (Creature) AbonentTable.getAbonent(to);
+            int damage;
+            int manaCost;
             try {
-                giveDamage.changeMana(-giveDamage.getAbility("Fury Hit").manaCost);
+                manaCost = giveDamage.getAbility("Fury Hit").manaCost;
+                damage = giveDamage.getAbility("Fury Hit").damageAbility;
+                giveDamage.changeMana(-manaCost);
+                new DamageMsg(from, to, -damage).exec();
             } catch (MyGameException e) {
                 e.printStackTrace();
             }
-            try {
-                getDamage.changeHealth(-giveDamage.getAbility("Fury Hit").damageAbility);
-            } catch (MyGameException e) {
-                e.printStackTrace();
-            }
-            System.out.println(giveDamage.getName() + " hits " + damage);
 /**
  * for test
  */

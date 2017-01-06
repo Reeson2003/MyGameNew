@@ -14,7 +14,7 @@ public class HitAbility extends Ability {
         this.name = "Attack";
         this.owner = owner;
         this.msg = new HitMsg(this.owner.getAddress(), null);
-        this.coolDown = new CoolDown(owner.getAttackSpeed() * 50);  // 1 - один хит персеконд (спид атак 1 по умолчанию думаю надо дабл делать)
+        this.coolDown = new CoolDown(owner.getAttackSpeed());  // 1 - один хит персеконд (спид атак 1 по умолчанию думаю надо дабл делать)
         this.information = name + ", Causes a loss: " + owner.getPhysicalAttack();
     }
     @Override

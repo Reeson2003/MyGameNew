@@ -17,7 +17,7 @@ public class FuryHitAbility extends Ability {
         this.manaCost = AbilityConstants.FURY_HIT_MANACOST;
         this.msg = new FuryHitMsg(this.owner.getAddress(), this.damageAbility);
         this.coolDown =
-                new CoolDown(AbilityConstants.FURY_HIT_COOLDOWN / owner.getAttackSpeed());
+                new CoolDown(AbilityConstants.FURY_HIT_COOLDOWN);
     }
     @Override
     public void use(Creature to) throws NoTargetException {

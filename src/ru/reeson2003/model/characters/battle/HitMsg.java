@@ -4,6 +4,7 @@ import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.Address;
 import ru.reeson2003.model.service.messages.Msg;
+import ru.reeson2003.model.service.messages.local_messages.DamageMsg;
 
 import java.io.Serializable;
 import java.util.Random;
@@ -37,7 +38,7 @@ public class HitMsg extends Msg implements Serializable{
         if (check >=0 && check < getDamage.getEvasion() - giveDamage.getAccuracy()/10)
             damage = 0;
         damage = damage*(100 - dispersion/2 + random.nextInt(dispersion))/100;
-        getDamage.changeHealth(-damage);
-        System.out.println(giveDamage.getName() + " hits " +damage);
+        new DamageMsg(from, to, -damage).exec();
+        System.out.println(giveDamage.getName() + " hits " + damage + " " + getDamage.getName());
     }
 }

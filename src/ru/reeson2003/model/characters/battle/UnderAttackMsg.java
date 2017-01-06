@@ -18,8 +18,15 @@ public class UnderAttackMsg extends Msg {
 
     @Override
     public void exec() {
-        Abonent abonentFrom = AbonentTable.getAbonent(from);
-        Abonent abonentTo = AbonentTable.getAbonent(to);
+        Abonent abonentFrom;
+        Abonent abonentTo;
+        try {
+            abonentFrom = AbonentTable.getAbonent(from);
+            abonentTo = AbonentTable.getAbonent(to);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return;
+        }
         Creature from = (Creature)abonentFrom;
         Creature to = (Creature)abonentTo;
         to.setTarget(from);
@@ -27,6 +34,7 @@ public class UnderAttackMsg extends Msg {
             to.getAbility("Fury Hit").use(from);
         } catch (MyGameException e) {
             e.printStackTrace();
+            return;
         }
     }
 }

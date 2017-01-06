@@ -10,7 +10,7 @@ public class AbonentTable {
     private static Map<Address, Abonent> abonents = new HashMap<>();
 
     public static void addAbonent(Abonent abonent) {
-        abonents.put(abonent.getAddress(),abonent);
+        abonents.put(abonent.getAddress(), abonent);
     }
 
     public static void removeAbonent(Abonent abonent) {
@@ -22,6 +22,9 @@ public class AbonentTable {
     }
 
     public static Abonent getAbonent(Address address) {
-        return abonents.get(address);
+        if (!abonents.containsKey(address))
+            throw new IllegalArgumentException("Not such Address in AbonentTable.");
+        else
+            return abonents.get(address);
     }
 }
