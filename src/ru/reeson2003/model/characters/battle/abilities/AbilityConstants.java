@@ -11,5 +11,5 @@ public class AbilityConstants {
     //Fury
     public static final int FURY_HIT_COEFF = 120;
     public static final int FURY_HIT_COOLDOWN = 1500;
-    public static final int FURY_HIT_MANACOST = 3;
+    public static final int FURY_HIT_MANACOST = 10;
 }
