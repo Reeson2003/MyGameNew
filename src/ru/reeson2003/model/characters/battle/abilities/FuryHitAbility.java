@@ -9,13 +9,11 @@ import ru.reeson2003.model.service.exception.NoTargetException;
  */
 public class FuryHitAbility extends Ability {
 
-    private int damageAbility;
-
     public FuryHitAbility(Creature owner) {
         this.name = "Fury Hit";
         this.information = "Causes a loss";
         this.owner = owner;
-        this.damageAbility = AbilityConstants.FURY_HIT_COEFF + (owner.getPhysicalAttack() / 2);
+        this.damageAbility = AbilityConstants.FURY_HIT_COEFF;
         this.manaCost = AbilityConstants.FURY_HIT_MANACOST;
         this.msg = new FuryHitMsg(this.owner.getAddress(), this.damageAbility);
         this.coolDown =

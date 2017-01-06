@@ -5,11 +5,11 @@ package ru.reeson2003.model.characters.battle.abilities;
  */
 public class AbilityConstants {
     //Heal
-    public static final int EASY_HEAL_COEFF = 30;
-    public static final int EASY_HEAL_COOLDOWN = 1000;
+    public static final int EASY_HEAL_COEFF = 90;
+    public static final int EASY_HEAL_COOLDOWN = 6000;
     public static final int EASY_HEAL_MANACOST = 1;
     //Fury
-    public static final int FURY_HIT_COEFF = 30;
-    public static final int FURY_HIT_COOLDOWN = 6000;
-    public static final int FURY_HIT_MANACOST = 15;
+    public static final int FURY_HIT_COEFF = 120;
+    public static final int FURY_HIT_COOLDOWN = 1500;
+    public static final int FURY_HIT_MANACOST = 3;
 }

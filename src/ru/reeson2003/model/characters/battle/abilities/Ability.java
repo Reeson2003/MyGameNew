@@ -18,6 +18,7 @@ public abstract class Ability implements TimeDependent {
     protected Creature owner;
     protected int manaCost = 0;
     protected int healCost = 0;
+    protected int damageAbility = 0;
     protected Msg msg;
 
     public final String getName() {
@@ -74,4 +75,7 @@ public abstract class Ability implements TimeDependent {
         coolDown.tick(date);
     }
     public abstract void use(Creature to) throws MyGameException;
+
+
+
 }

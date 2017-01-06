@@ -4,6 +4,7 @@ import ru.reeson2003.model.characters.battle.UnderAttackMsg;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.Address;
+import ru.reeson2003.model.service.exception.MyGameException;
 import ru.reeson2003.model.service.messages.Msg;
 
 /**
@@ -26,16 +27,21 @@ public class FuryHitMsg extends Msg {
         if (to != null) {
             Creature giveDamage = (Creature) AbonentTable.getAbonent(from);
             Creature getDamage = (Creature) AbonentTable.getAbonent(to);
-            int damage = 100;
-            if (damage < 2)
-                damage = 2;
-            getDamage.changeHealth(-damage);
+            try {
+                giveDamage.changeMana(-giveDamage.getAbility("Fury Hit").manaCost);
+            } catch (MyGameException e) {
+                e.printStackTrace();
+            }
+            try {
+                getDamage.changeHealth(-giveDamage.getAbility("Fury Hit").damageAbility);
+            } catch (MyGameException e) {
+                e.printStackTrace();
+            }
             System.out.println(giveDamage.getName() + " hits " + damage);
 /**
  * for test
  */
             new UnderAttackMsg(from, to).exec();
         }
-        System.out.println("Need Target");
     }
 }

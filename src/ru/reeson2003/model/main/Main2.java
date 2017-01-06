@@ -2,6 +2,7 @@ package ru.reeson2003.model.main;
 
 import ru.reeson2003.model.characters.battle.Fight;
 import ru.reeson2003.model.characters.battle.abilities.EasyHealAbility;
+import ru.reeson2003.model.characters.battle.abilities.FuryHitAbility;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.*;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
 import ru.reeson2003.model.characters.creatures.Parameters;
@@ -39,6 +40,7 @@ public class Main2 {
         Fight fight = new Fight(player, creature);
         creature.changeHealth(-500);
         player.addAbility(new EasyHealAbility(player));
+        player.addAbility(new FuryHitAbility(player));
         TimeActivator timeActivator = TimeActivator.getInstance();
         while (player.getHealth() < player.getMaximumHealth()) {
             timeActivator.tick(new Date());
@@ -46,6 +48,9 @@ public class Main2 {
                     .append(player)
                     .append(creature)
                     .show();
+            try {
+                player.getAbility("Fury Hit").use(creature);
+            } catch (MyGameException e) {}
             try {
                 player.getAbility("Easy Heal").use(creature);
             } catch (MyGameException e) {}
