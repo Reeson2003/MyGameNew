@@ -29,5 +29,6 @@ public class EasyHealMsg extends Msg {
         Creature getHeal = (Creature) AbonentTable.getAbonent(from);
         giveHeal.changeHealth(healAmount);
         getHeal.changeMana(-manaCost);
+        System.out.println(getHeal.getName() + " heal " +giveHeal.getName() +" " + healAmount);
     }
 }

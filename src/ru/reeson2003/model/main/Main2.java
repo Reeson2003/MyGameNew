@@ -41,6 +41,7 @@ public class Main2 {
         creature.changeHealth(-500);
         player.addAbility(new EasyHealAbility(player));
         player.addAbility(new FuryHitAbility(player));
+        creature.addAbility((new FuryHitAbility(creature)));
         TimeActivator timeActivator = TimeActivator.getInstance();
         while (player.getHealth() < player.getMaximumHealth()) {
             timeActivator.tick(new Date());

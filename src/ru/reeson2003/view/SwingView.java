@@ -132,12 +132,16 @@ public class SwingView {
 
     private String hpMpString(int current, int maximum) {
         StringBuilder stringBuilder = new StringBuilder();
-        int size = 30;
+        int size = maximum / (maximum / 10);
         for (int i = 0; i < size; i++) {
-            if(i < current*size/maximum)
+            if(i < current*size/maximum) {
                 stringBuilder.append("\u2665");
-            else
+                stringBuilder.append(" ");
+            }
+            else {
                 stringBuilder.append("\u2661");
+                stringBuilder.append(" ");
+            }
         }
         return stringBuilder.toString();
     }

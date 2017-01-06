@@ -4,6 +4,7 @@ import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.Abonent;
 import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.Address;
+import ru.reeson2003.model.service.exception.MyGameException;
 import ru.reeson2003.model.service.messages.Msg;
 
 /**
@@ -22,5 +23,10 @@ public class UnderAttackMsg extends Msg {
         Creature from = (Creature)abonentFrom;
         Creature to = (Creature)abonentTo;
         to.setTarget(from);
+        try {
+            to.getAbility("Fury Hit").use(from);
+        } catch (MyGameException e) {
+            e.printStackTrace();
+        }
     }
 }

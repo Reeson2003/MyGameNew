@@ -21,7 +21,7 @@ public class FuryHitAbility extends Ability {
     }
     @Override
     public void use(Creature to) throws NoTargetException {
-        if (to == null) {
+        if (to == null || to.equals(owner)) {
             throw new NoTargetException();
         }
         msg.setTo(to.getAddress());
