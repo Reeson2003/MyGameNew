@@ -48,7 +48,7 @@ public class Main2 {
         creature.addAbility((new FuryHitAbility(creature)));
         TimeActivator timeActivator = TimeActivator.getInstance();
         TestAI AI = new TestAI();
-        while (creature.getHealth() > 0) {
+        while (true) {
             timeActivator.tick(new Date());
             SwingView.getInstance().clear()
                     .append(player)
@@ -65,10 +65,10 @@ public class Main2 {
             if (creature.getHealth() == 0) {
                 creature = factory.getMonster(i++);
                 creature.addAbility(new FuryHitAbility(creature));
+                creature.addAbility(new HitAbility(creature));
             }
             if (i > 4)
                 i = 1;
         }
-        SwingView.getInstance().clear().append(player).append(creature).show();
     }
 }

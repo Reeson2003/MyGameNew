@@ -1,6 +1,7 @@
 package ru.reeson2003.model.characters;
 
 import ru.reeson2003.model.characters.coordinates.Coordinate;
+import ru.reeson2003.model.characters.coordinates.World;
 import ru.reeson2003.model.service.Abonent;
 import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.Address;

@@ -24,6 +24,10 @@ public class TestAI implements TimeDependent {
         mobs.add(creature);
     }
 
+    public void removeMob(Creature creature) {
+        mobs.remove(creature);
+    }
+
     public void activate() {
         for (Creature c : mobs) {
             try {

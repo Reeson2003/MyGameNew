@@ -105,7 +105,7 @@ public class SwingView {
         sb.append(hpMpString(creature.getMana(), creature.getMaximumMana()));
         sb.append("[" +creature.getMana() + "/" + creature.getMaximumMana() + "]");
         sb.append("<br>");
-        sb.append("[P.atk:");
+        sb.append("<small>[P.atk:");
         sb.append(creature.getPhysicalAttack());
         sb.append("][P.def:");
         sb.append(creature.getPhysicalDefence());
@@ -125,7 +125,7 @@ public class SwingView {
         sb.append(creature.getAttackRange());
         sb.append("][M.spd:");
         sb.append(creature.getMovingSpeed());
-        sb.append("]");
+        sb.append("]</small>");
         sb.append("<br>");
         sb.append("Coordinate:");
         sb.append(creature.getCoordinate().toString());
