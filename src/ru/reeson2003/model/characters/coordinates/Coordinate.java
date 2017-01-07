@@ -60,9 +60,10 @@ public class Coordinate {
     }
 
     public int distance(Coordinate from) {
-        int dX = this.x - from.x;
-        int dY = this.y - from.y;
-        int dZ = this.z - from.z;
+        double dX = this.x - from.x;
+        double dY = this.y - from.y;
+        double dZ = this.z - from.z;
+
         int result = (int) Math.sqrt(dX * dX + dY * dY + dZ * dZ);
         return result;
     }

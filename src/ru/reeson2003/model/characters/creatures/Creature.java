@@ -3,6 +3,8 @@ package ru.reeson2003.model.characters.creatures;
 import ru.reeson2003.model.characters.WorldObject;
 import ru.reeson2003.model.characters.battle.abilities.Ability;
 import ru.reeson2003.model.characters.battle.abilities.Abilities;
+import ru.reeson2003.model.characters.coordinates.Coordinate;
+import ru.reeson2003.model.characters.coordinates.Movement;
 import ru.reeson2003.model.service.TimeActivator;
 import ru.reeson2003.model.service.TimeDependent;
 import ru.reeson2003.model.service.exception.MyGameException;
@@ -17,6 +19,7 @@ public abstract class Creature extends WorldObject implements TimeDependent {
     private Abilities abilities;
     protected Creature target;
     protected ParametersController parametersController;
+    private Movement movement;
 
     public Creature(String name, ParametersController parametersController) {
         this.name = name;
@@ -129,6 +132,18 @@ public abstract class Creature extends WorldObject implements TimeDependent {
         parametersController.setMana(mana);
     }
 
+    public void move(Coordinate coordinate) {
+        movement = new Movement(this,coordinate);
+    }
+
+    public void stopMove() {
+        this.movement = null;
+    }
+
+    public Movement getMovement() {
+        return movement;
+    }
+
     public abstract boolean kill();
 
     public abstract int getExperienceForKill();
@@ -139,6 +154,8 @@ public abstract class Creature extends WorldObject implements TimeDependent {
     @Override
     public void tick(Date date) {
         parametersController.tick(date);
+        if (movement != null)
+            movement.tick(date);
     }
 
     @Override

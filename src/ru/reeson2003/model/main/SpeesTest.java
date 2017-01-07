@@ -4,7 +4,10 @@ import ru.reeson2003.model.characters.coordinates.Coordinate;
 import ru.reeson2003.model.characters.coordinates.CoordinateConstants;
 import ru.reeson2003.model.characters.coordinates.Movement;
 import ru.reeson2003.model.characters.coordinates.World;
+import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.characters.creatures.EquipType;
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterFactory;
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterFactoryTestImpl;
 import ru.reeson2003.model.characters.creatures.Parameters;
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 import ru.reeson2003.model.characters.items.Equip;
@@ -21,22 +24,32 @@ public class SpeesTest {
     public static void main(String[] args) throws InterruptedException {
         PlayerCharacter playerCharacter = PlayerCharacter.NewbiePlayerIstance("Pukan");
         Equip gloves = new Equip(EquipType.Gloves);
-        gloves.setParameters(new Parameters.ParametersBuilder().movingSpeed(2000).build());
+        gloves.setParameters(new Parameters.ParametersBuilder().movingSpeed(200).build());
         playerCharacter.putOn(gloves);
+        MonsterFactory monsterFactory = new MonsterFactoryTestImpl();
         World.getInstance().place(playerCharacter);
         Random random = new Random();
         TimeActivator timeActivator = TimeActivator.getInstance();
+        int size = 10000;
+        Creature[] creatures = new Creature[size];
+        for (int i = 0; i < creatures.length; i++) {
+            creatures[i] = monsterFactory.getMonster(i % 4);
+            creatures[i].setCoordinate(getCoordinate(random));
+            World.getInstance().place(creatures[i]);
+        }
         SwingView view = SwingView.getInstance();
         while (true) {
-            Coordinate to = getCoordinate(random);
-            Coordinate from = playerCharacter.getCoordinate();
-            System.out.println(to);
-            Movement movement = new Movement(playerCharacter,to);
-            TimeActivator.getInstance().addTimeDependent(movement);
-            while (!playerCharacter.getCoordinate().equals(to)) {
-                TimeActivator.getInstance().tick(new Date());
-                view.clear().append(playerCharacter).append("From:" + from).append("To:" + to).show();
+            view.clear();
+            for (int i = 0; i < creatures.length; i++) {
+
+                if (creatures[i].getMovement() == null)
+                    creatures[i].move(getCoordinate(random));
+                if (i < 5)
+                    view.append(creatures[i]);
+
             }
+            view.show();
+            timeActivator.tick(new Date());
         }
     }
 

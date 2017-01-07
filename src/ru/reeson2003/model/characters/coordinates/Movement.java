@@ -1,6 +1,5 @@
 package ru.reeson2003.model.characters.coordinates;
 
-import ru.reeson2003.model.characters.WorldObject;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.TimeDependent;
 
@@ -12,7 +11,7 @@ import java.util.Date;
 public class Movement implements TimeDependent {
     private Coordinate dest;
     private Coordinate dept;
-    private WorldObject object;
+    private Creature creature;
     private double speed;
     private Date start;
     private Date step;
@@ -20,10 +19,10 @@ public class Movement implements TimeDependent {
     double vY;
     double vZ;
 
-    public Movement(WorldObject object, Coordinate dest, int speed) {
+    public Movement(Creature creature, Coordinate dest, int speed) {
         this.dest = dest;
-        this.dept = object.getCoordinate();
-        this.object = object;
+        this.dept = creature.getCoordinate();
+        this.creature = creature;
         this.speed = (double) speed * 10 / 36000;
         this.start = this.step = new Date();
         setSpeedProjection(dept, dest, this.speed);
@@ -62,7 +61,9 @@ public class Movement implements TimeDependent {
         if((y-(dest.getY()))*vY > 0) y = dest.getY();
         if((z-(dest.getZ()))*vZ > 0) z = dest.getZ();
         Coordinate coordinate = new Coordinate(x, y, z);
-        World.getInstance().move((Creature) object, coordinate);
+        if (coordinate.equals(dest))
+            creature.stopMove();
+        World.getInstance().move(creature, coordinate);
     }
 
     @Override
