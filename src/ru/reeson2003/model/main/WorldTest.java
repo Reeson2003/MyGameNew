@@ -1,7 +1,7 @@
 package ru.reeson2003.model.main;
 
 import ru.reeson2003.model.characters.coordinates.Coordinate;
-import ru.reeson2003.model.characters.coordinates.CoordinateConstants;
+import ru.reeson2003.model.characters.coordinates.WorldConstants;
 import ru.reeson2003.model.characters.coordinates.World;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
@@ -48,9 +48,9 @@ public class WorldTest {
     }
 
     public static Coordinate getCoordinate(Random random) {
-        int x = random.nextInt((CoordinateConstants.WORLD_WIDTH * CoordinateConstants.LOCATION_DIMENSION) - 1);
-        int y = random.nextInt((CoordinateConstants.WORLD_LENGTH * CoordinateConstants.LOCATION_DIMENSION) - 1);
-        int z = random.nextInt((CoordinateConstants.WORLD_HEIGHT * CoordinateConstants.LOCATION_DIMENSION) - 1);
+        int x = random.nextInt((WorldConstants.WORLD_WIDTH * WorldConstants.LOC_DIM_PTS) - 1);
+        int y = random.nextInt((WorldConstants.WORLD_LENGTH * WorldConstants.LOC_DIM_PTS) - 1);
+        int z = random.nextInt((WorldConstants.WORLD_HEIGHT * WorldConstants.LOC_DIM_PTS) - 1);
         return new Coordinate(x, y, z);
     }
 }

@@ -5,7 +5,6 @@ import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.characters.items.Item;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -13,11 +12,15 @@ import java.util.List;
  */
 public class World {
     private static World instance = null;
-    private static final int worldLength = CoordinateConstants.WORLD_LENGTH;
-    private static final int worldWidth = CoordinateConstants.WORLD_WIDTH;
-    private static final int worldHeight = CoordinateConstants.WORLD_HEIGHT;
-    private static final int locationDimension = CoordinateConstants.LOCATION_DIMENSION;
+    private static final int worldLength = WorldConstants.WORLD_LENGTH;
+    private static final int worldWidth = WorldConstants.WORLD_WIDTH;
+    private static final int worldHeight = WorldConstants.WORLD_HEIGHT;
+    private static final int locationDimension = WorldConstants.LOC_DIM_PTS;
 
+    /**
+     * Singleton.
+     * @return instance of World.
+     */
     public static World getInstance() {
         if (instance == null)
             instance = new World();
@@ -26,6 +29,10 @@ public class World {
 
     private Location[][][] locations;
 
+    /**
+     * Returns instance. Creates new array of locations with size from WorldConstants class.
+     * Creates new locations in each array element.
+     */
     private World() {
         locations = new Location[worldHeight][worldLength][worldWidth];
         for (int i = 0; i < worldHeight; i++) {
@@ -40,7 +47,6 @@ public class World {
     /**
      * Places an creature to the appropriate location according it's Coordinate.
      * Changes incorrect coordinate into correct state.
-     *
      * @param creature to place to the Location;
      */
     public void place(Creature creature) {
@@ -61,7 +67,6 @@ public class World {
     /**
      * Places an item to the appropriate location according it's Coordinate.
      * Changes incorrect coordinate into correct state.
-     *
      * @param item to place to the Location;
      */
     public void place(Item item) {
@@ -82,7 +87,6 @@ public class World {
     /**
      * Moves an creature to the appropriate location according Coordinate.
      * Changes incorrect coordinate into correct state.
-     *
      * @param creature to place to the Location;
      */
     public void move(Creature creature, Coordinate coordinate) {
@@ -110,7 +114,6 @@ public class World {
     /**
      * Moves an item to the appropriate location according Coordinate.
      * Changes incorrect coordinate into correct state.
-     *
      * @param item to place to the Location;
      */
     public void move(Item item, Coordinate coordinate) {
@@ -135,6 +138,10 @@ public class World {
         }
     }
 
+    /**
+     * Gets creature's coordinate, and removes this creature from container.
+     * @param creature creature to remove.
+     */
     public void remove(Creature creature) {
         int x = creature.getCoordinate().getX() / locationDimension;
         int y = creature.getCoordinate().getY() / locationDimension;
@@ -147,7 +154,13 @@ public class World {
         }
     }
 
-    @Deprecated
+    /**
+     * Creates new ArrayList of creatures. According radius, takes all creatures from object location
+     * and from eight locations around object location(if they exists).
+     * @param object to search creatures around.
+     * @param radius in which creatures placed.
+     * @return ArrayList of creatures.
+     */
     public List<Creature> getCreaturesAround(final WorldObject object, int radius) {
         List<Creature> result = new ArrayList<>();
         int x = object.getCoordinate().getX() / locationDimension;
@@ -167,7 +180,13 @@ public class World {
         return result;
     }
 
-    @Deprecated
+    /**
+     * Creates new ArrayList of items. According radius, takes all items from object location
+     * and from eight locations around object location(if they exists).
+     * @param object to search items around.
+     * @param radius in which items placed.
+     * @return ArrayList of items.
+     */
     public List<Item> getItemsAround(final WorldObject object, int radius) {
         List<Item> result = new ArrayList<>();
         int x = object.getCoordinate().getX() / locationDimension;
@@ -187,14 +206,35 @@ public class World {
         return result;
     }
 
+    /**
+     * Creates new ArrayList of creatures. According visibility radius from WorldConstants class,
+     * takes all creatures from object location and from eight locations around object location
+     * (if they exists).
+     * @param object to search creatures around.
+     * @return ArrayList of creatures.
+     */
     public List<Creature> getVisibleCreatures(WorldObject object) {
-        return getCreaturesAround(object, CoordinateConstants.VISIBILITY_RADIUS);
+        return getCreaturesAround(object, WorldConstants.VIS_RADIUS_PTS);
     }
 
+    /**
+     * Creates new ArrayList of items. According visibility radius from WorldConstants class,
+     * takes all items from object location and from eight locations around object location
+     * (if they exists).
+     * @param object to search items around.
+     * @return ArrayList of items.
+     */
     public List<Item> getVisibleItems(WorldObject object) {
-        return getItemsAround(object, CoordinateConstants.VISIBILITY_RADIUS);
+        return getItemsAround(object, WorldConstants.VIS_RADIUS_PTS);
     }
 
+    /**
+     * Checks if the coordinates in range of World size.
+     * If coordinate less than 0, sets 0 value, if coordinate more than world size,
+     * sets world size value. Creates new instance of Coordinate with correct values.
+     * @param coordinate coordinate to turn in correct state.
+     * @return correct coordinate if parameter is incorrect.
+     */
     private Coordinate correctCoordinate(Coordinate coordinate) {
         int x = coordinate.getX();
         if (x < 0)

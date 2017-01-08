@@ -136,10 +136,6 @@ public abstract class Creature extends WorldObject implements TimeDependent {
         movement = new Movement(this,coordinate);
     }
 
-    public void stopMove() {
-        this.movement = null;
-    }
-
     public Movement getMovement() {
         return movement;
     }

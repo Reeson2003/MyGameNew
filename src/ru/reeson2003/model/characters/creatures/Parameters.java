@@ -27,6 +27,9 @@ public class Parameters implements Cloneable {
     private int evasion;
     private int accuracy;
     private int attackRange;
+    /**
+     * Moving speed in meters per hour.
+     */
     private int movingSpeed;
 
     /**

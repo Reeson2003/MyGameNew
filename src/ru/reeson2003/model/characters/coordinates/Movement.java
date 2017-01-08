@@ -6,72 +6,154 @@ import ru.reeson2003.model.service.TimeDependent;
 import java.util.Date;
 
 /**
- * Created by reeson on 07.01.17.
+ * Class for move creatures depending on its speed.
+ * It takes begin coordinate from creature and finish
+ * coordinate in parameters.
  */
 public class Movement implements TimeDependent {
-    private Coordinate dest;
-    private Coordinate dept;
+    /**
+     * Start coordinate.
+     */
+    private Coordinate start;
+    /**
+     * Finish coordinate.
+     */
+    private Coordinate finish;
+    /**
+     * Creature that is moving.
+     */
     private Creature creature;
-    private double speed;
-    private Date start;
-    private Date step;
-    double vX;
-    double vY;
-    double vZ;
+    /**
+     * Date when moving began.
+     */
+    private Date begin;
+    /**
+     * Distance between start and finish.
+     */
+    private double distance;
+    /**
+     * Distance projection on "X" axis.
+     */
+    private int dX;
+    /**
+     * Distance projection on "Y" axis.
+     */
+    private int dY;
+    /**
+     * Distance projection on "Z" axis.
+     */
+    private int dZ;
+    /**
+     * Speed projection on "X" axis.
+     */
+    private double vX;
+    /**
+     * Speed projection on "Y" axis.
+     */
+    private double vY;
+    /**
+     * Speed projection on "Z" axis.
+     */
+    private double vZ;
 
-    public Movement(Creature creature, Coordinate dest, int speed) {
-        this.dest = dest;
-        this.dept = creature.getCoordinate();
+    /**
+     * Creates movement. Initializes fields.
+     * @param creature creature to move.
+     * @param finish coordinate to move to.
+     */
+    public Movement(Creature creature, Coordinate finish) {
+        this.finish = finish;
+        this.start = creature.getCoordinate();
         this.creature = creature;
-        this.speed = (double) speed * 10 / 36000;
-        this.start = this.step = new Date();
-        setSpeedProjection(dept, dest, this.speed);
+        this.begin = new Date();
+        calcDistance();
+        calcDxDyDz();
     }
 
-    public Movement(Creature creature, Coordinate dest) {
-        this(creature, dest, creature.getMovingSpeed());
+    /**
+     * Calculates and initializes dX, dY, dZ fields.
+     */
+    private void calcDxDyDz() {
+        dX = finish.getX() - start.getX();
+        dY = finish.getY() - start.getY();
+        dZ = finish.getZ() - start.getZ();
     }
 
-    private void setSpeedProjection(Coordinate from, Coordinate to, double speed) {
-        int x0 = from.getX();
-        int y0 = from.getY();
-        int z0 = from.getZ();
-        int x = to.getX();
-        int y = to.getY();
-        int z = to.getZ();
-        int dist = from.distance(to);
-        vX = speedProjection(speed, x0, x, dist);
-        vY = speedProjection(speed, y0, y, dist);
-        vZ = speedProjection(speed, z0, z, dist);
+    /**
+     * Calculates and sets vX, vY, vZ fields.
+     */
+    private void setSpeedProjection() {
+        vX = speedProjection(dX);
+        vY = speedProjection(dY);
+        vZ = speedProjection(dZ);
     }
 
-    private double speedProjection(double speed, int x0, int x, int distance) {
-        if (distance != 0) {
-            double result = (speed * (x - x0)) / distance;
+    /**
+     * Calculates speed projection on axis.
+     * @param delta projection of distance on axis.
+     * @return  projection of speed on axis.
+     */
+    private double speedProjection(int delta) {
+            double result = (calcSpeed() * (delta)) / distance;
             return result;
-        } else
-            return 0;
     }
 
+    /**
+     * Calculates and initializes distance field.
+     */
+    private void calcDistance() {
+        int dX = finish.getX() - start.getX();
+        int dY = finish.getY() - start.getY();
+        int dZ = finish.getZ() - start.getZ();
+        distance = Math.sqrt((long)dX * dX + (long)dY * dY + (long)dZ * dZ);
+    }
+
+    /**
+     * Gets speed from creature and convert it into points per millisecond scale.
+     * Constant 3_600_000 to convert speed from meters per hour into meters per millisecond.
+     * @return speed in points per millisecond scale.
+     */
+    private double calcSpeed() {
+        return (double) creature.getMovingSpeed() / (3_600_000/WorldConstants.SCALE);
+    }
+
+    /**
+     * Checks if creature does not get finish.
+     * Calculates current X, Y, Z. Creates new Coordinate. Moves a creature.
+     * @param date current date.
+     */
     private void step(Date date) {
-        int x = (int) (dept.getX() + vX * (date.getTime() - this.start.getTime()));
-        int y = (int) (dept.getY() + vY * (date.getTime() - this.start.getTime()));
-        int z = (int) (dept.getZ() + vZ * (date.getTime() - this.start.getTime()));
-        if((x-(dest.getX()))*vX > 0) x = dest.getX();
-        if((y-(dest.getY()))*vY > 0) y = dest.getY();
-        if((z-(dest.getZ()))*vZ > 0) z = dest.getZ();
-        Coordinate coordinate = new Coordinate(x, y, z);
-        if (coordinate.equals(dest))
-            creature.stopMove();
-        World.getInstance().move(creature, coordinate);
+        if (!creature.getCoordinate().equals(finish)) {
+            setSpeedProjection();
+            int x = (int) (start.getX() + vX * (date.getTime() - this.begin.getTime()));
+            int y = (int) (start.getY() + vY * (date.getTime() - this.begin.getTime()));
+            int z = (int) (start.getZ() + vZ * (date.getTime() - this.begin.getTime()));
+            if ((x - (finish.getX())) * vX > 0) x = finish.getX();
+            if ((y - (finish.getY())) * vY > 0) y = finish.getY();
+            if ((z - (finish.getZ())) * vZ > 0) z = finish.getZ();
+            Coordinate coordinate = new Coordinate(x, y, z);
+            World.getInstance().move(creature, coordinate);
+        }
     }
 
+    public Coordinate getStart() {
+        return start;
+    }
+
+    public Coordinate getFinish() {
+        return finish;
+    }
+
+    public Date getBegin() {
+        return begin;
+    }
+
+    /**
+     * @param date current date.
+     */
     @Override
     public void tick(Date date) {
-        if (date.getTime() > this.step.getTime() + 999 / CoordinateConstants.STEP_PER_SECOND) {
-            step(date);
-            step = date;
-        }
+        step(date);
     }
 
 }

@@ -29,7 +29,7 @@ public class TestMonParMan extends MonsterParametersManager {
                         evasion(5).
                         accuracy(5).
                         attackRange(5).
-                        movingSpeed(40).
+                        movingSpeed(20000).
                         build();
             case 2:
                 return new Parameters.ParametersBuilder().
@@ -46,7 +46,7 @@ public class TestMonParMan extends MonsterParametersManager {
                         evasion(5).
                         accuracy(5).
                         attackRange(5).
-                        movingSpeed(20).
+                        movingSpeed(10000).
                         build();
             case 3:
                 return new Parameters.ParametersBuilder().
@@ -63,7 +63,7 @@ public class TestMonParMan extends MonsterParametersManager {
                         evasion(5).
                         accuracy(5).
                         attackRange(5).
-                        movingSpeed(10).
+                        movingSpeed(7000).
                         build();
             default:
                 return new Parameters.ParametersBuilder().
@@ -80,7 +80,7 @@ public class TestMonParMan extends MonsterParametersManager {
                         evasion(5).
                         accuracy(5).
                         attackRange(5).
-                        movingSpeed(10).
+                        movingSpeed(3000).
                         build();
         }
     }
