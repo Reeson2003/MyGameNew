@@ -7,13 +7,13 @@ import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
  * Created by reeson on 03.01.17.
  */
 public class SwingView {
-    String text;
+    private StringBuilder sb;
     private static SwingView instance = null;
     private MainWindow mainWindow;
 
     private SwingView() {
         this.mainWindow = new MainWindow();
-        this.text = "<html>";
+        sb = new StringBuilder("<html>");
     }
 
     public static SwingView getInstance() {
@@ -56,7 +56,7 @@ public class SwingView {
     }
 
     public SwingView append(Creature creature) {
-        this.text += creatureToString(creature);
+        sb.append(creatureToString(creature));
         return this;
     }
 
@@ -71,61 +71,88 @@ public class SwingView {
         stringBuilder.append("]");
         stringBuilder.append(" Level: ");
         stringBuilder.append(playerCharacter.getLevel());
-        this.text += stringBuilder.toString();
+        sb.append(stringBuilder.toString());
         return this;
     }
 
     public SwingView append(String text) {
-        this.text = this.text + "<br>" + text.replace("\n", "<br>");
+        sb.append("<br>" + text.replace("\n", "<br>"));
         return this;
     }
 
     public SwingView clear() {
-        this.text = "<html>";
+        sb = new StringBuilder("<html>");
         return this;
     }
 
     public void show() {
-        this.text += "</html>";
-        this.mainWindow.showText(text);
+        sb.append("</html>");
+        this.mainWindow.showText(sb.toString());
     }
 
     private String creatureToString(Creature creature) {
         StringBuilder sb = new StringBuilder();
-        sb.append("<br>");
+        sb.append("<p>");
         sb.append("----------------------------------------------------------------------------------");
         sb.append("<br>");
         sb.append(creature.getName());
         sb.append("<br>");
         sb.append(" HP: ");
+        sb.append("<font color=\"red\">");
         sb.append(hpMpString(creature.getHealth(), creature.getMaximumHealth()));
+        sb.append("</font>");
         sb.append("[" + creature.getHealth() + "/" + creature.getMaximumHealth() + "]");
         sb.append("<br>");
         sb.append(" MP: ");
+        sb.append("<font color=\"blue\">");
         sb.append(hpMpString(creature.getMana(), creature.getMaximumMana()));
+        sb.append("</font>");
         sb.append("[" +creature.getMana() + "/" + creature.getMaximumMana() + "]");
         sb.append("<br>");
-        sb.append("<small>[P.atk:");
+        sb.append("<table border=\"2\", bgcolor =\"#00FF00\"><tr>");
+        sb.append("<td>P.atk</td>");
+        sb.append("<td>P.def</td>");
+        sb.append("<td>M.atk</td>");
+        sb.append("<td>M.def</td>");
+        sb.append("<td>Crit</td>");
+        sb.append("<td>A.spd</td>");
+        sb.append("<td>Evas</td>");
+        sb.append("<td>Accur</td>");
+        sb.append("<td>A.rng</td>");
+        sb.append("<td>M.spd</td>");
+        sb.append("</tr>");
+        sb.append("<tr>");
+        sb.append("<td>");
         sb.append(creature.getPhysicalAttack());
-        sb.append("][P.def:");
+        sb.append("</td>");
+        sb.append("<td>");
         sb.append(creature.getPhysicalDefence());
-        sb.append("][M.atk:");
+        sb.append("</td>");
+        sb.append("<td>");
         sb.append(creature.getMagicAttack());
-        sb.append("][M.def:");
+        sb.append("</td>");
+        sb.append("<td>");
         sb.append(creature.getMagicDefence());
-        sb.append("][Crit:");
+        sb.append("</td>");
+        sb.append("<td>");
         sb.append(creature.getCriticalChance());
-        sb.append("][A.spd:");
+        sb.append("</td>");
+        sb.append("<td>");
         sb.append(creature.getAttackSpeed());
-        sb.append("][Evas:");
+        sb.append("</td>");
+        sb.append("<td>");
         sb.append(creature.getEvasion());
-        sb.append("][Accur:");
+        sb.append("</td>");
+        sb.append("<td>");
         sb.append(creature.getAccuracy());
-        sb.append("][A.rng:");
+        sb.append("</td>");
+        sb.append("<td>");
         sb.append(creature.getAttackRange());
-        sb.append("][M.spd:");
+        sb.append("</td>");
+        sb.append("<td>");
         sb.append(creature.getMovingSpeed());
-        sb.append("]</small>");
+        sb.append("</td>");
+        sb.append("</tr></table>");
         sb.append("<br>");
         sb.append("Coordinate:");
         sb.append(creature.getCoordinate().toString());

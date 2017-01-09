@@ -1,19 +1,29 @@
 package ru.reeson2003.model.characters.coordinates;
 
 
+import java.io.Serializable;
+
 /**
- * Coordinate class is immutable.
+ * The class {@code Coordinate} is the simple container
+ * of the <b>X</b>,<b>Y</b>,<b>Z</b> coordinates of point.
  */
-public class Coordinate {
+public class Coordinate implements Serializable {
+    /** use serialVersionUID for interoperability */
+    private static final long serialVersionUID = 637319357842271410L;
+    /** The {@code int} value on the <b>OX</b> axis. */
     private int x;
+    /** The {@code int} value on the <b>OY</b> axis. */
     private int y;
+    /** The {@code int} value on the <b>OZ</b> axis. */
     private int z;
 
     /**
-     * Returns instance with X, Y, Z from parameters.
-     * @param x coordinate in "X" axis.
-     * @param y coordinate in "Y" axis.
-     * @param z coordinate in "Z" axis.
+     * Initializes new {@code Coordinate} {@link #x},
+     * {@link #y}, {@link #z} values with
+     * parameters values.
+     * @param x value on the <b>OX</b> axis.
+     * @param y value on the <b>OY</b> axis.
+     * @param z value on the <b>OZ</b> axis.
      */
     public Coordinate(int x, int y, int z) {
         this.x = x;
@@ -22,7 +32,8 @@ public class Coordinate {
     }
 
     /**
-     * Returns instance with X, Y, Z initialized by 0.
+     * Initializes new {@code Coordinate} {@link #x},
+     * {@link #y}, {@link #z} values with {@code 0}.
      */
     public Coordinate() {
         this(0, 0, 0);
@@ -42,22 +53,26 @@ public class Coordinate {
 
     /**
      * Calculates distance from this coordinate to another.
-     * @param from coordinate, to calculate distance to.
-     * @return distance from this coordinate to another.
+     * @param from {@code Coordinate} to calculate distance to.
+     * @return {@code int} value of distance this this {@code Coordinate} and
+     * argument {@code Coordinate}.
      */
     public int distance(Coordinate from) {
         long dX = this.x - from.x;
         long dY = this.y - from.y;
         long dZ = this.z - from.z;
-
         int result = (int) Math.sqrt(dX * dX + dY * dY + dZ * dZ);
         return result;
     }
 
     /**
-     * Checks if this X, Y, Z is the same as another X, Y, Z.
-     * @param c coordinate to check.
-     * @return true if this X, Y, Z is the same as another X, Y, Z.
+     * Checks if this {@link #x} equals argument {@link #x},
+     * this {@link #y} equals argument {@link #y} and
+     * this {@link #z} equals argument {@link #z}.
+     * @param c {@code Coordinate} to check.
+     * @return {@code true} if this {@link #x} equals argument {@link #x},
+     * this {@link #y} equals argument {@link #y} and
+     * this {@link #z} equals argument {@link #z}, otherwise {@code false}.
      */
     public boolean equals(Coordinate c) {
         return this.x == c.x && this.y == c.y && this.z == c.z;
