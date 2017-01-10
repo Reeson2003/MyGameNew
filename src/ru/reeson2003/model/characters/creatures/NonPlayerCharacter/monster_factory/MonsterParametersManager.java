@@ -1,4 +1,4 @@
-package ru.reeson2003.model.characters.creatures.NonPlayerCharacter;
+package ru.reeson2003.model.characters.creatures.NonPlayerCharacter.monster_factory;
 
 import ru.reeson2003.model.characters.creatures.Parameters;
 

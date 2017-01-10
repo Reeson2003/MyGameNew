@@ -2,6 +2,7 @@ package ru.reeson2003.model.characters.creatures.NonPlayerCharacter;
 
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.characters.creatures.ParametersController;
+import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.TimeActivator;
 
 /**
@@ -10,44 +11,32 @@ import ru.reeson2003.model.service.TimeActivator;
 public class Monster extends Creature implements Cloneable {
 
     private AggressionList aggressionList;
-    private int experienceForKill;
 
-    public Monster(String name, ParametersController parametersController, int experienceForKill) {
+    public Monster(String name, ParametersController parametersController) {
         super(name, parametersController);
-        this.experienceForKill = experienceForKill;
         aggressionList = new AggressionList();
     }
 
-    public void setExperienceForKill(int experienceForKill) {
-        this.experienceForKill = experienceForKill;
+    public AggressionList getAggressionList() {
+        return aggressionList;
     }
-    public AggressionList getAggressionList() { return aggressionList; }
+
     public void setAggressionList(AggressionList aggressionList) {
         this.aggressionList = aggressionList;
     }
 
     @Override
+    public void makeDamage(Creature creature, int damage) {
+        if (getHealth() - damage < 0) {
+            changeHealth(-damage);
+            TimeActivator.getInstance().removeTimeDependent(this);
+            AbonentTable.removeAbonent(this);
+        }
+    }
+
+    @Override
     public void addExperience(int experience) {
 
-    }
-
-    @Override
-    public int getExperienceForKill() {
-        return experienceForKill;
-    }
-
-    @Override
-    public void subtractExperienceForKill() {
-
-    }
-
-    @Override
-    public boolean kill() {
-        if (getHealth() == 0) {
-            remove();
-            return true;
-        }else
-            return false;
     }
 
     @Override
@@ -58,7 +47,7 @@ public class Monster extends Creature implements Cloneable {
 
     @Override
     public Monster clone() {
-        Monster result = new Monster(this.name, this.parametersController.clone(), this.experienceForKill);
+        Monster result = new Monster(this.name, this.parametersController.clone());
         return result;
     }
 

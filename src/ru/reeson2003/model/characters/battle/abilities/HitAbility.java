@@ -1,28 +1,33 @@
 package ru.reeson2003.model.characters.battle.abilities;
 
+import ru.reeson2003.model.characters.battle.BattleCalculator;
 import ru.reeson2003.model.characters.battle.CoolDown;
-import ru.reeson2003.model.characters.battle.HitMsg;
 import ru.reeson2003.model.characters.creatures.Creature;
 
 
 /**
  * Created by reeson on 20.12.16.
  */
-public class HitAbility extends Ability {
+public class HitAbility extends AttackAbility {
 
     public HitAbility(Creature owner) {
-        this.name = "Attack";
-        this.owner = owner;
-        this.msg = new HitMsg(this.owner.getAddress(), null);
-        this.coolDown = new CoolDown(owner.getAttackSpeed());  // 1 - один хит персеконд (спид атак 1 по умолчанию думаю надо дабл делать)
-        this.information = name + ", Causes a loss: " + owner.getPhysicalAttack();
+        super(owner);
+        this.name = "Hit";
+        this.coolDown = new CoolDown(owner.getAttackSpeed());
+        this.information = "Regular attack with weapon";
     }
+
     @Override
-    public void use(Creature to) {
-        msg.setTo(to.getAddress());
-        if(coolDown.isActive()) {
-            coolDown.use();
-            msg.exec();
+    public void use(Creature target) {
+        if (target != null && target != owner) {
+            if (owner.getCoordinate().distance(target.getCoordinate()) <= owner.getAttackRange()) {
+                if (coolDown.isActive()) {
+                    coolDown.use();
+                    int damage = BattleCalculator.phisicalDamage(owner, target, owner.getPhysicalAttack(),
+                            true, true, true, true);
+                    target.makeDamage(owner, damage);
+                }
+            }
         }
     }
 }

@@ -1,10 +1,8 @@
 package ru.reeson2003.model.main;
 
-import ru.reeson2003.model.client_content.ClientPacketMessage;
-import ru.reeson2003.model.client_content.CreatureSurrogate;
-import ru.reeson2003.model.client_content.PlayerCharacterSurrogate;
-import ru.reeson2003.model.service.messages.Msg;
-import ru.reeson2003.model.service.messages.remote_messages.HitMsgRemote;
+import ru.reeson2003.model.client.ClientPacketMessage;
+import ru.reeson2003.model.client.CreatureSurrogate;
+import ru.reeson2003.model.client.PlayerCharacterSurrogate;
 
 import java.io.*;
 import java.net.Socket;
@@ -58,12 +56,12 @@ public class ClientTest {
             System.out.println("\n\n\n\n\n");
             if (creatureSurrogates.size() == 0)
                 break;
-            Msg toServer = new HitMsgRemote(player.getAddress(), creatureSurrogates.get(0).getAddress());
-            try {
-                objectOutputStream.writeObject(toServer);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            Msg toServer = new HitMsgRemote(player.getAddress(), creatureSurrogates.get(0).getAddress());
+//            try {
+//                objectOutputStream.writeObject(toServer);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 }

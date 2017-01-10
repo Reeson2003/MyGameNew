@@ -14,7 +14,7 @@ public class PlayerCharacter extends Creature {
         this.experience = experience;
     }
 
-    public static PlayerCharacter NewbiePlayerIstance(String name) {
+    public static PlayerCharacter NewbiePlayerInstance(String name) {
         Experience experience = new Experience(0);
         Parameters parameters = new Parameters.ParametersBuilder().
                 maximumHealth(ParametersConstants.HEALTH_BASE).
@@ -36,6 +36,13 @@ public class PlayerCharacter extends Creature {
         parametersController.setParameters(parameters);
         PlayerCharacter playerCharacter = new PlayerCharacter(name, parametersController, experience);
         return playerCharacter;
+    }
+
+    @Override
+    public void makeDamage(Creature creature, int damage) {
+        if (target == null)
+            target = creature;
+        changeHealth(-damage);
     }
 
     public void addExperience(int experience) {
@@ -68,21 +75,6 @@ public class PlayerCharacter extends Creature {
 
     public Equip putOff(EquipType equipType) {
         return this.parametersController.putOff(equipType);
-    }
-
-    @Override
-    public int getExperienceForKill() {
-        return 0;
-    }
-
-    @Override
-    public void subtractExperienceForKill() {
-        experience.subtractExperience();
-    }
-
-    @Override
-    public boolean kill() {
-        return getHealth() == 0;
     }
 
     @Override

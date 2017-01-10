@@ -1,4 +1,4 @@
-package ru.reeson2003.model.client_content;
+package ru.reeson2003.model.client;
 
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 import ru.reeson2003.model.service.Address;

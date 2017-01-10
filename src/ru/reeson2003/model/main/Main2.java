@@ -1,12 +1,12 @@
 package ru.reeson2003.model.main;
 
-import ru.reeson2003.model.characters.battle.Fight;
 import ru.reeson2003.model.characters.battle.TestAI;
-import ru.reeson2003.model.characters.battle.abilities.EasyHealAbility;
+import ru.reeson2003.model.characters.battle.abilities.LightHealAbility;
 import ru.reeson2003.model.characters.battle.abilities.FuryHitAbility;
 import ru.reeson2003.model.characters.battle.abilities.HitAbility;
-import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.*;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.monster_factory.MonsterFactory;
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.monster_factory.MonsterFactoryTestImpl;
 import ru.reeson2003.model.characters.creatures.Parameters;
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 import ru.reeson2003.model.characters.items.Equip;
@@ -22,7 +22,7 @@ import java.util.Date;
  */
 public class Main2 {
     public static void main(String[] args) throws ClassNotFoundException, IllegalAccessException, InstantiationException {
-        Class.forName("ru.reeson2003.model.characters.creatures.NonPlayerCharacter.TestMonParMan").newInstance();
+        Class.forName("ru.reeson2003.model.characters.creatures.NonPlayerCharacter.monster_factory.TestMonParMan").newInstance();
         MonsterFactory factory = new MonsterFactoryTestImpl();
         int i = 1;
         Monster creature = factory.getMonster(i++);
@@ -33,16 +33,15 @@ public class Main2 {
 //        creature.changeHealth(-100);
 //        System.out.println(creature1);
 //        System.out.println(creature);
-        PlayerCharacter player = PlayerCharacter.NewbiePlayerIstance("xXxTURBOGLAD3000xXx");
+        PlayerCharacter player = PlayerCharacter.NewbiePlayerInstance("xXxTURBOGLAD3000xXx");
         Equip turboGloves = new Equip(EquipType.Gloves);
         turboGloves.setParameters(new Parameters.ParametersBuilder().attackSpeed(0).manaRegen(10).build());
         Equip dragonSlayer = new Equip(EquipType.Weapon);
         dragonSlayer.setParameters(new Parameters.ParametersBuilder().physicalAttack(40).build());
         player.putOn(turboGloves);
         player.putOn(dragonSlayer);
-        Fight fight = new Fight(player, creature);
-        creature.changeHealth(-500);
-        player.addAbility(new EasyHealAbility(player));
+       creature.changeHealth(-500);
+        player.addAbility(new LightHealAbility(player));
         player.addAbility(new FuryHitAbility(player));
         player.addAbility(new HitAbility(player));
         creature.addAbility((new FuryHitAbility(creature)));

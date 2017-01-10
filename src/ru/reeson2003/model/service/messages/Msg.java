@@ -8,8 +8,8 @@ import java.io.Serializable;
  * Message superclass to exchange between client and server.
  */
 public abstract class Msg implements Serializable{
-    private static final long serialVersionUID = 1L;
 
+    private static final long serialVersionUID = -6630421715215067622L;
     protected Address from;
     protected Address to;
 

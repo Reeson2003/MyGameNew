@@ -305,7 +305,7 @@ public class Parameters implements Cloneable {
     @Override
     public String toString() {
         return "{" +
-                ", MaxHP=" + maximumHealth +
+                "MaxHP=" + maximumHealth +
                 ", MaxMP=" + maximumMana +
                 ", HPreg=" + healthRegen +
                 ", MPreg=" + manaRegen +

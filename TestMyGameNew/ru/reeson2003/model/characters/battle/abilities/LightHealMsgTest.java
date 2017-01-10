@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * Created by nimtego_loc on 07.01.2017.
  */
-public class EasyHealMsgTest {
+public class LightHealMsgTest {
     @Test
     public void getEasyHealMsg() throws Exception {
 

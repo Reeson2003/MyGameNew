@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * Created by nimtego_loc on 06.01.2017.
  */
-public class ExperienceDispenser {
+public class ExperienceDistributor {
     public static void distributeExperience(final HashMap<Address, Integer> aggressionList) {
         // TODO: 06.01.2017 надо сортить мапу  
     }

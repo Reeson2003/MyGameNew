@@ -17,7 +17,6 @@ public class TestAI implements TimeDependent {
 
     public TestAI() {
         mobs = new ArrayList<>();
-        TimeActivator.getInstance().addTimeDependent(this);
     }
 
     public void addMob(Creature creature) {

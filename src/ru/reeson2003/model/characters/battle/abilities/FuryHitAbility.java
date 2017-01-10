@@ -1,37 +1,55 @@
 package ru.reeson2003.model.characters.battle.abilities;
 
+import ru.reeson2003.model.characters.battle.BattleCalculator;
 import ru.reeson2003.model.characters.battle.CoolDown;
 import ru.reeson2003.model.characters.creatures.Creature;
-import ru.reeson2003.model.service.exception.NoTargetException;
 
 /**
  * Created by nimtego_loc on 21.12.2016.
  */
-public class FuryHitAbility extends Ability {
+public class FuryHitAbility extends AttackAbility {
+    private int coolDownCoeff;
+    private int powerCoeff;
 
     public FuryHitAbility(Creature owner) {
+        super(owner);
         this.name = "Fury Hit";
-        this.information = "Causes a loss";
+        this.information = "Powerful strike with any weapon type, power: ";
         this.owner = owner;
-        this.damageAbility = AbilityConstants.FURY_HIT_COEFF;
-        this.manaCost = AbilityConstants.FURY_HIT_MANACOST;
-        this.msg = new FuryHitMsg(this.owner.getAddress(), this.damageAbility);
+        this.powerCoeff = AbilityConstants.FURY_HIT_POWER_COEFF;
+        this.manaCost = AbilityConstants.FURY_HIT_MANA_COST;
+        this.coolDownCoeff = AbilityConstants.FURY_HIT_COOL_DOWN_COEFF;
         this.coolDown =
-                new CoolDown(AbilityConstants.FURY_HIT_COOLDOWN);
+                new CoolDown(calcCoolDown());
     }
+
+    private int calcPower() {
+        return powerCoeff*owner.getPhysicalAttack();
+    }
+
     @Override
-    public void use(Creature to) throws NoTargetException {
-        if (to == null || to.equals(owner)) {
-            throw new NoTargetException();
-        }
-        msg.setTo(to.getAddress());
-        if(coolDown.isActive() && owner.getMana() - manaCost >= 0) {
-            coolDown.use();
-            msg.exec();
+    public String getInformation() {
+        return information + calcPower() +", consumes " + manaCost + " Mp's";
+    }
+
+    @Override
+    public void use(Creature target) {
+        if (target != null && target != owner) {
+            if (owner.getCoordinate().distance(target.getCoordinate()) <= owner.getAttackRange()) {
+                if (coolDown.isActive() && owner.getMana() - manaCost >= 0) {
+                    coolDown.setCoolDownMilliseconds(calcCoolDown());
+                    coolDown.use();
+                    int damage = powerCoeff*owner.getPhysicalAttack();
+                    damage = BattleCalculator.phisicalDamage(owner, target,damage,
+                            true,true,false,true);
+                    owner.changeMana(-manaCost);
+                    target.makeDamage(owner, damage);
+                }
+            }
         }
     }
 
-    public int getDamageAbility() {
-        return damageAbility;
+    public int getAbilityDamage() {
+        return calcPower();
     }
 }

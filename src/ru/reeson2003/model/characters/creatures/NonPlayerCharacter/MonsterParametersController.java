@@ -1,5 +1,6 @@
 package ru.reeson2003.model.characters.creatures.NonPlayerCharacter;
 
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.monster_factory.MonsterParametersManager;
 import ru.reeson2003.model.characters.creatures.ParametersController;
 
 /**

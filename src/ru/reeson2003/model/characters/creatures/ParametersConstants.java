@@ -59,7 +59,7 @@ public class ParametersConstants {
     public static final int ATTACK_RANGE_BASE = 5;
     public static final int MIN_ATTACK_RANGE = ATTACK_RANGE_BASE;
 
-    public static final int MOVING_SPEED_BASE = 10;
+    public static final int MOVING_SPEED_BASE = 5000;
     public static final int MOVING_SPEED_AGL_COEFF = 800;
     public static final int MIN_MOVING_SPEED = MOVING_SPEED_BASE;
 

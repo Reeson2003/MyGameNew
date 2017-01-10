@@ -1,6 +1,5 @@
 package ru.reeson2003.model.characters.battle;
 
-import ru.reeson2003.model.service.TimeActivator;
 import ru.reeson2003.model.service.TimeDependent;
 
 import java.util.Date;
@@ -15,7 +14,6 @@ public class CoolDown implements TimeDependent {
     private int coolDownMilliseconds;
 
     public CoolDown(int coolDownMilliseconds) {
-        TimeActivator.getInstance().addTimeDependent(this);
         isActive = true;
         this.coolDownMilliseconds = coolDownMilliseconds;
     }

@@ -17,58 +17,61 @@ public abstract class Ability implements TimeDependent {
     protected CoolDown coolDown;
     protected Creature owner;
     protected int manaCost = 0;
-    protected int healCost = 0;
-    protected int damageAbility = 0;
-    protected Msg msg;
+    protected int healthCost = 0;
+
+    protected Ability(Creature owner) {
+        this.owner = owner;
+    }
 
     public final String getName() {
         return name;
     }
 
-    public final String getInformation() {
+    public String getInformation() {
         return information;
     }
 
-    public final void setName(final String name) {
+    public void setName(final String name) {
         this.name = name;
     }
 
-    public final void setInformation(String information) {
+    public void setInformation(String information) {
         this.information = information;
     }
 
-    public final CoolDown getCoolDown() {
+    public CoolDown getCoolDown() {
         return coolDown;
     }
 
-    public final void setCoolDown(final CoolDown coolDown) {
+    public void setCoolDown(final CoolDown coolDown) {
         this.coolDown = coolDown;
     }
 
-    public final void setCoolDownMilliseconds(int milliseconds) {
+    public void setCoolDownMilliseconds(int milliseconds) {
         if (milliseconds < 0)
-            throw new IllegalArgumentException("Cooldown time must be 0 or more");
+            throw new IllegalArgumentException("Cool down time must be 0 or more");
         else
             this.coolDown.setCoolDownMilliseconds(milliseconds);
     }
 
-    public final void setCoolDownSeconds(int seconds) {
+    public void setCoolDownSeconds(int seconds) {
         if (seconds < 0)
-            throw new IllegalArgumentException("Cooldown time must be 0 or more");
+            throw new IllegalArgumentException("Cool down time must be 0 or more");
         else
             this.coolDown.setCoolDownMilliseconds(seconds*1000);
     }
 
-    public final void setCoolDownMinutes(int minutes) {
+    public void setCoolDownMinutes(int minutes) {
         if (minutes < 0)
-            throw new IllegalArgumentException("Cooldown time must be 0 or more");
+            throw new IllegalArgumentException("Cool down time must be 0 or more");
         else
             this.coolDown.setCoolDownMilliseconds(minutes * 60000);
     }
 
-    public final void setOwner(Creature creature) {
+    public void setOwner(Creature creature) {
         this.owner = creature;
     }
+
 
     @Override
     public void tick(Date date) {

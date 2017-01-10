@@ -5,8 +5,8 @@ import ru.reeson2003.model.characters.coordinates.WorldConstants;
 import ru.reeson2003.model.characters.coordinates.World;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.Monster;
-import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterFactory;
-import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.MonsterFactoryTestImpl;
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.monster_factory.MonsterFactory;
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.monster_factory.MonsterFactoryTestImpl;
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 import ru.reeson2003.view.SwingView;
 
@@ -31,7 +31,7 @@ public class WorldTest {
             if (n > 4)
                 n = 1;
         }
-        PlayerCharacter playerCharacter = PlayerCharacter.NewbiePlayerIstance("Nagibator");
+        PlayerCharacter playerCharacter = PlayerCharacter.NewbiePlayerInstance("Nagibator");
         Coordinate coordinate = getCoordinate(random);
         playerCharacter.setCoordinate(coordinate);
         System.out.println(coordinate);

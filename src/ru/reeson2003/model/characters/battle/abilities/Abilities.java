@@ -1,11 +1,8 @@
 package ru.reeson2003.model.characters.battle.abilities;
 
-import com.sun.corba.se.impl.encoding.OSFCodeSetRegistry;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.service.TimeDependent;
-import ru.reeson2003.model.service.exception.MyGameException;
-import ru.reeson2003.model.service.exception.NonExistentKeyAbility;
-import ru.reeson2003.model.service.exception.NotLearnStillAbility;
+import ru.reeson2003.model.service.exception.NonExistentAbilityKey;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -48,12 +45,9 @@ public class Abilities implements TimeDependent {
         this.abilities = abilities;
     }
 
-    final public Ability getAbility(final String name) throws NonExistentKeyAbility, NotLearnStillAbility {
+    final public Ability getAbility(final String name) throws NonExistentAbilityKey {
         if (!abilities.containsKey(name)) {
-            throw new NonExistentKeyAbility();
-        }
-        if (abilities.get(name) == null) {
-            throw new NotLearnStillAbility();
+            throw new NonExistentAbilityKey();
         }
         return abilities.get(name);
     }
