@@ -44,4 +44,15 @@ public abstract class WorldObject implements Abonent {
     final public Address getAddress() {
         return address;
     }
+
+    @Override
+    public int hashCode() {
+        return this.address.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        WorldObject worldObject = (WorldObject)obj;
+        return this.address.equals(worldObject.address);
+    }
 }

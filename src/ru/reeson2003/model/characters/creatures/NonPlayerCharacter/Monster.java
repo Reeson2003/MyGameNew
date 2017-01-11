@@ -1,6 +1,8 @@
 package ru.reeson2003.model.characters.creatures.NonPlayerCharacter;
 
 import ru.reeson2003.model.characters.creatures.Creature;
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.art_intellect.AI;
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.art_intellect.AggressionList;
 import ru.reeson2003.model.characters.creatures.ParametersController;
 import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.TimeActivator;
@@ -10,19 +12,10 @@ import ru.reeson2003.model.service.TimeActivator;
  */
 public class Monster extends Creature implements Cloneable {
 
-    private AggressionList aggressionList;
+    private AI ai;
 
     public Monster(String name, ParametersController parametersController) {
         super(name, parametersController);
-        aggressionList = new AggressionList();
-    }
-
-    public AggressionList getAggressionList() {
-        return aggressionList;
-    }
-
-    public void setAggressionList(AggressionList aggressionList) {
-        this.aggressionList = aggressionList;
     }
 
     @Override

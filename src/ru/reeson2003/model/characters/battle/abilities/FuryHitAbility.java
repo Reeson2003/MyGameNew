@@ -40,7 +40,7 @@ public class FuryHitAbility extends AttackAbility {
                     coolDown.setCoolDownMilliseconds(calcCoolDown());
                     coolDown.use();
                     int damage = powerCoeff*owner.getPhysicalAttack();
-                    damage = BattleCalculator.phisicalDamage(owner, target,damage,
+                    damage = BattleCalculator.physicalDamage(owner, target,damage,
                             true,true,false,true);
                     owner.changeMana(-manaCost);
                     target.makeDamage(owner, damage);

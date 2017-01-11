@@ -1,6 +1,6 @@
 package ru.reeson2003.model.main;
 
-import ru.reeson2003.model.characters.battle.TestAI;
+import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.art_intellect.AI;
 import ru.reeson2003.model.characters.battle.abilities.LightHealAbility;
 import ru.reeson2003.model.characters.battle.abilities.FuryHitAbility;
 import ru.reeson2003.model.characters.battle.abilities.HitAbility;
@@ -46,7 +46,7 @@ public class Main2 {
         player.addAbility(new HitAbility(player));
         creature.addAbility((new FuryHitAbility(creature)));
         TimeActivator timeActivator = TimeActivator.getInstance();
-        TestAI AI = new TestAI();
+        AI AI = new AI();
         while (true) {
             timeActivator.tick(new Date());
             SwingView.getInstance().clear()

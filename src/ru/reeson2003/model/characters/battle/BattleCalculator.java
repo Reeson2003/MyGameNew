@@ -9,7 +9,7 @@ import java.util.Random;
  * Created by reeson on 10.01.17.
  */
 public class BattleCalculator {
-    public static int phisicalDamage(Creature from, Creature to, int damage,
+    public static int physicalDamage(Creature from, Creature to, int damage,
                                      boolean critical, boolean pDefence,
                                      boolean evasion, boolean dispersion) {
         Random random = new Random(new Date().getTime());

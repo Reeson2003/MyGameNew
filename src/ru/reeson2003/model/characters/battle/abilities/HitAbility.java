@@ -23,7 +23,7 @@ public class HitAbility extends AttackAbility {
             if (owner.getCoordinate().distance(target.getCoordinate()) <= owner.getAttackRange()) {
                 if (coolDown.isActive()) {
                     coolDown.use();
-                    int damage = BattleCalculator.phisicalDamage(owner, target, owner.getPhysicalAttack(),
+                    int damage = BattleCalculator.physicalDamage(owner, target, owner.getPhysicalAttack(),
                             true, true, true, true);
                     target.makeDamage(owner, damage);
                 }
