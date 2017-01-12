@@ -14,11 +14,13 @@ public class HitAbility extends AttackAbility {
         super(owner);
         this.name = "Hit";
         this.coolDown = new CoolDown(owner.getAttackSpeed());
+        coolDownCoeff = 1;
         this.information = "Regular attack with weapon";
     }
 
     @Override
     public void use(Creature target) {
+        coolDown.setCoolDownMilliseconds(calcCoolDown());
         if (target != null && target != owner) {
             if (owner.getCoordinate().distance(target.getCoordinate()) <= owner.getAttackRange()) {
                 if (coolDown.isActive()) {

@@ -1,5 +1,8 @@
 package ru.reeson2003.model.characters.creatures.PlayerCharacter;
 
+import ru.reeson2003.model.characters.battle.abilities.FuryHitAbility;
+import ru.reeson2003.model.characters.battle.abilities.HitAbility;
+import ru.reeson2003.model.characters.battle.abilities.LightHealAbility;
 import ru.reeson2003.model.characters.creatures.*;
 import ru.reeson2003.model.characters.items.Equip;
 
@@ -35,6 +38,9 @@ public class PlayerCharacter extends Creature {
         ParametersController parametersController = new PlayerParametersController(experience);
         parametersController.setParameters(parameters);
         PlayerCharacter playerCharacter = new PlayerCharacter(name, parametersController, experience);
+        playerCharacter.addAbility(new HitAbility(playerCharacter));
+        playerCharacter.addAbility(new FuryHitAbility(playerCharacter));
+        playerCharacter.addAbility(new LightHealAbility(playerCharacter));
         return playerCharacter;
     }
 

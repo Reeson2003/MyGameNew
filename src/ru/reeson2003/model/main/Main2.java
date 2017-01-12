@@ -46,7 +46,7 @@ public class Main2 {
         player.addAbility(new HitAbility(player));
         creature.addAbility((new FuryHitAbility(creature)));
         TimeActivator timeActivator = TimeActivator.getInstance();
-        AI AI = new AI();
+//        AI AI = new AI();
         while (true) {
             timeActivator.tick(new Date());
             SwingView.getInstance().clear()

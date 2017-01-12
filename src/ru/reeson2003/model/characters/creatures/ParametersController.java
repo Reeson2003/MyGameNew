@@ -17,7 +17,7 @@ public abstract class ParametersController implements Equipment.EquipmentListene
     protected Equipment equipment;
     private Date healthTick;
     private Date manaTick;
-
+    // todo : разобраться с atk range и atk speed.
     protected ParametersController() {
         this.parameters = new Parameters.ParametersBuilder().build();
         this.equipment = new Equipment();
@@ -72,7 +72,7 @@ public abstract class ParametersController implements Equipment.EquipmentListene
     }
 
     public int getAttackSpeed() {
-        int result = parameters.getAttackSpeed() + equipment.getParameters().getAttackSpeed();
+        int result = equipment.getParameters().getAttackSpeed();
         return result < 0 ? 0 : result;
     }
 

@@ -11,7 +11,7 @@ import java.util.TreeMap;
  * Created by nimtego_loc on 06.01.2017.
  */
 public class ExperienceDistributor {
-    public static void distributeExperience(final TreeMap<Creature, Integer> map, int experience) {
+    public static void distributeExperience(Map<Creature, Integer> map, int experience) {
         if (experience != 0) {
             int totalAggression = 0;
             for (Map.Entry<Creature, Integer> pair : map.entrySet()) {

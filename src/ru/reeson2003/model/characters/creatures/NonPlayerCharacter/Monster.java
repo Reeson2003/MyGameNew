@@ -2,10 +2,11 @@ package ru.reeson2003.model.characters.creatures.NonPlayerCharacter;
 
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.art_intellect.AI;
-import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.art_intellect.AggressionList;
 import ru.reeson2003.model.characters.creatures.ParametersController;
 import ru.reeson2003.model.service.AbonentTable;
 import ru.reeson2003.model.service.TimeActivator;
+
+import java.util.Date;
 
 /**
  * Created by reeson on 11.12.16.
@@ -22,9 +23,28 @@ public class Monster extends Creature implements Cloneable {
     public void makeDamage(Creature creature, int damage) {
         if (getHealth() - damage < 0) {
             changeHealth(-damage);
+            ai.makeDamage(creature, damage);
+            ai.kill();
             TimeActivator.getInstance().removeTimeDependent(this);
             AbonentTable.removeAbonent(this);
+        }else {
+            changeHealth(-damage);
+            ai.makeDamage(creature,damage);
         }
+    }
+
+    public AI getAi() {
+        return ai;
+    }
+
+    public void setAi(AI ai) {
+        this.ai = ai;
+    }
+
+    @Override
+    public void tick(Date date) {
+        super.tick(date);
+        ai.tick(date);
     }
 
     @Override

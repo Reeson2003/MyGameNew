@@ -45,6 +45,8 @@ public class CoolDown implements TimeDependent {
 
     @Override
     public void tick(Date date) {
+        if (useDate == null)
+            useDate = date;
         currentDate = date;
         if (!isActive) {
             if((useDate.getTime() + coolDownMilliseconds) <= date.getTime())

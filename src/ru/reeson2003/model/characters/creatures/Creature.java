@@ -30,6 +30,8 @@ public abstract class Creature extends WorldObject implements TimeDependent {
     protected ParametersController parametersController;
     /** {@link Movement} manages {@code Creature}'s moving. */
     private Movement movement;
+    /** {@code int} amount of experience for kill */
+    private int bonusExperience = 0;
 
     /**
      * Constructs new {@code Creature} with {@code name} and {@code ParametersController}
@@ -138,6 +140,10 @@ public abstract class Creature extends WorldObject implements TimeDependent {
         return parametersController.getMana();
     }
 
+    public int getBonusExperience() {
+        return bonusExperience;
+    }
+
     /**
      * Uses {@link Abilities#getAbility(String)} with {@code String} name as parameter.
      * @param name {@code String} name of {@code Ability}.
@@ -197,6 +203,10 @@ public abstract class Creature extends WorldObject implements TimeDependent {
         parametersController.setMana(mana);
     }
 
+    public void setBonusExperience(int bonusExperience) {
+        this.bonusExperience = bonusExperience;
+    }
+
     /**
      * Sets {@link #movement} by new {@link Movement} instance with
      * {@code this Creature} and {@code Coordinate} from argument.
@@ -238,6 +248,7 @@ public abstract class Creature extends WorldObject implements TimeDependent {
         parametersController.tick(date);
         if (movement != null)
             movement.tick(date);
+        abilities.tick(date);
     }
 
     @Override

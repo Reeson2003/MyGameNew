@@ -70,7 +70,6 @@ public class Movement implements TimeDependent {
         this.finish = finish;
         this.start = creature.getCoordinate();
         this.creature = creature;
-        this.begin = new Date();
         calcDistance();
         calcDxDyDz();
     }
@@ -130,6 +129,8 @@ public class Movement implements TimeDependent {
      * @param date current {@code Date}.
      */
     private void step(Date date) {
+        if (begin == null)
+            begin = date;
         if (!creature.getCoordinate().equals(finish)) {
             setSpeedProjection();
             int x = (int) (start.getX() + vX * (date.getTime() - this.begin.getTime()));
