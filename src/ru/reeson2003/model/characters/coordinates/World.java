@@ -83,9 +83,9 @@ public class World {
             return;
         }
     }
-
+//todo
     /**
-     * Moves an creature to the appropriate location according Coordinate.
+     * Moves a creature to the appropriate location according Coordinate.
      * Changes incorrect coordinate into correct state.
      * @param creature to place to the Location;
      */

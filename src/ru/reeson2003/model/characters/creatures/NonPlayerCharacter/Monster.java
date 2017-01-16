@@ -1,5 +1,6 @@
 package ru.reeson2003.model.characters.creatures.NonPlayerCharacter;
 
+import ru.reeson2003.model.characters.coordinates.World;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.characters.creatures.NonPlayerCharacter.art_intellect.AI;
 import ru.reeson2003.model.characters.creatures.ParametersController;
@@ -21,16 +22,7 @@ public class Monster extends Creature implements Cloneable {
 
     @Override
     public void makeDamage(Creature creature, int damage) {
-        if (getHealth() - damage < 0) {
-            changeHealth(-damage);
-            ai.makeDamage(creature, damage);
-            ai.kill();
-            TimeActivator.getInstance().removeTimeDependent(this);
-            AbonentTable.removeAbonent(this);
-        }else {
-            changeHealth(-damage);
-            ai.makeDamage(creature,damage);
-        }
+        ai.makeDamage(creature, damage);
     }
 
     public AI getAi() {
@@ -50,12 +42,6 @@ public class Monster extends Creature implements Cloneable {
     @Override
     public void addExperience(int experience) {
 
-    }
-
-    @Override
-    public void remove() {
-        super.remove();
-        TimeActivator.getInstance().removeTimeDependent(this);
     }
 
     @Override

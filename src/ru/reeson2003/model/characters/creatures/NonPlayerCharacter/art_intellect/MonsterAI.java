@@ -9,6 +9,7 @@ import java.util.Date;
  * Created by reeson on 12.01.17.
  */
 public abstract class MonsterAI extends AI {
+    protected boolean isDead = false;
     protected Creature owner;
     protected AggressionList aggressionList;
     protected MonsterBehavior behavior;
@@ -26,11 +27,24 @@ public abstract class MonsterAI extends AI {
 
     @Override
     public void makeDamage(Creature creature, int damage) {
-        aggressionList.changeAggression(creature, damage);
+        if (!isDead) {
+            aggressionList.changeAggression(creature, damage);
+            if (owner.getHealth() - damage < 0) {
+                kill();
+                distributeExperience();
+                owner.remove();
+            }
+            owner.changeHealth(-damage);
+        }
     }
 
     @Override
     public void kill() {
-        ExperienceDistributor.distributeExperience(aggressionList.getAggressionMap(), owner.getBonusExperience());
+        isDead = true;
+    }
+
+    private void distributeExperience() {
+        ExperienceDistributor.distributeExperience(aggressionList.getAggressionMap(),
+                owner.getBonusExperience());
     }
 }

@@ -4,6 +4,7 @@ import ru.reeson2003.model.characters.WorldObject;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.characters.items.Item;
 import ru.reeson2003.model.service.Address;
+import ru.reeson2003.model.service.exception.WrongLocationException;
 
 import java.util.*;
 
@@ -50,9 +51,11 @@ public class Location {
      * Removes a "Creature" object in container.
      * @param creature wrong object type verification, null verification.
      */
-    public void remove(Creature creature) {
+    public void remove(Creature creature) /*throws WrongLocationException*/ {
         try {
-            this.creatures.remove(creature.getAddress());
+            Creature c = creatures.remove(creature.getAddress());
+//            if (c == null)
+//                throw new WrongLocationException("There is not creature " + creature + "on this location");
         } catch (ClassCastException e) {
             e.printStackTrace();
             System.err.println("Location. Wrong key type:" + creature.getClass().getName());

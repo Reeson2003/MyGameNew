@@ -5,6 +5,7 @@ import ru.reeson2003.model.characters.battle.abilities.Ability;
 import ru.reeson2003.model.characters.battle.abilities.Abilities;
 import ru.reeson2003.model.characters.coordinates.Coordinate;
 import ru.reeson2003.model.characters.coordinates.Movement;
+import ru.reeson2003.model.characters.coordinates.World;
 import ru.reeson2003.model.service.TimeActivator;
 import ru.reeson2003.model.service.TimeDependent;
 import ru.reeson2003.model.service.exception.NonExistentAbilityKey;
@@ -249,6 +250,13 @@ public abstract class Creature extends WorldObject implements TimeDependent {
         if (movement != null)
             movement.tick(date);
         abilities.tick(date);
+    }
+
+    @Override
+    public void remove() {
+        World.getInstance().remove(this);
+        TimeActivator.getInstance().removeTimeDependent(this);
+        super.remove();
     }
 
     @Override
