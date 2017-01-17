@@ -83,7 +83,7 @@ public class World {
             return;
         }
     }
-//todo
+
     /**
      * Moves a creature to the appropriate location according Coordinate.
      * Changes incorrect coordinate into correct state.

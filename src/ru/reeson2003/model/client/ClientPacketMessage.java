@@ -16,7 +16,7 @@ public class ClientPacketMessage implements Serializable {
     private List<CreatureSurrogate> creaturesSurrogate;
 
     public ClientPacketMessage(PlayerCharacter playerSurrogate, List<Creature> creatures) {
-        this.playerSurrogate = PlayerCharacterSurrogate.getAgent(playerSurrogate);
+        this.playerSurrogate = PlayerCharacterSurrogate.getSurrogate(playerSurrogate);
         this.creaturesSurrogate = new ArrayList<>(creatures.size());
         for (Creature c: creatures) {
             creaturesSurrogate.add(CreatureSurrogate.createSurrogate(c));

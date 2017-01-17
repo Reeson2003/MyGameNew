@@ -31,8 +31,8 @@ public class TimeActivator {
     }
 
     /**
-     * Activate all of the TimeDependents.
-     * @param date is the current Date.
+     * Activate all of the {@code TimeDependent}.
+     * @param date {@link Date}
      */
     public void tick(Date date) {
         for (TimeDependent d: timeDependents) {

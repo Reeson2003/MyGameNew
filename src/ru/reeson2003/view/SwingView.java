@@ -3,6 +3,8 @@ package ru.reeson2003.view;
 import ru.reeson2003.model.characters.creatures.Creature;
 import ru.reeson2003.model.characters.creatures.PlayerCharacter.PlayerCharacter;
 
+import java.util.Collection;
+
 /**
  * Created by reeson on 03.01.17.
  */
@@ -17,39 +19,10 @@ public class SwingView {
     }
 
     public static SwingView getInstance() {
-        if (instance ==  null)
+        if (instance == null)
             instance = new SwingView();
         return instance;
     }
-
-//    public void showPacketMessage(ClientPacketMessage message) {
-//        PlayerCharacterSurrogate player = message.getPlayerSurrogate();
-//        List<CreatureSurrogate> creatureSurrogates = message.getCreatures();
-//        StringBuilder sb = new StringBuilder();
-//        sb.append("<html>");
-//        sb.append("Player: ");
-//        sb.append(player.getName());
-//        sb.append("     Target: ");
-//        sb.append(target);
-//        sb.append("<br>");
-//        sb.append(" HP: ");
-//        sb.append(hpMpString(player.getHealth(), player.getMaximumHealth()));
-//        sb.append("<br>");
-//        sb.append(" MP: ");
-//        sb.append(hpMpString(player.getMana(), player.getMaximumMana()));
-//        sb.append("<br>");
-//        sb.append("----------------------------------------------------------------------------------");
-//        for (int i = 0; i < creatureSurrogates.size(); i++) {
-//            sb.append("<br>");
-//            sb.append(i+1);
-//            sb.append(". ");
-//            sb.append(creatureSurrogates.get(i).getName());
-//            sb.append(" HP: ");
-//            sb.append(hpMpString(creatureSurrogates.get(i).getHealth(), creatureSurrogates.get(i).getMaximumHealth()));
-//        }
-//        sb.append("</html>");
-//        mainWindow.showText(sb.toString());
-//    }
 
     public void showCreature(Creature creature) {
         mainWindow.showText(creatureToString(creature));
@@ -75,6 +48,31 @@ public class SwingView {
         return this;
     }
 
+    public SwingView append(Collection<Creature> creatures) {
+        StringBuilder stringBuilder = new StringBuilder();
+//        stringBuilder.append("<ol start=\"0\">");
+        int counter = 1;
+        for (Creature c : creatures) {
+            stringBuilder.append("<br>")
+                    .append(counter)
+                    .append(creatureForList(c));
+            counter++;
+        }
+//        stringBuilder.append("</ol>");
+        sb.append(stringBuilder.toString());
+        return this;
+    }
+
+    private String creatureForList(Creature creature) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<font color=\"red\">")
+                .append(hpMpString(creature.getHealth(), creature.getMaximumHealth()))
+                .append("</font>")
+                .append(" [" + creature.getHealth() + "/" + creature.getMaximumHealth() + "] ")
+                .append(creature.getName());
+        return stringBuilder.toString();
+    }
+
     public SwingView append(String text) {
         sb.append("<br>" + text.replace("\n", "<br>"));
         return this;
@@ -88,6 +86,10 @@ public class SwingView {
     public void show() {
         sb.append("</html>");
         this.mainWindow.showText(sb.toString());
+    }
+
+    public Character getKeyTyped() {
+        return mainWindow.getKeyTyped();
     }
 
     private String creatureToString(Creature creature) {
@@ -107,7 +109,7 @@ public class SwingView {
         sb.append("<font color=\"blue\">");
         sb.append(hpMpString(creature.getMana(), creature.getMaximumMana()));
         sb.append("</font>");
-        sb.append("[" +creature.getMana() + "/" + creature.getMaximumMana() + "]");
+        sb.append("[" + creature.getMana() + "/" + creature.getMaximumMana() + "]");
         sb.append("<br>");
         sb.append("<table border=\"2\", bgcolor =\"#00FF00\"><tr>");
         sb.append("<td>P.atk</td>");

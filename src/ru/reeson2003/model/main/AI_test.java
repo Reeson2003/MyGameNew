@@ -15,6 +15,7 @@ import ru.reeson2003.model.service.TimeActivator;
 import ru.reeson2003.model.service.exception.MyGameException;
 import ru.reeson2003.view.SwingView;
 
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -42,11 +43,25 @@ public class AI_test {
         while (true) {
             List<Creature> list = world.getVisibleCreatures(playerCharacter);
             list.remove(playerCharacter);
+            list.sort(new Comparator<Creature>() {
+                @Override
+                public int compare(Creature o1, Creature o2) {
+                    return o1.getAddress().getAbonentId() - o2.getAddress().getAbonentId();
+                }
+            });
+            SwingView sw = SwingView.getInstance();
             if (!list.isEmpty()) {
-                try {
-                    playerCharacter.getAbility("Hit").use(list.get(0));
-                } catch (MyGameException e) {
-                    e.printStackTrace();
+                Character c = sw.getKeyTyped();
+                int number;
+                if (c != null) {
+                    number = getNumber(c);
+                    if (number > 0 && number <= list.size()) {
+                        try {
+                            playerCharacter.getAbility("Hit").use(list.get(number-1));
+                        } catch (MyGameException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             } else {
                 Monster m1 = monsterFactory.getMonster(random.nextInt(3)+1);
@@ -56,12 +71,21 @@ public class AI_test {
                 Monster m3 = monsterFactory.getMonster(random.nextInt(3)+1);
                 m3.setAi(new AntQueenAI(m3));
             }
-            SwingView sw = SwingView.getInstance();
             sw.clear().append(playerCharacter);
-            for (Creature c: list)
-                sw.append(c);
+//            for (Creature c: list)
+//                sw.append(c);
+            sw.append(list);
             sw.show();
             TimeActivator.getInstance().tick(new Date());
         }
+    }
+
+    public static int getNumber(Character c) {
+        int result = -1;
+        try {
+            if (c != null)
+            result = Integer.parseInt(c.toString());
+        } catch (NumberFormatException e) {}
+        return result;
     }
 }

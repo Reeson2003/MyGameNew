@@ -9,7 +9,7 @@ import java.io.Serializable;
  * Agent for PlayerCharacter to send to client
  */
 public class PlayerCharacterSurrogate implements Serializable{
-    private static final long serialVersionUID = 13L;
+    private static final long serialVersionUID = 2026269912994645198L;
     private Address address;
     private String name;
     private int health;
@@ -40,7 +40,7 @@ public class PlayerCharacterSurrogate implements Serializable{
     private int expToNextLevel;
     private int skillPoints;
 
-    public static PlayerCharacterSurrogate getAgent(PlayerCharacter playerCharacter) {
+    public static PlayerCharacterSurrogate getSurrogate(PlayerCharacter playerCharacter) {
         return new PlayerCharacterSurrogate(playerCharacter);
     }
 

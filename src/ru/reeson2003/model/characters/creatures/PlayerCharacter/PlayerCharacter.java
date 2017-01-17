@@ -46,8 +46,6 @@ public class PlayerCharacter extends Creature {
 
     @Override
     public void makeDamage(Creature creature, int damage) {
-        if (target == null)
-            target = creature;
         changeHealth(-damage);
     }
 

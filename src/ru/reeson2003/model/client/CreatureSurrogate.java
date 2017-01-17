@@ -9,8 +9,8 @@ import java.io.Serializable;
  * Created by reeson on 02.01.17.
  */
 public class CreatureSurrogate implements Serializable {
-    private static final long serialVersionUID = 14L;
-    Address address;
+    private static final long serialVersionUID = 8882273971078803583L;
+    private Address address;
     private String name;
     private int health;
     private int maximumHealth;
